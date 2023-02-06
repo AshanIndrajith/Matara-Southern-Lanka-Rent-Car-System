@@ -13,6 +13,7 @@ https://templatemo.com/tm-516-known
     font-family: 'Nunito', sans-serif;
     overflow-x: hidden;
     padding-top: 70px;
+    
   }
 
 
@@ -525,6 +526,7 @@ https://templatemo.com/tm-516-known
     overflow: hidden;
     text-align: left;
     box-shadow: 10px 10px 5px #aaaaaa;
+    border-radius:20px;
   
   }
 
@@ -556,7 +558,8 @@ https://templatemo.com/tm-516-known
       COURSES             
   -----------------------------------------*/
 
-  #courses .section-title {
+  #courses .
+   {
     text-align: center;
   }
 
