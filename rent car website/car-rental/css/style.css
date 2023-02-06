@@ -527,6 +527,9 @@ https://templatemo.com/tm-516-known
     text-align: left;
     box-shadow: 10px 10px 5px #aaaaaa;
     border-radius:20px;
+   padding-top:80px;
+   padding-left:30px;
+   padding-right:30px;
   
   }
 
@@ -754,7 +757,7 @@ https://templatemo.com/tm-516-known
   -----------------------------------------*/
 
   #contact {
-    background: #3f51b5;
+    background:#565656;
   }
 
   #contact h2 {
@@ -1070,17 +1073,17 @@ https://templatemo.com/tm-516-known
 
   .team-thumb-actions { padding: 10px; border-top: 1px solid rgba(0,0,0,.05); }
 
-  .section-btn.btn-primary { border-color: #29ca8e; color: #29ca8e; }
+  .section-btn.btn-primary { border-color: #FFC300; color: #FFC300; }
   .section-btn.btn-primary:focus,
   .section-btn.btn-primary:active,
   .section-btn.btn-primary:focus:active,
-  .section-btn.btn-primary:hover {background: #29ca8e; color: #fff; border-color: #29ca8e; }
+  .section-btn.btn-primary:hover {background: #FFC300; color: #fff; border-color:#FFC300; }
 
   .courses-thumb .lead,
   .team-info .lead { margin-bottom: 10px; }
 
   .courses-thumb .lead strong,
-  .team-info .lead strong { color: #29ca8e;}
+  .team-info .lead strong { color: #d7de52;}
 
   section,
   .section-background .item,
