@@ -69,6 +69,23 @@ https://templatemo.com/tm-516-known
 }
 
 
+.im-dec{
+  box-shadow: 10px 10px 5px #aaaaaa;
+  border-radius:20px;
+  margin-top:20px;
+  padding-left:15px;
+  padding-top:5px;
+  padding-top:5px;
+  padding-bottom:5px;
+  
+
+
+}
+
+
+
+
+
 
 
 
@@ -604,6 +621,7 @@ https://templatemo.com/tm-516-known
 
   .courses-thumb-secondary {
     margin-bottom: 30px;
+
   }
 
 .form .form-control,
