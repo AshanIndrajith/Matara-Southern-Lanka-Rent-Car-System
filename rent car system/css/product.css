@@ -63,7 +63,7 @@
  
  .middle-pr  button {
      border-radius: 2px;
-     width: 100px; /* Button will fit into the card */
+     width: 175px; /* Button will fit into the card */
      padding: 10px;
      background-color: black;
      color: aliceblue; /* text color*/
@@ -76,8 +76,9 @@
 }
 .dress-code{
    font-family:themes new roman;
-   font-size:25px;
+   font-size:20px;
     color:black;
+    padding-top:10px;
 }
 
 
