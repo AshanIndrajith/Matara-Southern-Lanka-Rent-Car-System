@@ -64,7 +64,7 @@ html,body{
 
 .desc1-section{
   margin-top:40px;
-  margin:auto;
+  margin-left:200px;
 }
 .desc1-col img{
   display:block;
@@ -302,7 +302,7 @@ margin-top: 20px;
 
 .service-item,
 .contact-item {
-    background: url(image/service.jpg) top center no-repeat;
+    background: url(service.jpg) top center no-repeat;
     background-size: cover;
     transition: .5s;
     box-shadow: 10px 10px 5px #ccc;
@@ -368,7 +368,7 @@ margin-top: 20px;
 
 
 .mobile-promo img{
-  width:80%;
+  width:75%;
   display: block;
   margin-left: auto;
   margin-right: auto;
