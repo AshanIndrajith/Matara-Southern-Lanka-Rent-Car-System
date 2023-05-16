@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="../css/login.css">
-  <title>Login</title>
+  <title>HASH TECHIE OFFICIAL</title>
+  <script src="../js/jquery-3.6.1.min.js"></script>
+  <script src="../js/Authentication.js"></script>
+
 </head>
 <body>
     <section>
@@ -12,19 +15,19 @@
                     <h2>Login</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
+                        <input type="email" id="username" required>
                         <label for="">Email</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
+                        <input type="password" id="password" required>
                         <label for="">Password</label>
                     </div>
                     <div class="forget">
                         <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
                       
                     </div>
-                    <button>Log in</button>
+                    <button type="button" class="btn btn-primary" onclick="LogEmployee()">Login</button>
                     <div class="register">
                         <p>Don't have a account <a href="#">Register</a></p>
                     </div>
