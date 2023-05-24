@@ -72,6 +72,8 @@
 		<script src="js/jquery-3.6.1.min.js"></script>
 		<script src="js/.js"></script>
 
+		<link rel="stylesheet" href="src/styles/formstyle.css">
+
 
 
 	</head>
@@ -303,92 +305,113 @@
 
 		
 		
+		
 		<div class="main-container">
-			<div class="pd-ltr-20" style="width: 60%; align-items: center; margin: auto;">
-				<div class="card-box pd-30  mb-30" style="background-color:#180303; " >
-					
-						
-							<h4 class="font-20 weight-500 mb-10 text-capitalize text-capitalize;align-items-center " style="color: #F0F0F0;">
-								Insert vehicle Details
-							</h4>
-						
-					
-				</div>
-                </div>
+			<div class="form">
+				
+				<table class="form_table">
+					<div class="title">Insert Vehicle Detail</div>
+					<!-- <div class="subtitle">Let's create your account!</div> -->
+					<form>
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Vehicle Id: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="vie" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+	
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Vehicle Name: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="vname" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+	
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Vehicle Type: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="vtype" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+	
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Fuel Type: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="ftype" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+	
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Image: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="image" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+	
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Rental Price: 
+								</div>
+							</td>
+						<td>
+								<div class="input-container ic1">
+									<input id="rprice" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+	
+						<tr>
+							<td>
 
-                <div class="card-box pd-30 height-100-p mb-30" style="width: 48%; margin: auto;" >
-                    <form style="align-content: center;">
-                    <div class="mb-3 row">
-                        <label for="vehicle_id" class="col-sm-4 col-form-label" style="font-size: 15px;"> Id:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" style="background-color:#F0F0F0" >
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="vehicle_name" class="col-sm-4 col-form-label" style="font-size: 15px;">vehicle id	:</label>
-                        <div class="col-sm-6">
-                        <input type="text" class="form-control" id="exampleFormControlInput2" style="background-color:#F0F0F0" >
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="vehicle_type" class="col-sm-4 col-form-label" style="font-size: 15px;">description:</label>
-                        <div class="col-sm-6">
-                        <input type="text" class="form-control" id="exampleFormControlInput3" style="background-color:#F0F0F0" >
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="fuel_type" class="col-sm-4 col-form-label" style="font-size: 15px;">date</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="exampleFormControlInput4" style="background-color:#F0F0F0" >
-                        </div>
-                    </div>
-
-					<div class="mb-3 row">
-                        <label for="fuel_type" class="col-sm-4 col-form-label" style="font-size: 15px;">image</label>
-                        <div class="col-sm-6">
-                            <input type="image" class="form-control" id="exampleFormControlInput5" style="background-color:#F0F0F0" >
-                        </div>
-                    </div>
-					<div class="mb-3 row">
-                        <label for="fuel_type" class="col-sm-4 col-form-label" style="font-size: 15px;">Amount</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="exampleFormControlInput6" style="background-color:#F0F0F0" >
-                        </div>
-                    </div>
-					<div class="mb-3 row">
-                        <label for="fuel_type" class="col-sm-4 col-form-label" style="font-size: 15px;">fixed status</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="exampleFormControlInput7" style="background-color:#F0F0F0" >
-                        </div>
-                    </div>
+							</td>
+							<td>
+							<button type="submit" class="submit">Submit</button> <button type="reset" class="reset">Reset</button>
+								
+							</td>
+						</tr>
+	
+					</form>
+				  </table> 
+			  </div>
                   
                    
-                    <div class="mb-3 row">
-                        <label for="rental_price" class="col-sm-4 col-form-label"></label>
-                        <div class="col-sm-6">
-							<div class="row">
-								<div class="col-sm-6"><input type="reset" class="btn btn-danger" style="font-size: 15px;width: 90%;"></div>
-								<button type="button" class="btn btn-primary" onclick="saveEmployee()">Save</button>
-							  </div>
-							
-                            <!-- <button type="button" class="btn btn-danger" style="font-size: 15px;">Reset</button>
-                            <button type="reset" class="btn btn-success" style="font-size: 15px;">Submit</button> -->
-						
-                        </div>
-                    </div>
-                    </form>
-                </div>
+              
                 
                
         
 
 
-				<div class="footer-wrap pd-30 mb-20 card-box" style="margin: 10px;">
-					Matara Southern Lanka Rent a Car 
-					<a href="" target="_blank"
-						> Ashan Indrajith</a
-					>
-				</div>
 			</div>
 		</div>
 
