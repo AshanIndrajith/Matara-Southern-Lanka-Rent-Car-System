@@ -1,181 +1,152 @@
 package com.example.jwtapplication.Controller;
 
-import com.example.jwtapplication.DTO.DamageDTO;
-import com.example.jwtapplication.DTO.ResponseDTO;
+
+import com.example.jwtapplication.Entity.Damage;
 import com.example.jwtapplication.Service.DamageService;
-import com.example.jwtapplication.Util.VarList;
+import com.example.jwtapplication.Service.DamageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin
-@RestController
-@RequestMapping("api/v1/damage")
+
+@Controller
+@RequestMapping("/damage")
 public class DamageController {
-
-
-
-
     @Autowired
-    private DamageService damageService;
-    @Autowired
-    private ResponseDTO responseDTO;
-    @PostMapping(value="/saveDamage")
-    public ResponseEntity SaveDamage(@RequestBody DamageDTO damageDTO){
-        try{
-            String res= damageService.SaveDamage(damageDTO);
-            if(res.equals("00")){
-                responseDTO.setCode(VarList.RSP_SUCCESS);
-                responseDTO.setMessage("Success");
-                responseDTO.setContent(damageDTO);
-                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-            } else if (res.equals("06")) {
-                responseDTO.setCode(VarList.RSP_DUPLICATED);
-                responseDTO.setMessage("Damages saved");
-                responseDTO.setContent(damageDTO);
-                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
-            }else {
-                responseDTO.setCode(VarList.RSP_FAIL);
-                responseDTO.setMessage("EEError");
-                responseDTO.setContent(null);
-                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
-            }
-        }catch (Exception ex){
-            responseDTO.setCode(VarList.RSP_ERROR);
-            responseDTO.setMessage(ex.getMessage());
-            responseDTO.setContent(ex);
-            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+    private DamageServiceImpl damageService;
 
-        }
+
+
+
+//    @GetMapping("/students")
+//    public String listStudents(Model model) {
+//        model.addAttribute("studentlist", studentService.getAllStudents());
+//
+//        return null;
+//
+//    }
+
+
+    @GetMapping("/view")
+    @ResponseBody
+    public ResponseEntity<List<Damage>> listStudents() {
+        Iterable<Damage> damageList = damageService.getAllStudents();
+        return ResponseEntity.ok((List<Damage>) damageList);
     }
 
 
+//    @GetMapping("/students/new")
+//    public String createStudentForm(Model model) {
+//
+//        // create student object to hold student form data
+//        Student student = new Student();
+//        model.addAttribute("student", student);
+//        return "create_student";
+//
+//    }
 
-    @GetMapping("/getAllDamage")
-    public ResponseEntity getAllDamage(){
+//    @PostMapping("/students")
+//    public String saveStudent(Student student,@RequestParam("image") MultipartFile multipartFile) throws IOException {
+//        if (!multipartFile.isEmpty()){
+//            String filename= StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//            student.setImageName(filename);
+//            Student student1=studentService.saveStudent(student);
+//            String upload="images/"+student.getId();
+//
+//            FileUploadUtil.saveFile(upload,filename,multipartFile);
+//
+//
+//
+//        }else{
+//            if (student.getImageFile().isEmpty()){
+//                student.setImageFile(null);
+//                studentService.saveStudent(student);
+//            }
+//        }
+//        studentService.saveStudent(student);
+//
+//        return "students";
+//    }
+//
+//    @GetMapping("/students/edit/{id}")
+//    public String editStudentForm(@PathVariable Long id, Model model) {
+//        model.addAttribute("student", studentService.getStudentById(id));
+//        return "edit_student";
+//    }
+//
+//    @PostMapping("/students/{id}")
+//    public String updateStudent(@PathVariable Long id,
+//                                @ModelAttribute("student") Student student,
+//                                Model model) {
+//
+        // get student from database by id
+//        Student existingStudent = studentService.getStudentById(id);
+//        existingStudent.setId(id);
+//        existingStudent.setVehicle_id(student.getVehicle_id());
+//        existingStudent.setDescription(student.getDescription());
+//        existingStudent.setDamage_date(student.getDamage_date());
+//        existingStudent.setImage(student.getImage());
+//        existingStudent.setAmount(student.getAmount());
+//
+//
+//        // save updated student object
+//        studentService.updateStudent(existingStudent);
+//        return "redirect:/students";
+//    }
+
+    // handler method to handle delete student request
+
+//    @DeleteMapping("/student/delete/{id}")
+//    public String deleteStudent(@PathVariable Long id) {
+//        studentService.deleteStudentById(id);
+//        return "students";
+//    }
+
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
         try {
-            List<DamageDTO> DamageDTOList =damageService.getAllDamage();
-            responseDTO.setCode(VarList.RSP_SUCCESS);
-            responseDTO.setMessage("Success");
-            responseDTO.setContent(DamageDTOList);
-            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-        }catch (Exception ex){
-            responseDTO.setCode(VarList.RSP_ERROR);
-            responseDTO.setMessage(ex.getMessage());
-            responseDTO.setContent(ex);
-            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
-    @GetMapping("/searchDamage/{id}")
-    public ResponseEntity searchDamage(@PathVariable int id){
-        try{
-            DamageDTO damageDTO=damageService.searchDamage(id);
-            if(damageDTO!=null){
-                responseDTO.setCode(VarList.RSP_SUCCESS);
-                responseDTO.setMessage("Success");
-                responseDTO.setContent(damageDTO);
-                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-            } else {
-                responseDTO.setCode(VarList.RSP_NO_DATA_FOUND);
-                responseDTO.setMessage("No damage avilable for this empID");
-                responseDTO.setContent(null);
-                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
-            }
-        }catch (Exception ex){
-            responseDTO.setCode(VarList.RSP_ERROR);
-            responseDTO.setMessage(ex.getMessage());
-            responseDTO.setContent(ex);
-            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
-
+            damageService.deleteStudentById(id);
+            return ResponseEntity.ok("Student deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error occurred while deleting student: " + e.getMessage());
         }
     }
 
 
 
-    @DeleteMapping("/deleteDamage/{id}")
-    public ResponseEntity deleteDamage(@PathVariable int id){
-        try{
-            String res=damageService.deleteDamage(id);
-            if(res.equals("00")){
-                responseDTO.setCode(VarList.RSP_SUCCESS);
-                responseDTO.setMessage("Success");
-                responseDTO.setContent(null);
-                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-            } else {
-                responseDTO.setCode(VarList.RSP_NO_DATA_FOUND);
-                responseDTO.setMessage("No damage available for this empID");
-                responseDTO.setContent(null);
-                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
-            }
-        }catch (Exception ex){
-            responseDTO.setCode(VarList.RSP_ERROR);
-            responseDTO.setMessage(ex.getMessage());
-            responseDTO.setContent(ex);
-            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
 
-        }
-    }
+//    @PutMapping("/students/update/{id}")
+//    public ResponseEntity<?> updateStudent(@PathVariable Long id, @RequestBody Student updatedStudent) {
+//        Student existingStudent = studentService.getStudentById(id);
+//        if (existingStudent != null) {
+//            existingStudent.setVehicle_id(updatedStudent.getVehicle_id());
+//            existingStudent.setDescription(updatedStudent.getDescription());
+//            existingStudent.setDate(updatedStudent.getDate());
+//            existingStudent.setImageName(updatedStudent.getImageName());
+//            existingStudent.setAmount(updatedStudent.getAmount());
+//            existingStudent.setImageFile(updatedStudent.getImageFile());
+//
+//            Student updatedStudentObj = studentService.updateStudent(existingStudent);
+//            return new ResponseEntity<>(updatedStudentObj, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Student not found", HttpStatus.NOT_FOUND);
+//        }
+//    }
 
 
 
-    @PutMapping (value="/updateDamage")
-    public ResponseEntity updateDamage(@RequestBody DamageDTO damageDTO){
-        try{
-            String res= damageService.updateDamage(damageDTO);
-            if(res.equals("00")){
-                responseDTO.setCode(VarList.RSP_SUCCESS);
-                responseDTO.setMessage("Success");
-                responseDTO.setContent(damageDTO);
-                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-            } else if (res.equals("01")) {
-                responseDTO.setCode(VarList.RSP_DUPLICATED);
-                responseDTO.setMessage("Not a  damage");
-                responseDTO.setContent(damageDTO);
-                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
-            }else {
-                responseDTO.setCode(VarList.RSP_FAIL);
-                responseDTO.setMessage("Error");
-                responseDTO.setContent(null);
-                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
-            }
-        }catch (Exception ex){
-            responseDTO.setCode(VarList.RSP_ERROR);
-            responseDTO.setMessage(ex.getMessage());
-            responseDTO.setContent(ex);
-            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
-
-        }
-    }
 
 
-
-    @GetMapping("/getDamageById/{id}")
-    public ResponseEntity getDamageById(@PathVariable int id){
-        try {
-            DamageDTO damageDTO = damageService.getDamageById(id);
-            if(damageDTO == null) {
-                responseDTO.setCode(VarList.RSP_FAIL);
-                responseDTO.setMessage("damage not found");
-                responseDTO.setContent(null);
-                return new ResponseEntity(responseDTO, HttpStatus.NOT_FOUND);
-            } else {
-                responseDTO.setCode(VarList.RSP_SUCCESS);
-                responseDTO.setMessage("Success");
-                responseDTO.setContent(damageDTO);
-                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-            }
-        }catch (Exception ex){
-            responseDTO.setCode(VarList.RSP_ERROR);
-            responseDTO.setMessage(ex.getMessage());
-            responseDTO.setContent(ex);
-            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
 
 
