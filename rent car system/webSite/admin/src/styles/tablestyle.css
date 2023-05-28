@@ -1,4 +1,4 @@
-#studentTable {
+#RentTable {
   font-family: sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -12,7 +12,7 @@
 
 }
 
- #studentTable th {
+ #RentTable th {
   border: 1px ;
   padding: 10px;
 }
@@ -21,13 +21,13 @@
 
 /* #table tr:hover {background-color: #ddd;} */
 
-#studentTable td{
+#RentTable td{
   color: white;
   background-color: #303245;
   padding: 8px;
 }
 
-#studentTable th {
+#RentTable th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

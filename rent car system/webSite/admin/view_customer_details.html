@@ -71,7 +71,8 @@
 
 
 		<script src="js/jquery-3.6.1.min.js"></script>
-		<script src="js/damage.js"></script>
+		<script src="js/customer.js"></script>
+
         
 
 
@@ -310,7 +311,8 @@
 
 			<div class="tableTitle">Customer Details</div>
 			
-			<table id="table">
+			<table id="RentTable">
+				<thead>
 				<tr>
 				  <th>Id</th>
 				  <th>Name</th>
@@ -318,59 +320,24 @@
                   <th>Email</th>
 				  <th>Phone</th>
 				  <th>Address</th>
-                  <th>Nic Copy</th>
-                  <th>Password</th>
-                  <th>Action</th>
+                   <th>Action</th>
 				</tr>
-				<tr>
-				  <td>Alfreds Futterkiste</td>
-				  <td>Maria Anders</td>
-				  <td>Germany</td>
-                  <td>Alfreds Futterkiste</td>
-				  <td>Maria Anders</td>
-				  <td>Germany</td>
-                  <td>Alfreds Futterkiste</td>
-				  <td>Maria Anders</td>
-				  <td><button type="button" class="update">Update</button> <button type="button" class="delete">Delete</button></td>
-				<tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td><button type="button" class="update">Update</button> <button type="button" class="delete">Delete</button></td>
-				</tr>
+			</thead>
+
+			<tbody>
 				
-			  </table>
 
+			</tbody>
 
+		    
 
-
-			  table id="damageTable">
-			  <thead>
-				<tr>
-				  <th>ID</th>
-				  <th>Vehicle ID</th>
-				  <th>Description</th>
-				  <th>Date</th>
-				  <th>Image Name</th>
-				  <th>Amount</th>
-				</tr>
-			  </thead>
-			  <tbody></tbody>
-			</table>
-
-
-
-
-
-
-
-
-		</div>
+			
+			
+	        </table>
+				
+				
+		
+	</div>
 		<!-- welcome modal end -->
 		<!-- js -->
 		<script src="vendors/scripts/core.js"></script>

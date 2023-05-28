@@ -1,30 +1,39 @@
-getAllStudents()
+getAllCustomer()
 
 
 function saveEmployee() {
-    let vid = $('#vid').val();
-    let description = $('#description').val();
-    let date = $('#date').val();
-    let image = $('#image').prop('files')[0];
-    let amount = $('#damount').val();
+
+  alert("friend")
+    let cname = $('#cname').val();
+    let nic = $('#nic').val();
+    let email = $('#email').val();
+    let phone = $('#phone').val();
+    let address = $('#address').val();
+    let niccopy = $('#niccopy').prop('files')[0];
+
+    alert(cname);
+ 
   
     // Create a new FormData object
     let formData = new FormData();
-    formData.append("vehicle_id", vid);
-    formData.append("description", description);
-    formData.append("date", date);
-    formData.append("image", image);
-    formData.append("amount", amount);
+    formData.append("name", cname);
+    formData.append("nic", nic);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("address", address);
+    formData.append("nicimage", niccopy);
+
+    alert(address)
   
     $.ajax({
       method: "POST",
-      url: "http://localhost:8080/damage/damageSave",
+      url: "http://localhost:8080/customer/save",
       processData: false,
       contentType: false,
       data: formData,
       success: function (data) {
         alert("Saved");
-        getAllStudents()
+        getAllCustomer()
       },
       error: function (xhr, exception) {
         alert("Error occurred while saving damage");
@@ -141,10 +150,10 @@ function getDamageDetails(id) {
 
 
 
-  function getAllDamages() {
+  function getAllCustomer() {
     $.ajax({
       method: "GET",
-      url: "http://localhost:8080/damage/view",
+      url: "http://localhost:8080/customer/view",
       success: function (data) {
         populateTable(data);
       },
@@ -176,43 +185,98 @@ function getDamageDetails(id) {
   }
 
 
-  function getAllStudents() {
+  // function getAllCustomer() {
+
+    
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "http://localhost:8080/customer/view",
+  //     success: function(data) {
+  //       alert("ashh")
+  //       // Clear existing table rows
+  //       $('#RentTable tbody').empty();
+
+  
+
+        
+  
+  //       // Loop through the array and create table rows dynamically
+  //       for (let i = 0; i < data.length; i++) {
+  //         let customer = data[i];
+  //         let id = customer.id;
+  //         let name = customer.name;
+  //         let nic = customer.nic;
+  //         let email = customer.email;
+  //         let phone = customer.phone;
+  //         let address = customer.address;
+
+  //         alert(id);
+  //         alert(name);
+  
+  //         let newRow = '<tr>' +
+  //           '<td>' + id + '</td>' +
+  //           '<td>' + name + '</td>' +
+  //           '<td>' + nic + '</td>' +
+  //           '<td>' + email + '</td>' +
+  //           '<td>' + phone + '</td>' +
+  //           '<td>' + address + '</td>' +
+  //           '<td><button type="button" class="update" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete">Delete</button></td>' +
+  //           '</tr>';
+  
+  //         $('#RentTable tbody').append(newRow);
+  //       }
+  //     },
+  //     error: function(xhr, status, error) {
+  //       // Handle the error response
+  //       console.log("Error:", error);
+  //     }
+  //   });
+
+    
+  // }    
+  
+  
+  function getAllCustomer() {
     $.ajax({
       method: "GET",
-      url: "http://localhost:8080/damage/view",
+      url: "http://localhost:8080/customer/view",
       success: function(data) {
         // Clear existing table rows
         $('#RentTable tbody').empty();
   
         // Loop through the array and create table rows dynamically
-        for (let i = 0; i < data.length; i++) {
-          let damage = data[i];
-          let id = damage.id;
-          let vid = damage.vehicle_id;
-          let description = damage.description;
-          let date = damage.date;
-          let image = damage.imageName;
-          let amount = damage.amount;
+        data.forEach(function(customer) {
+          let id = customer.id;
+          let name = customer.name;
+          let nic = customer.nic;
+          let email = customer.email;
+          let phone = customer.phone;
+          let address = customer.address;
 
-        
-         
-          let newRow = '<tr>' +
-            '<td>' + id + '</td>' +
-            '<td>' + vid + '</td>' +
-            '<td>' + description + '</td>' +
-            '<td>' + date + '</td>' +
-            '<td>' + image + '</td>' +
-            '<td>' + amount + '</td>' +
-            ' <td><button type="button" class="update" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete">Delete</button></td>'
-            // Add other table cells as needed
-            '</tr>';
+          
+  
+          let newRow = `
+            <tr>
+              <td>${id}</td>
+              <td>${name}</td>
+              <td>${nic}</td>
+              <td>${email}</td>
+              <td>${phone}</td>
+              <td>${address}</td>
+              <td>
+                <button type="button" class="update" onclick="getDamageDetails(${id})">Update</button>
+                <button type="button" onclick="deleteEmployee(${id})" class="delete">Delete</button>
+              </td>
+            </tr>
+          `;
+  
           $('#RentTable tbody').append(newRow);
-        }
+        });
       },
       error: function(xhr, status, error) {
         // Handle the error response
         console.log("Error:", error);
       }
     });
-  }                                                                       
+  }
 

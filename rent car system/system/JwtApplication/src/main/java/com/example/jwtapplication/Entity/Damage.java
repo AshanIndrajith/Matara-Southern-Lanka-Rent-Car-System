@@ -107,16 +107,5 @@ public class Damage {
     }
 
 
-    @Override
-    public String toString() {
-        return "Damage{" +
-                "id=" + id +
-                ", vehicle_id='" + vehicle_id + '\'' +
-                ", description='" + description + '\'' +
-                ", date='" + date + '\'' +
-                ", imageName='" + imageName + '\'' +
-                ", amount=" + amount +
-                ", imageFile=" + imageFile +
-                '}';
-    }
+
 }

@@ -14,7 +14,7 @@ public interface DamageServiceImpl {
 //
    Damage updateDamage(Damage damage);
 //
-  void deleteStudentById(Long id);
+   void deleteStudentById(Long id);
 
 
 

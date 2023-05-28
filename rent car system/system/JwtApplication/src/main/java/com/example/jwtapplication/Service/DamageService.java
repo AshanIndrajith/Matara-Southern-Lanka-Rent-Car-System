@@ -43,16 +43,6 @@ public class DamageService  implements  DamageServiceImpl {
         return damageRepository.save(damage);
     }
 
-//    @Override
-//    public Damage getStudentById(Long id) {
-//        Optional<Damage> damageOptional = damageRepository.findById(id);
-//        return damageOptional.orElse(null);
-//    }
-//
-//    @Override
-//    public Damage updateStudent(Damage student) {
-//        return damageRepository.save(student);
-//    }
 
     @Override
     public void deleteStudentById(Long id) {

@@ -71,7 +71,7 @@
 
 
 		<script src="js/jquery-3.6.1.min.js"></script>
-		<script src="js/.js"></script>
+		<script src="js/customer.js"></script>
 
 
 
@@ -308,11 +308,11 @@
 			
 			<div class="form">
 				
-				<table class="form_table">
+				<table class="form_table" >
 					<div class="title">Insert Customer Detail</div>
 					<!-- <div class="subtitle">Let's create your account!</div> -->
-					<form>
-						<tr>
+					<form enctype="multipart/form-data">
+						<!-- <tr>
 							<td>
 								<div class="input-container ic1">
 									Customer Id: 
@@ -323,7 +323,7 @@
 									<input id="vie" class="input" type="text" placeholder=" " />
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 	
 						<tr>
 							<td>
@@ -333,7 +333,7 @@
 							</td>
 							<td>
 								<div class="input-container ic1">
-									<input id="vname" class="input" type="text" placeholder=" " />
+									<input id="cname" class="input" type="text" placeholder=" " />
 								</div>
 							</td>
 						</tr>
@@ -346,7 +346,7 @@
 							</td>
 							<td>
 								<div class="input-container ic1">
-									<input id="vtype" class="input" type="text" placeholder=" " />
+									<input id="nic" class="input" type="text" placeholder=" " />
 								</div>
 							</td>
 						</tr>
@@ -359,7 +359,7 @@
 							</td>
 							<td>
 								<div class="input-container ic1">
-									<input id="ftype" class="input" type="text" placeholder=" " />
+									<input id="email" class="input" type="text" placeholder=" " />
 								</div>
 							</td>
 						</tr>
@@ -372,7 +372,7 @@
 							</td>
 							<td>
 								<div class="input-container ic1">
-									<input id="image" class="input" type="text" placeholder=" " />
+									<input id="phone" class="input" type="text" placeholder=" " />
 								</div>
 							</td>
 						</tr>
@@ -385,7 +385,7 @@
 							</td>
 						<td>
 								<div class="input-container ic1">
-									<input id="rprice" class="input" type="text" placeholder=" " />
+									<input id="address" class="input" type="text" placeholder=" " />
 								</div>
 							</td>
 						</tr>
@@ -398,12 +398,12 @@
 							</td>
 						<td>
 								<div class="input-container ic1">
-									<input id="rprice" class="input" type="text" placeholder=" " />
+									<input id="niccopy" class="input" type="file" placeholder=" " />
 								</div>
 							</td>
 						</tr>
 
-                        <tr>
+                        <!-- <tr>
 							<td>
 								<div class="input-container ic1">
 									Password: 
@@ -414,14 +414,14 @@
 									<input id="rprice" class="input" type="password" placeholder=" " />
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 	
 						<tr>
 							<td>
 
 							</td>
 							<td>
-							<button type="submit" class="submit">Submit</button> <button type="reset" class="reset">Reset</button>
+								<button type="button" class="submit" onclick="saveEmployee()">Submit</button> <button type="reset" class="reset">Reset</button>
 								
 							</td>
 						</tr>
