@@ -1,4 +1,4 @@
-
+getAllStudents()
 // function saveEmployee(){
 //  let vid=$('#vid').val();
 //  let description=$('#description').val();
@@ -105,12 +105,12 @@ function deleteEmployee(empID){
 
  $.ajax({
     method: "DELETE",
-    url:"http://localhost:8080/api/v1/employee/deleteEmployee/"+empID,
+    url:"http://localhost:8080/damage/delete/"+empID,
     async:true,
 
     success:function(data){
         alert("Deleted")
-        getAllEmployees()
+        getAllStudents()
     },
     error:function(xhr,exception){
         alert("Error")
@@ -152,6 +152,10 @@ function getAllEmployees(){
  })
 
 }
+
+
+
+
 
 
 
@@ -227,6 +231,45 @@ function getEmployeeDetails(empID) {
       row.append($("<td>").text(damage.imageName));
       row.append($("<td>").text(damage.amount));
       table.append(row);
+    });
+  }
+
+
+  function getAllStudents() {
+    $.ajax({
+      method: "GET",
+      url: "http://localhost:8080/damage/view",
+      success: function(data) {
+        // Clear existing table rows
+        $('#studentTable tbody').empty();
+  
+        // Loop through the array and create table rows dynamically
+        for (let i = 0; i < data.length; i++) {
+          let damage = data[i];
+          let id = damage.id;
+          let vid = damage.vehicle_id;
+          let description = damage.description;
+          let date = damage.date;
+          let image = damage.imageName;
+          let amount = damage.amount;
+         
+          let newRow = '<tr>' +
+            '<td>' + id + '</td>' +
+            '<td>' + vid + '</td>' +
+            '<td>' + description + '</td>' +
+            '<td>' + date + '</td>' +
+            '<td>' + image + '</td>' +
+            '<td>' + amount + '</td>' +
+            ' <td><button type="button" class="update">Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete">Delete</button></td>'
+            // Add other table cells as needed
+            '</tr>';
+          $('#studentTable tbody').append(newRow);
+        }
+      },
+      error: function(xhr, status, error) {
+        // Handle the error response
+        console.log("Error:", error);
+      }
     });
   }
 

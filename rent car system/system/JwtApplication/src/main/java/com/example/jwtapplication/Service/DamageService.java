@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @Service
-public class DamageService  implements  DamageServiceImpl{
+public class DamageService  implements  DamageServiceImpl {
 
     @Autowired
     private DamageRepository damageRepository;
@@ -29,7 +29,18 @@ public class DamageService  implements  DamageServiceImpl{
 
     @Override
     public Damage saveDamage(Damage damage) {
-        return  damageRepository.save(damage);
+        return damageRepository.save(damage);
+    }
+
+    @Override
+    public Damage getDamageById(Long id) {
+        Optional<Damage> damageOptional = damageRepository.findById(Math.toIntExact(id));
+        return damageOptional.orElse(null);
+    }
+
+    @Override
+    public Damage updateDamage(Damage damage) {
+        return damageRepository.save(damage);
     }
 
 //    @Override
@@ -49,3 +60,5 @@ public class DamageService  implements  DamageServiceImpl{
 
     }
 }
+
+

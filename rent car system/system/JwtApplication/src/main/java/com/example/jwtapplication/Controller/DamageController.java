@@ -112,6 +112,18 @@ public class DamageController {
 //        model.addAttribute("student", studentService.getStudentById(id));
 //        return "edit_student";
 //    }
+
+
+
+    @GetMapping("/get/{id}")
+    @ResponseBody
+    public ResponseEntity<Damage> getDamageById(@PathVariable Long id) {
+        Damage damage = damageService.getDamageById(id);
+        if (damage == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(damage);
+    }
 //
 //    @PostMapping("/students/{id}")
 //    public String updateStudent(@PathVariable Long id,
@@ -155,30 +167,23 @@ public class DamageController {
 
 
 
-//    @PutMapping("/students/update/{id}")
-//    public ResponseEntity<?> updateStudent(@PathVariable Long id, @RequestBody Student updatedStudent) {
-//        Student existingStudent = studentService.getStudentById(id);
-//        if (existingStudent != null) {
-//            existingStudent.setVehicle_id(updatedStudent.getVehicle_id());
-//            existingStudent.setDescription(updatedStudent.getDescription());
-//            existingStudent.setDate(updatedStudent.getDate());
-//            existingStudent.setImageName(updatedStudent.getImageName());
-//            existingStudent.setAmount(updatedStudent.getAmount());
-//            existingStudent.setImageFile(updatedStudent.getImageFile());
-//
-//            Student updatedStudentObj = studentService.updateStudent(existingStudent);
-//            return new ResponseEntity<>(updatedStudentObj, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("Student not found", HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @PutMapping("/students/update/{id}")
+    public ResponseEntity<?> updateDamage(@PathVariable Long id, @RequestBody Damage updateDamage) {
+        Damage existingDamage = damageService.getDamageById(id);
+        if (existingDamage != null) {
+            existingDamage.setVehicle_id(updateDamage.getVehicle_id());
+            existingDamage.setDescription(updateDamage.getDescription());
+            existingDamage.setDate(updateDamage.getDate());
+            existingDamage.setImageName(updateDamage.getImageName());
+            existingDamage.setAmount(updateDamage.getAmount());
+            existingDamage.setImageFile(updateDamage.getImageFile());
 
-
-
-
-
-
-
+            Damage updatedDamageObj = damageService.updateDamage(existingDamage);
+            return new ResponseEntity<>(updatedDamageObj, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Student not found", HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 }

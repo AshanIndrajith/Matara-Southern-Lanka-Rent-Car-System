@@ -10,11 +10,13 @@ public interface DamageServiceImpl {
 
     Damage saveDamage(Damage damage);
 //
-//    Damage getStudentById(Long id);
+    Damage getDamageById(Long id);
 //
-//    Damage updateStudent(Damage student);
+   Damage updateDamage(Damage damage);
 //
   void deleteStudentById(Long id);
+
+
 
 
 
