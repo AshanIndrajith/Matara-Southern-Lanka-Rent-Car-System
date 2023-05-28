@@ -28,14 +28,6 @@ public class DamageController {
 
 
 
-//    @GetMapping("/students")
-//    public String listStudents(Model model) {
-//        model.addAttribute("studentlist", studentService.getAllStudents());
-//
-//        return null;
-//
-//    }
-
 
     @GetMapping("/view")
     @ResponseBody
@@ -74,15 +66,7 @@ public class DamageController {
     }
 
 
-//    @GetMapping("/students/new")
-//    public String createStudentForm(Model model) {
-//
-//        // create student object to hold student form data
-//        Student student = new Student();
-//        model.addAttribute("student", student);
-//        return "create_student";
-//
-//    }
+
 
 //    @PostMapping("/damageSave")
 //    public String saveDamage(Damage damage,@RequestParam("image") MultipartFile multipartFile) throws IOException {
@@ -167,8 +151,26 @@ public class DamageController {
 
 
 
-    @PutMapping("/students/update/{id}")
-    public ResponseEntity<?> updateDamage(@PathVariable Long id, @RequestBody Damage updateDamage) {
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<?> updateDamage(@PathVariable Long id, @RequestBody Damage updateDamage) {
+//        Damage existingDamage = damageService.getDamageById(id);
+//        if (existingDamage != null) {
+//            existingDamage.setVehicle_id(updateDamage.getVehicle_id());
+//            existingDamage.setDescription(updateDamage.getDescription());
+//            existingDamage.setDate(updateDamage.getDate());
+//            existingDamage.setImageName(updateDamage.getImageName());
+//            existingDamage.setAmount(updateDamage.getAmount());
+//            existingDamage.setImageFile(updateDamage.getImageFile());
+//
+//            Damage updatedDamageObj = damageService.updateDamage(existingDamage);
+//            return new ResponseEntity<>(updatedDamageObj, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("Student not found", HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateDamage(@PathVariable("id") Long id, @RequestBody Damage updateDamage) {
         Damage existingDamage = damageService.getDamageById(id);
         if (existingDamage != null) {
             existingDamage.setVehicle_id(updateDamage.getVehicle_id());
@@ -179,11 +181,14 @@ public class DamageController {
             existingDamage.setImageFile(updateDamage.getImageFile());
 
             Damage updatedDamageObj = damageService.updateDamage(existingDamage);
-            return new ResponseEntity<>(updatedDamageObj, HttpStatus.OK);
+            return ResponseEntity.ok(updatedDamageObj);
         } else {
-            return new ResponseEntity<>("Student not found", HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
     }
+
+
+
 
 
 }
