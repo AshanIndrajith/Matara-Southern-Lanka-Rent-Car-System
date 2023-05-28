@@ -8,7 +8,7 @@ public interface DamageServiceImpl {
 
     Iterable<Damage> getAllStudents();
 
-//    Damage saveStudent(Damage damage);
+    Damage saveDamage(Damage damage);
 //
 //    Damage getStudentById(Long id);
 //

@@ -4,6 +4,7 @@ package com.example.jwtapplication.Controller;
 import com.example.jwtapplication.Entity.Damage;
 import com.example.jwtapplication.Service.DamageService;
 import com.example.jwtapplication.Service.DamageServiceImpl;
+import com.example.jwtapplication.Util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 
 
 @Controller
+@CrossOrigin
 @RequestMapping("/damage")
 public class DamageController {
     @Autowired
@@ -43,6 +45,35 @@ public class DamageController {
     }
 
 
+
+    @PostMapping("/damageSave")
+    public ResponseEntity<String> saveDamage(Damage damage, @RequestParam("image") MultipartFile multipartFile) {
+        try {
+            if (!multipartFile.isEmpty()) {
+                String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                damage.setImageName(filename);
+                Damage savedDamage = damageService.saveDamage(damage);
+                String uploadPath = "images/" + savedDamage.getId();
+
+                FileUploadUtil.saveFile(uploadPath, filename, multipartFile);
+            } else {
+                if (damage.getImageFile().isEmpty()) {
+                    damage.setImageFile(null);
+                }
+                damageService.saveDamage(damage);
+            }
+
+            return ResponseEntity.ok("Damage saved successfully");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error occurred while saving damage: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+
+
 //    @GetMapping("/students/new")
 //    public String createStudentForm(Model model) {
 //
@@ -53,27 +84,27 @@ public class DamageController {
 //
 //    }
 
-//    @PostMapping("/students")
-//    public String saveStudent(Student student,@RequestParam("image") MultipartFile multipartFile) throws IOException {
+//    @PostMapping("/damageSave")
+//    public String saveDamage(Damage damage,@RequestParam("image") MultipartFile multipartFile) throws IOException {
 //        if (!multipartFile.isEmpty()){
 //            String filename= StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//            student.setImageName(filename);
-//            Student student1=studentService.saveStudent(student);
-//            String upload="images/"+student.getId();
+//            damage.setImageName(filename);
+//            Damage damage1=damageService.saveDamage(damage);
+//            String upload="images/"+damage.getId();
 //
 //            FileUploadUtil.saveFile(upload,filename,multipartFile);
 //
 //
 //
 //        }else{
-//            if (student.getImageFile().isEmpty()){
-//                student.setImageFile(null);
-//                studentService.saveStudent(student);
+//            if (damage.getImageFile().isEmpty()){
+//                damage.setImageFile(null);
+//                damageService.saveDamage(damage);
 //            }
 //        }
-//        studentService.saveStudent(student);
+//        damageService.saveDamage(damage);
 //
-//        return "students";
+//        return "damage";
 //    }
 //
 //    @GetMapping("/students/edit/{id}")
@@ -101,7 +132,6 @@ public class DamageController {
 //        studentService.updateStudent(existingStudent);
 //        return "redirect:/students";
 //    }
-
     // handler method to handle delete student request
 
 //    @DeleteMapping("/student/delete/{id}")

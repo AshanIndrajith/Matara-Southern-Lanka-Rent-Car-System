@@ -27,11 +27,11 @@ public class DamageService  implements  DamageServiceImpl{
         return (List<Damage>) damageRepository.findAll();
     }
 
-//    @Override
-//    public Damage saveStudent(Damage damage) {
-//        return  damageRepository.save(damage);
-//    }
-//
+    @Override
+    public Damage saveDamage(Damage damage) {
+        return  damageRepository.save(damage);
+    }
+
 //    @Override
 //    public Damage getStudentById(Long id) {
 //        Optional<Damage> damageOptional = damageRepository.findById(id);
@@ -42,7 +42,7 @@ public class DamageService  implements  DamageServiceImpl{
 //    public Damage updateStudent(Damage student) {
 //        return damageRepository.save(student);
 //    }
-//
+
     @Override
     public void deleteStudentById(Long id) {
         damageRepository.deleteById(Math.toIntExact(id));

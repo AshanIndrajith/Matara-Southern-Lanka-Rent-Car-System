@@ -71,7 +71,7 @@
 
 
 		<script src="js/jquery-3.6.1.min.js"></script>
-		<script src="js/.js"></script>
+		<script src="js/damage.js"></script>
 
 
 
@@ -311,9 +311,9 @@
 				<table class="form_table">
 					<div class="title">Insert Vehicle Damage Detail</div>
 					<!-- <div class="subtitle">Let's create your account!</div> -->
-					<form>
+					<form enctype="multipart/form-data">
 
-                        <tr>
+                        <!-- <tr>
 							<td>
 								<div class="input-container ic1">
 									Id: 
@@ -324,7 +324,7 @@
 									<input id="id" class="input" type="text" placeholder=" " />
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 
 						<tr>
 							<td>
@@ -360,7 +360,7 @@
 							</td>
 							<td>
 								<div class="input-container ic1">
-									<input id="ftype" class="input" type="date" placeholder=" " />
+									<input id="date" class="input" type="date" placeholder=" " />
 								</div>
 							</td>
 						</tr>
@@ -373,7 +373,7 @@
 							</td>
 							<td>
 								<div class="input-container ic1">
-									<input id="dimage" class="input" type="file" placeholder=" " />
+									<input id="image" class="input" type="file" placeholder=" " />
 								</div>
 							</td>
 						</tr>
@@ -396,7 +396,7 @@
 
 							</td>
 							<td>
-							<button type="submit" class="submit">Submit</button> <button type="reset" class="reset">Reset</button>
+							<button type="button" class="submit" onclick="saveEmployee()">Submit</button> <button type="reset" class="reset">Reset</button>
 								
 							</td>
 						</tr>
