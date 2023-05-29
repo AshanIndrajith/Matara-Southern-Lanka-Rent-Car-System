@@ -1,7 +1,7 @@
-getAllCustomer()
+getAllCustomer() 
 
 
-function saveEmployee() {
+function saveCustomer() {
 
   alert("friend")
     let cname = $('#cname').val();
@@ -40,6 +40,9 @@ function saveEmployee() {
       }
     });
   }
+
+
+
 
 function updateDamage(){
 
@@ -185,24 +188,63 @@ function getDamageDetails(id) {
   }
 
 
+  function getAllCustomer() {
+    alert("data");
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:8080/customer/view",
+        success: function(data,status) {
+         
+            console.log("Status:", status); // Print the status
+            console.log("Data:", data); // Print the data
+            // Clear existing table rows
+            $('#RentTable tbody').empty();
+
+            // Loop through the array and create table rows dynamically
+            for (let i = 0; i < data.length; i++) {
+                let customer = data[i];
+                let id = customer.id;
+                let name = customer.name;
+                let nic = customer.nic;
+                let email = customer.email;
+                let phone = customer.phone;
+                let address = customer.address;
+
+                let newRow = '<tr>' +
+                    '<td>' + id + '</td>' +
+                    '<td>' + name + '</td>' +
+                    '<td>' + nic + '</td>' +
+                    '<td>' + email + '</td>' +
+                    '<td>' + phone + '</td>' +
+                    '<td>' + address + '</td>' +
+                    '<td><button type="button" class="update" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete">Delete</button></td>' +
+                    '</tr>';
+
+                $('#RentTable tbody').append(newRow);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle the error response
+            console.log("Error:", error);
+        }
+    });
+}
+
+  
+  
   // function getAllCustomer() {
 
-    
+  //   alert("1");
   //   $.ajax({
   //     method: "GET",
   //     url: "http://localhost:8080/customer/view",
   //     success: function(data) {
-  //       alert("ashh")
   //       // Clear existing table rows
   //       $('#RentTable tbody').empty();
-
   
-
-        
-  
+       
   //       // Loop through the array and create table rows dynamically
-  //       for (let i = 0; i < data.length; i++) {
-  //         let customer = data[i];
+  //       data.forEach(function(customer) {
   //         let id = customer.id;
   //         let name = customer.name;
   //         let nic = customer.nic;
@@ -210,73 +252,30 @@ function getDamageDetails(id) {
   //         let phone = customer.phone;
   //         let address = customer.address;
 
-  //         alert(id);
-  //         alert(name);
+          
   
-  //         let newRow = '<tr>' +
-  //           '<td>' + id + '</td>' +
-  //           '<td>' + name + '</td>' +
-  //           '<td>' + nic + '</td>' +
-  //           '<td>' + email + '</td>' +
-  //           '<td>' + phone + '</td>' +
-  //           '<td>' + address + '</td>' +
-  //           '<td><button type="button" class="update" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete">Delete</button></td>' +
-  //           '</tr>';
+  //         let newRow = `
+  //           <tr>
+  //             <td>${id}</td>
+  //             <td>${name}</td>
+  //             <td>${nic}</td>
+  //             <td>${email}</td>
+  //             <td>${phone}</td>
+  //             <td>${address}</td>
+  //             <td>
+  //               <button type="button" class="update" onclick="getDamageDetails(${id})">Update</button>
+  //               <button type="button" onclick="deleteEmployee(${id})" class="delete">Delete</button>
+  //             </td>
+  //           </tr>
+  //         `;
   
   //         $('#RentTable tbody').append(newRow);
-  //       }
+  //       });
   //     },
   //     error: function(xhr, status, error) {
   //       // Handle the error response
   //       console.log("Error:", error);
   //     }
   //   });
-
-    
-  // }    
-  
-  
-  function getAllCustomer() {
-    $.ajax({
-      method: "GET",
-      url: "http://localhost:8080/customer/view",
-      success: function(data) {
-        // Clear existing table rows
-        $('#RentTable tbody').empty();
-  
-        // Loop through the array and create table rows dynamically
-        data.forEach(function(customer) {
-          let id = customer.id;
-          let name = customer.name;
-          let nic = customer.nic;
-          let email = customer.email;
-          let phone = customer.phone;
-          let address = customer.address;
-
-          
-  
-          let newRow = `
-            <tr>
-              <td>${id}</td>
-              <td>${name}</td>
-              <td>${nic}</td>
-              <td>${email}</td>
-              <td>${phone}</td>
-              <td>${address}</td>
-              <td>
-                <button type="button" class="update" onclick="getDamageDetails(${id})">Update</button>
-                <button type="button" onclick="deleteEmployee(${id})" class="delete">Delete</button>
-              </td>
-            </tr>
-          `;
-  
-          $('#RentTable tbody').append(newRow);
-        });
-      },
-      error: function(xhr, status, error) {
-        // Handle the error response
-        console.log("Error:", error);
-      }
-    });
-  }
+  // }
 
