@@ -28,6 +28,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/damage/**").permitAll()
                 .requestMatchers("/customer/**").permitAll()
+                .requestMatchers("/booking/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

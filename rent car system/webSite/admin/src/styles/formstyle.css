@@ -9,13 +9,15 @@ body {
   background-color: #15172b;
   box-sizing: border-box;
   height: 100%;
-  margin-top: 200px;
+  margin-top: 50px;
  padding-left:30px;
  padding-right: 30px;
  padding-top: 20px;
- padding-bottom: 20px;
+ padding-bottom: 30px;
   width: 100%;
   margin-bottom:50px;
+  border-radius: 20px;
+  box-shadow: #65657b 5px;
   
 }
 
