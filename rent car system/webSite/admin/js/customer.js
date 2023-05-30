@@ -3,6 +3,7 @@ getAllCustomer()
 
 function saveCustomer() {
 
+<<<<<<< Updated upstream
  
     let cname = $('#cname').val();
     let nic = $('#nic').val();
@@ -40,18 +41,59 @@ function saveCustomer() {
       }
     });
   }
+=======
+>>>>>>> Stashed changes
 
 
+  let cname = $('#cname').val();
+  let nic = $('#nic').val();
+  let email = $('#email').val();
+  let phone = $('#phone').val();
+  let address = $('#address').val();
+ // let niccopy = $('#niccopy')[0].files[0]; // Retrieve the selected file from the file input
+
+
+  alert(cname);
+
+  // Create a new FormData object
+  let formData = new FormData();
+  formData.append("name", cname);
+  formData.append("nic", nic);
+  formData.append("email", email);
+  formData.append("phone", phone);
+  formData.append("address", address);
+ // formData.append("niccopy", niccopy);
+
+  alert(address);
+
+  $.ajax({
+    method: "POST",
+    url: "http://localhost:8080/customer/save",
+    processData: false,
+    contentType: false,
+    data: formData,
+    success: function (data) {
+      alert("Saved");
+      getAllCustomer();
+    },
+    error: function (xhr, exception) {
+      console.log(xhr.responseText); // Print the error response
+      console.log(exception); // Print the exception details
+      alert("Error occurred while saving customer");
+    }
+  });
+}
 
 
 function updateDamage(){
 
 
-let id=$('#uid').val();
- let vID=$('#vid').val();
- let description=$('#description').val();
- let date=$('#date').val();
- let amount=$('#amount').val();
+ let id=$('#id').val();
+ let name=$('#name').val();
+ let nic=$('#nic').val();
+ let email=$('#email').val();
+ let phone=$('#phone').val();
+ let address=$('#address').val();
 
 
 
@@ -62,41 +104,46 @@ let id=$('#uid').val();
  $.ajax({
     method: "PUT",
     contentType: "application/json",
-    url:"http://localhost:8080/damage/update/"+id,
+    url:"http://localhost:8080/customer/update/"+id,
     async:true,
     data:JSON.stringify({
-        "vehicle_id":vID,
-        "description":description,
-        "date":date,
-        "amount":amount,
+        "name":name,
+        "nic":nic,
+        "email":email,
+        "phone":phone,
+        "address":address,
+
+        
+
+
     }),
     success:function(data){
    
         alert("Updated")
-        getAllStudents()
+        getAllCustomer();
 
-        window.location.href = "view_Damage_Details.html";
+        window.location.href = "view_Customer_Details.html";
     },
     error:function(xhr,exception){
-        alert("Error")
+        alert("faild to update")
     }
  })
 
 }
 
-function deleteEmployee(empID){
+function deleteCustomer(empID){
     
 
  //let empID=$('#exampleFormControlInput1').val();
 
  $.ajax({
     method: "DELETE",
-    url:"http://localhost:8080/damage/delete/"+empID,
+    url:"http://localhost:8080/customer/delete/"+empID,
     async:true,
 
     success:function(data){
         alert("Deleted")
-        getAllStudents()
+       getAllCustomer();
     },
     error:function(xhr,exception){
         alert("Error")
@@ -108,31 +155,33 @@ function deleteEmployee(empID){
 
 
 
-function getDamageDetails(id) {
+function getCustomerDetails(id) {
   $.ajax({
     method: "GET",
-    url: "http://localhost:8080/damage/get/" + id,
+    url: "http://localhost:8080/customer/get/" + id,
     async: true,
     success: function(data) {
       if (data != null) {
         var id = data.id;
-        var vId = data.vehicle_id; // Adjust property name based on your Damage object
-        var description = data.description; // Adjust property name based on your Damage object
-        var date = data.date; // Adjust property name based on your Damage object
-        var image = data.imageName; // Adjust property name based on your Damage object
-        var amount = data.amount; // Adjust property name based on your Damage object
+        var name = data.name;
+        var nic = data.nic; // Adjust property name based on your Damage object
+        var email = data.email; // Adjust property name based on your Damage object
+        var phone = data.phone; // Adjust property name based on your Damage object
+        var address = data.address; // Adjust property name based on your Damage object
+       
 
+     
         
       
 
         // Construct the URL for the new page with query parameters
-        var url = "update_Damage_details.html" +
+        var url = "update_Customer_details.html" +
           "?id=" + encodeURIComponent(id) +
-          "&vehicle_id=" + encodeURIComponent(vId) +
-          "&description=" + encodeURIComponent(description) +
-          "&date=" + encodeURIComponent(date) +
-          "&imageName=" + encodeURIComponent(image) +
-          "&amount=" + encodeURIComponent(amount);
+          "&name=" + encodeURIComponent(name) +
+          "&nic=" + encodeURIComponent(nic) +
+          "&email=" + encodeURIComponent(email) +
+          "&phone=" + encodeURIComponent(phone) +
+          "&address=" + encodeURIComponent(address);
 
        
 
@@ -153,39 +202,39 @@ function getDamageDetails(id) {
 
 
 
-  function getAllCustomer() {
-    $.ajax({
-      method: "GET",
-      url: "http://localhost:8080/customer/view",
-      success: function (data) {
-        populateTable(data);
-      },
-      error: function (xhr, exception) {
-        alert("Error occurred while retrieving damages");
-      }
-    });
+  // function getAllCustomer() {
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "http://localhost:8080/customer/view",
+  //     success: function (data) {
+  //       populateTable(data);
+  //     },
+  //     error: function (xhr, exception) {
+  //       alert("Error occurred while retrieving damages");
+  //     }
+  //   });
 
   
-  }
+  // }
   
-  function populateTable(data) {
-    var table = $("#damageTable");
+  // function populateTable(data) {
+  //   var table = $("#damageTable");
   
-    // Clear existing table rows
-    table.empty();
+  //   // Clear existing table rows
+  //   table.empty();
   
-    // Iterate over the received data and add rows to the table
-    data.forEach(function (damage) {
-      var row = $("<tr>");
-      row.append($("<td>").text(damage.id));
-      row.append($("<td>").text(damage.vehicle_id));
-      row.append($("<td>").text(damage.description));
-      row.append($("<td>").text(damage.date));
-      row.append($("<td>").text(damage.imageName));
-      row.append($("<td>").text(damage.amount));
-      table.append(row);
-    });
-  }
+  //   // Iterate over the received data and add rows to the table
+  //   data.forEach(function (damage) {
+  //     var row = $("<tr>");
+  //     row.append($("<td>").text(damage.id));
+  //     row.append($("<td>").text(damage.vehicle_id));
+  //     row.append($("<td>").text(damage.description));
+  //     row.append($("<td>").text(damage.date));
+  //     row.append($("<td>").text(damage.imageName));
+  //     row.append($("<td>").text(damage.amount));
+  //     table.append(row);
+  //   });
+  // }
 
 
   function getAllCustomer() {
@@ -217,7 +266,7 @@ function getDamageDetails(id) {
                     '<td>' + email + '</td>' +
                     '<td>' + phone + '</td>' +
                     '<td>' + address + '</td>' +
-                    '<td><button type="button" class="update" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete">Delete</button></td>' +
+                    '<td><button type="button" class="update" onclick="getCustomerDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteCustomer(' + id + ') " class="delete">Delete</button></td>' +
                     '</tr>';
 
                 $('#RentTable tbody').append(newRow);

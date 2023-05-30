@@ -61,6 +61,7 @@ public class CustomerController {
             // Save customer to the database
             customerService.saveCustomer(customer);
 
+
             return ResponseEntity.ok("Customer saved successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -99,6 +100,26 @@ public class CustomerController {
                     .body("Error occurred while deleting student: " + e.getMessage());
         }
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateCustomer(@PathVariable("id") Long id, @RequestBody Customer updateCustomer) {
+        Customer existingCustomer = customerService.getCustomerById(id);
+        if (existingCustomer != null) {
+            existingCustomer.setName(updateCustomer.getName());
+            existingCustomer.setNic(updateCustomer.getNic());
+            existingCustomer.setEmail(updateCustomer.getEmail());
+            existingCustomer.setPhone(updateCustomer.getPhone());
+            existingCustomer.setAddress(updateCustomer.getAddress());
+
+            Customer updatedCustomerObj = customerService.updateCustomer(existingCustomer);
+            return ResponseEntity.ok(updatedCustomerObj);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
 
 
 

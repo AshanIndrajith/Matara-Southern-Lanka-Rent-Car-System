@@ -9,7 +9,7 @@ function saveEmployee(){
  $.ajax({
     method: "POST",
     contentType: "application/json",
-    url:"http://localhost:7050/api/auth/register",
+    url:"http://localhost:8080/api/auth/register",
     async:true,
     data:JSON.stringify({
       
@@ -25,6 +25,7 @@ function saveEmployee(){
     }),
     success:function(data){
         alert("saved");
+        resetForm();
         
     },
     error:function(xhr,status,error){
@@ -49,7 +50,7 @@ function LogEmployee(){
       
             
             $.ajax({
-                url:"http://localhost:7050/api/auth/authenticate",
+                url:"http://localhost:8080/api/auth/authenticate",
                 type: 'POST',
                 data: JSON.stringify({
                     "email":username,
@@ -66,6 +67,21 @@ function LogEmployee(){
             
 
 }
+
+
+
+function resetForm() {
+    document.getElementById("fname").value = "";
+    document.getElementById("lname").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("pass").value = "";
+  }
+
+
+  function resetFormLogin() {
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+  }
 
 
 

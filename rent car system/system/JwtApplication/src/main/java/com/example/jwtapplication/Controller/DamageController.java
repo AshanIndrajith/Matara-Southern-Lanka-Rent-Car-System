@@ -26,9 +26,6 @@ public class DamageController {
     private DamageServiceImpl damageService;
 
 
-
-
-
     @GetMapping("/view")
     @ResponseBody
     public ResponseEntity<List<Damage>> listStudents() {
@@ -186,9 +183,6 @@ public class DamageController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
-
 
 
 }

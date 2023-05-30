@@ -43,8 +43,9 @@ public class CustomerService implements CustomerServiceImpl{
 
     @Override
     public Customer updateCustomer(Customer customer) {
-        return null;
+        return customerRepo.save(customer);
     }
+
 
     @Override
     public void deleteCustomerById(Long id) {

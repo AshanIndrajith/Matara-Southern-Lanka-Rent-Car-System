@@ -15,6 +15,8 @@ function saveEmployee() {
     formData.append("date", date);
     formData.append("image", image);
     formData.append("amount", amount);
+
+    
   
     $.ajax({
       method: "POST",
@@ -59,7 +61,14 @@ let id=$('#uid').val();
         "amount":amount,
     }),
     success:function(data){
+
+      function closeAlert() {
+        var alertBox = document.querySelector('.alert');
+        alertBox.style.display = 'none';
+      }
+
    
+      
         alert("Updated")
         getAllStudents()
 
