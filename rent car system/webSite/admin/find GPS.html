@@ -37,6 +37,8 @@
 		/>
 		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
         <link rel="stylesheet" type="text/css" href="src/styles/tablestyle.css"/>
+       <!-- <link rel="stylesheet" type="text/css" href="src/styles/formstyle.css"/>   -->
+       
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
@@ -71,8 +73,10 @@
 
 
 		<script src="js/jquery-3.6.1.min.js"></script>
-		<script src="js/damage.js"></script>
-        
+		<script src="js/customer.js"></script>
+
+    
+
 
 
 
@@ -224,15 +228,15 @@
 			<div class="menu-block customscroll">
 				<div class="sidebar-menu">
 					<ul id="accordion-menu">
-			
+
 						<li>
-							<a href="index3.html" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-house"></span>
-								<span class="mtext">Home</span>
+							<a href="calendar.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-house"></span
+								><span class="mtext">Home</span>
 							</a>
 						</li>
-			
-			
+
+
 					
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
@@ -240,61 +244,57 @@
 								><span class="mtext"> Damage Details</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="Insert Damage details.html">Add</a></li>
-								<li><a href="view_Damage_Details.html">view</a></li>
+								<li><a href="insert_vehicle_details.html">Add</a></li>
+								<li><a href="view_vehicle_table.html">view</a></li>
 								
 							</ul>
 						</li>
-			
+
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-textarea-resize"></span
 								><span class="mtext"> Manage Vehicle </span>
 							</a>
 							<ul class="submenu">
-								<li><a href="Insert Vehicle details.html">Add</a></li>
-								<li><a href="view Vehicle Details.html">view</a></li>
+								<li><a href="insert_vehicle_details.html">Add</a></li>
+								<li><a href="view_vehicle_table.html">view</a></li>
 								
 							</ul>
 						</li>
-			
+
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-textarea-resize"></span
 								><span class="mtext"> Manage Booking</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="Insert Booking details.html">Add</a></li>
-								<li><a href="view Booking details.html">view</a></li>
+								<li><a href="insert_vehicle_details.html">Add</a></li>
+								<li><a href="view_vehicle_table.html">view</a></li>
 								
 							</ul>
 						</li>
-			
-			
+
+
 						<li>
-							<a href="" class="dropdown-toggle no-arrow">
+							<a href="calendar.html" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-house"></span
 								><span class="mtext">Damage Report</span>
 							</a>
 						</li>
-			
-			
+
+
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-textarea-resize"></span
 								><span class="mtext"> Manage Customer </span>
 							</a>
 							<ul class="submenu">
-								<li><a href="Insert Customer details.html">Add</a></li>
-								<li><a href="view_customer_details.html">view</a></li>
+								<li><a href="insert_vehicle_details.html">Add</a></li>
+								<li><a href="view_vehicle_table.html">view</a></li>
 								
 							</ul>
 						</li>
-						
 					
-				
-						
-						
 					</ul>
 				</div>
 			</div>
@@ -306,37 +306,35 @@
 		
 		
 		<div class="main-container">
-			<div class="tableTitle">Vehicle Damage details</div>
 			
+
+			<div class="tableTitle">GPS Tracking</div>
 			
-			<table id="RentTable">
+			<br>
+			<br>
+            <div class="form">
 				
-				<thead>
-				<tr>
-				  <th>Id</th>
-				  <th>Vehicle Id</th>
-				  <th>Description</th>
-                  <th>Damage Date</th>
-				  <th>Image</th>
-				  <th>Amount</th>
-                  <th>Action</th>
-				</tr>
-			 </thead>
-			 <tbody>
-			 </tbody>
+				<table class="form_table">
+					
+					<!-- <div class="subtitle">Let's create your account!</div> -->
+					<form>
 
-			
-			
-			  </table>
-		</div>
-
-
-
-
-
-
-
-
+                        <tr>
+							<td>
+								<div class="input-container ic1">
+									Enter Vehicle Id: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="searchVid" class="input" type="text" /><button type="submit" class="Search">Search</button>
+								</div>
+							</td>
+						</tr>	
+					</form>
+				  </table> 
+			</div>	
+	    </div>
 		<!-- welcome modal end -->
 		<!-- js -->
 		<script src="vendors/scripts/core.js"></script>

@@ -3,7 +3,7 @@ getAllCustomer()
 
 function saveCustomer() {
 
-  alert("friend")
+ 
     let cname = $('#cname').val();
     let nic = $('#nic').val();
     let email = $('#email').val();
@@ -189,7 +189,7 @@ function getDamageDetails(id) {
 
 
   function getAllCustomer() {
-    alert("data");
+   
     $.ajax({
         method: "GET",
         url: "http://localhost:8080/customer/view",
