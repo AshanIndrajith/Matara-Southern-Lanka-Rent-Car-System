@@ -69,10 +69,10 @@ public class CustomerController {
     public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
         try {
            customerService.deleteCustomerById(id);
-            return ResponseEntity.ok("Student deleted successfully");
+            return ResponseEntity.ok("customer deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error occurred while deleting student: " + e.getMessage());
+                    .body("Error occurred while deleting customer: " + e.getMessage());
         }
     }
 
