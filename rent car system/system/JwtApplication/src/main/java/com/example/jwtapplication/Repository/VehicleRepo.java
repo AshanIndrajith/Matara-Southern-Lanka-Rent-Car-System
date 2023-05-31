@@ -1,4 +1,7 @@
 package com.example.jwtapplication.Repository;
 
-public interface VehicleRepo {
+import com.example.jwtapplication.Entity.Booking;
+import org.springframework.data.repository.CrudRepository;
+
+public interface VehicleRepo extends CrudRepository<Booking, Long> {
 }

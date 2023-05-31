@@ -27,32 +27,7 @@ public class CustomerController {
     private CustomerServiceImpl customerService;
 
 
-//    @PostMapping("/save")
-//    public ResponseEntity<String> saveCustomer(Customer customer, @RequestParam("image") MultipartFile multipartFile) {
-//        try {
-//            if (!multipartFile.isEmpty()) {
-//                String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//                customer.setNicimage(filename);
-//                Customer saveCustomer=customerService.saveCustomer(customer);
-//                String uploadPath = "images/customer" + saveCustomer.getId();
-//
-//                FileUploadUtil.saveFile(uploadPath, filename, multipartFile);
-//            } else {
-//                if (customer.getImageFileNic().isEmpty()) {
-//                    customer.setImageFileNic(null);
-//                }
-//                customerService.saveCustomer(customer);
-//            }
-//
-//            return ResponseEntity.ok("customer saved successfully");
-//        } catch (IOException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                    .body("Error occurred while saving customer: " + e.getMessage());
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//                    .body("An unexpected error occurred: " + e.getMessage());
-//        }
-//    }
+
 
 
     @PostMapping("/save")

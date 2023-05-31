@@ -12,7 +12,7 @@ function saveCustomer() {
     let address = $('#address').val();
     let niccopy = $('#niccopy').prop('files')[0];
 
-    alert(cname);
+  
  
   
     // Create a new FormData object
@@ -238,7 +238,7 @@ function getCustomerDetails(id) {
 
   function getAllCustomer() {
    
-    alert("hi ashan")
+   
     $.ajax({
         method: "GET",
         url: "http://localhost:8080/customer/view",
