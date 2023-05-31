@@ -11,6 +11,9 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+
+    @Column(name = "cus_name")
+    private String cus_name;
     @Column(name = "cus_nic")
     private String cus_nic;
 
@@ -45,7 +48,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(Long id, String cus_nic, String cus_email, String cus_phone, String vehicle_id, String to_date, String posting_date, String status, String is_deleted,String from_date) {
+    public Booking(Long id, String cus_nic, String cus_email, String cus_phone, String vehicle_id, String to_date, String posting_date, String status, String is_deleted,String from_date,String cus_name) {
         this.id = id;
         this.cus_nic = cus_nic;
         this.cus_email = cus_email;
@@ -56,6 +59,7 @@ public class Booking {
         this.status = status;
         this.is_deleted = is_deleted;
         this.from_date=from_date;
+        this.cus_name=cus_name;
     }
 
 
@@ -139,5 +143,11 @@ public class Booking {
         this.from_date = from_date;
     }
 
+    public String getCus_name() {
+        return cus_name;
+    }
 
+    public void setCus_name(String cus_name) {
+        this.cus_name = cus_name;
+    }
 }

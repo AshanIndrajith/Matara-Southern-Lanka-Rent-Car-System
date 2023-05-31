@@ -3,7 +3,7 @@
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+		<title>Admin Dashboard</title>
 
 	
 
@@ -36,7 +36,7 @@
 			href="src/plugins/datatables/css/responsive.bootstrap4.min.css"
 		/>
 		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
-        <link rel="stylesheet" type="text/css" href="src/styles/tablestyle.css"/>
+        <link rel="stylesheet" type="text/css" href="src/styles/formstyle.css"/>
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
@@ -72,8 +72,6 @@
 
 		<script src="js/jquery-3.6.1.min.js"></script>
 		<script src="js/booking.js"></script>
-
-        
 
 
 
@@ -225,16 +223,14 @@
 			<div class="menu-block customscroll">
 				<div class="sidebar-menu">
 					<ul id="accordion-menu">
-
+			
 						<li>
 							<a href="index3.html" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-house"></span>
 								<span class="mtext">Home</span>
 							</a>
 						</li>
-
-
-					
+			
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-textarea-resize"></span
@@ -246,7 +242,7 @@
 								
 							</ul>
 						</li>
-
+			
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-textarea-resize"></span
@@ -258,7 +254,7 @@
 								
 							</ul>
 						</li>
-
+			
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-textarea-resize"></span
@@ -266,20 +262,18 @@
 							</a>
 							<ul class="submenu">
 								<li><a href="Insert Booking details.html">Add</a></li>
-								<li><a href="view Booking details.html">view</a></li>
+								<li><a href="view Booking details.html">view</a></li>  <!--there is no file created yet-->
 								
 							</ul>
 						</li>
-
-
+			
 						<li>
 							<a href="" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-house"></span
 								><span class="mtext">Damage Report</span>
 							</a>
 						</li>
-
-
+			
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-textarea-resize"></span
@@ -291,11 +285,7 @@
 								
 							</ul>
 						</li>
-						
 					
-				
-						
-						
 					</ul>
 				</div>
 			</div>
@@ -308,38 +298,139 @@
 		
 		<div class="main-container">
 			
-
-			<div class="tableTitle">Booking Details</div>
-			
-			<table id="RentTable">
-				<thead>
-				<tr>
-				  <th>Id</th>
-				  <th>Customer Name</th>
-				  <th>Nic</th>
-                  <th>Email</th>
-				  <th>Phone</th>
-				  <th>Vehicle Id</th>
-                  <th>From Date</th>
-				  <th>To Date</th>
-                   <th>Action</th>
-				</tr>
-			</thead>
-
-			<tbody>
+			<div class="form">
 				
+				<table class="form_table">
+					<div class="title">Insert Vehicle Booking Detail</div>
+					<!-- <div class="subtitle">Let's create your account!</div> -->
+					<form>
 
-			</tbody>
+                        <tr>
+							<td>
+								<div class="input-container ic1">
+									Id: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="id" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
 
-		    
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Customer name: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="cname" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+	
+						<tr>
+							<td>
+								<div class="input-container ic1">
+									Customer Nic: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="cnic" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
 
-			
-			
-	        </table>
-				
-				
-		
-	</div>
+                        <tr>
+							<td>
+								<div class="input-container ic1">
+									Email: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="cemail" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+
+                        <tr>
+							<td>
+								<div class="input-container ic1">
+									Mobile phone: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="mphone" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+
+                        <tr>
+							<td>
+								<div class="input-container ic1">
+									Vehicle Id: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="vid" class="input" type="text" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+
+                        <!-- <tr>
+							<td>
+								<div class="input-container ic1">
+									From Date: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="fdate" class="input" type="date" placeholder=" " />
+								</div>
+							</td>
+						</tr>
+
+                        <tr>
+							<td>
+								<div class="input-container ic1">
+									To Date: 
+								</div>
+							</td>
+							<td>
+								<div class="input-container ic1">
+									<input id="tdate" class="input" type="date" placeholder=" " />
+								</div>
+							</td>
+						</tr> -->
+
+                        <tr>
+							<td>
+
+							</td>
+							<td>
+							<button type="submit" class="submit">Submit</button> <button type="reset" class="reset">Reset</button>
+								
+							</td>
+						</tr>
+	
+					</form>
+				  </table> 
+			</div>
+		</div>
+
+
+
+
+
+
+
+
 		<!-- welcome modal end -->
 		<!-- js -->
 		<script src="vendors/scripts/core.js"></script>
