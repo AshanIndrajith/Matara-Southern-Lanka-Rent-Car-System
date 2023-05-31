@@ -3,7 +3,7 @@ getAllCustomer()
 
 function saveCustomer() {
 
-<<<<<<< Updated upstream
+
  
     let cname = $('#cname').val();
     let nic = $('#nic').val();
@@ -41,48 +41,47 @@ function saveCustomer() {
       }
     });
   }
-=======
->>>>>>> Stashed changes
 
 
-  let cname = $('#cname').val();
-  let nic = $('#nic').val();
-  let email = $('#email').val();
-  let phone = $('#phone').val();
-  let address = $('#address').val();
- // let niccopy = $('#niccopy')[0].files[0]; // Retrieve the selected file from the file input
+
+//   let cname = $('#cname').val();
+//   let nic = $('#nic').val();
+//   let email = $('#email').val();
+//   let phone = $('#phone').val();
+//   let address = $('#address').val();
+//  // let niccopy = $('#niccopy')[0].files[0]; // Retrieve the selected file from the file input
 
 
-  alert(cname);
+//   alert(cname);
 
-  // Create a new FormData object
-  let formData = new FormData();
-  formData.append("name", cname);
-  formData.append("nic", nic);
-  formData.append("email", email);
-  formData.append("phone", phone);
-  formData.append("address", address);
- // formData.append("niccopy", niccopy);
+//   // Create a new FormData object
+//   let formData = new FormData();
+//   formData.append("name", cname);
+//   formData.append("nic", nic);
+//   formData.append("email", email);
+//   formData.append("phone", phone);
+//   formData.append("address", address);
+//  // formData.append("niccopy", niccopy);
 
-  alert(address);
+//   alert(address);
 
-  $.ajax({
-    method: "POST",
-    url: "http://localhost:8080/customer/save",
-    processData: false,
-    contentType: false,
-    data: formData,
-    success: function (data) {
-      alert("Saved");
-      getAllCustomer();
-    },
-    error: function (xhr, exception) {
-      console.log(xhr.responseText); // Print the error response
-      console.log(exception); // Print the exception details
-      alert("Error occurred while saving customer");
-    }
-  });
-}
+//   $.ajax({
+//     method: "POST",
+//     url: "http://localhost:8080/customer/save",
+//     processData: false,
+//     contentType: false,
+//     data: formData,
+//     success: function (data) {
+//       alert("Saved");
+//       getAllCustomer();
+//     },
+//     error: function (xhr, exception) {
+//       console.log(xhr.responseText); // Print the error response
+//       console.log(exception); // Print the exception details
+//       alert("Error occurred while saving customer");
+//     }
+//   });
+
 
 
 function updateDamage(){
@@ -239,6 +238,7 @@ function getCustomerDetails(id) {
 
   function getAllCustomer() {
    
+    alert("hi ashan")
     $.ajax({
         method: "GET",
         url: "http://localhost:8080/customer/view",

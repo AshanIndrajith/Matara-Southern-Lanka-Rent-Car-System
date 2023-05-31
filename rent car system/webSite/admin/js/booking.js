@@ -168,42 +168,31 @@ function getAllBooking() {
   }
   
   
-  
-
   function getBookingDetails(empID) {
-
-    alert("ss")
+    alert("ss");
     alert(empID);
     $.ajax({
       method: "GET",
       url: "http://localhost:8080/booking/get/" + empID,
       async: true,
       success: function(data) {
-       
-          var empID = data.content.id;
-          var cusName = data.content.cus_name;
-          var cusNIC = data.content.cus_nic;
-          var cusEmail = data.content.cus_email;
-          var cusPhone = data.content.cus_phone;
-          var vehicleID = data.content.vehicle_id;
-        //   var fromDate = data.content.from_date;
-        //   var toDate = data.content.to_date;
-
-        
+        var empID = data.content.id;
+        var cusName = data.content.cus_name;
+        var cusNIC = data.content.cus_nic;
+        var cusEmail = data.content.cus_email;
+        var cusPhone = data.content.cus_phone;
+        var vehicleID = data.content.vehicle_id;
   
-          var url = "update_Booking_details.html" +
-            "?empID=" + encodeURIComponent(empID) +
-            "&cusName=" + encodeURIComponent(cusName) +
-            "&cusNIC=" + encodeURIComponent(cusNIC) +
-            "&cusEmail=" + encodeURIComponent(cusEmail) +
-            "&cusPhone=" + encodeURIComponent(cusPhone) +
-            "&vehicleID=" + encodeURIComponent(vehicleID) ;
-            // "&fromDate=" + encodeURIComponent(fromDate) +
-            // "&toDate=" + encodeURIComponent(toDate);
+        var url = "update_Booking_details.html" +
+          "?empID=" + encodeURIComponent(empID) +
+          "&cusName=" + encodeURIComponent(cusName) +
+          "&cusNIC=" + encodeURIComponent(cusNIC) +
+          "&cusEmail=" + encodeURIComponent(cusEmail) +
+          "&cusPhone=" + encodeURIComponent(cusPhone) +
+          "&vehicleID=" + encodeURIComponent(vehicleID);
   
-          window.location.href = url;
-        }
-      
+        window.location.href = url;
+      }
     });
   }
   
