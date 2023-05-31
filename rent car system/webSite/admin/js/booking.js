@@ -28,37 +28,37 @@ function saveEmployee(){
 
 }
 
-function updateEmployee(){
+// function updateEmployee(){
 
- let empID=$('#exampleFormControlInput11').val();
- let name=$('#exampleFormControlInput12').val();
- let address=$('#exampleFormControlInput13').val();
- let number=$('#exampleFormControlInput14').val();
+//  let empID=$('#exampleFormControlInput11').val();
+//  let name=$('#exampleFormControlInput12').val();
+//  let address=$('#exampleFormControlInput13').val();
+//  let number=$('#exampleFormControlInput14').val();
 
 
 
- $.ajax({
-    method: "PUT",
-    contentType: "application/json",
-    url:"http://localhost:8080/api/v1/employee/updateEmployee",
-    async:true,
-    data:JSON.stringify({
-        "empID":empID,
-        "empName":name,
-        "empAddress":address,
-        "empMNumber":number,
-    }),
-    success:function(data){
-        alert("Updated")
-        getAllEmployees()
-        window.location.href = "view_vehicle_table.html";
-    },
-    error:function(xhr,exception){
-        alert("Error")
-    }
- })
+//  $.ajax({
+//     method: "PUT",
+//     contentType: "application/json",
+//     url:"http://localhost:8080/api/v1/employee/updateEmployee",
+//     async:true,
+//     data:JSON.stringify({
+//         "empID":empID,
+//         "empName":name,
+//         "empAddress":address,
+//         "empMNumber":number,
+//     }),
+//     success:function(data){
+//         alert("Updated")
+//         getAllEmployees()
+//         window.location.href = "view_vehicle_table.html";
+//     },
+//     error:function(xhr,exception){
+//         alert("Error")
+//     }
+//  })
 
-}
+// }
 
 function deleteBooking(empID){
   
@@ -121,10 +121,6 @@ function getEmployeeDetails(empID) {
 
 
 
-
-
-
-
 function getAllBooking() {
     $.ajax({
       method: "GET",
@@ -169,13 +165,14 @@ function getAllBooking() {
   
   
   function getBookingDetails(empID) {
-    alert("ss");
+    
     alert(empID);
     $.ajax({
       method: "GET",
       url: "http://localhost:8080/booking/get/" + empID,
       async: true,
       success: function(data) {
+
         var empID = data.content.id;
         var cusName = data.content.cus_name;
         var cusNIC = data.content.cus_nic;
