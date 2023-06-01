@@ -26,10 +26,6 @@ public class CustomerController {
     @Autowired
     private CustomerServiceImpl customerService;
 
-
-
-
-
     @PostMapping("/save")
     public ResponseEntity<String> saveCustomer(@RequestBody Customer customer) {
         try {
