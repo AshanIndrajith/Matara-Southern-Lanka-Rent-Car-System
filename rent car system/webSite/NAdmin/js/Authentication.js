@@ -1,7 +1,7 @@
 
 function saveEmployee(){
 
-  
+      alert()
     var fname=$('#fname').val();
     var lname=$('#lname').val();
     var email=$('#email').val();
