@@ -1,0 +1,108 @@
+
+/*product*/
+
+.product-pr{
+    margin-top:9rem !important;
+    
+}
+
+
+
+.container-product {
+   margin: auto;  /*  Aligning the Products into Center         */
+   position: relative;
+   background-color: #e3e3e3;
+   max-width: 300px;
+   margin-right:auto;
+   text-align: center;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   border-radius: 2px;
+   padding-bottom: 5px;
+   margin-bottom: 35px;
+   padding-top: 10px;  
+   /*        Frames around the card              
+  
+   
+   padding-left: 5px;
+   padding-right: 5px;
+  */
+ }
+ 
+ .image-pr {
+   border-radius: 2px;
+   max-width: 300px;
+   opacity: 1;
+   display: block;
+   width: 100%;
+   height: auto;
+   transition: .5s ease;
+   backface-visibility: hidden;
+    
+   
+ }
+ 
+ .middle-pr {
+   transition: .5s ease;
+   opacity: 0;
+   position: absolute;
+   top: 40%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   text-align: center;
+ }
+ 
+ .container-product:hover .image-pr { /* The :hover selector is used to select elements and do various things
+                                            when moving mouse over them.                                   */
+   opacity: 0.3;
+ }
+ 
+ .container-product:hover .middle-pr {
+   opacity: 1;
+ }
+ 
+ .middle-pr  button {
+     border-radius: 2px;
+     width: 175px; /* Button will fit into the card */
+     padding: 10px;
+     background-color: black;
+     color: aliceblue; /* text color*/
+     border: none;  /* This will remove the buton borber*/
+   
+ }
+ .p_tag{
+   color: black;
+   font-size:20px;
+}
+.dress-code{
+   font-family:themes new roman;
+   font-size:20px;
+    color:black;
+    padding-top:10px;
+}
+
+
+
+.desc-pr{
+ margin-top:40px;
+ margin-bottom:40px; 
+}
+
+
+
+.product-topic{
+   
+   padding-top:10px;
+   padding-bottom:10px;
+   color:white;
+   background-color:#302e2e;
+   font-family:thems new roman;
+   margin-top:5px;
+   text-align:center;
+   letter-spacing:10px; 
+   margin-top:10rem ;
+   
+}
+
+
+
