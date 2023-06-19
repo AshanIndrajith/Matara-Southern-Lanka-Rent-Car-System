@@ -54,4 +54,11 @@ public class CustomerService implements CustomerServiceImpl{
         customerRepo.deleteById(Math.toIntExact(id));
 
     }
+
+
+    public Customer findCustomerByName() {
+        return customerRepo.findCustomerByName();
+    }
+
+
 }
