@@ -259,6 +259,31 @@
                                             <h1 class="h4 text-gray-900 mb-4">Insert Damage Details!</h1>
                                         </div>
                                         <form class="user">
+
+
+                                            <script>
+
+                                                $(document).ready(function() {
+                            
+                                                
+                                                // Read the query parameters from the URL
+                                                var params = new URLSearchParams(window.location.search);
+                                                var vehicleId = params.get("vehicle_id");
+                                                var description = params.get("description");
+                                                var date = params.get("date");
+                                                var imageName = params.get("imageName");
+                                                var amount = params.get("amount");
+                            
+                                                // Set the values of the elements on the page
+                                                $('#vid').val(vehicleId);
+                                                $('#description').val(description);
+                                                $('#date').val(date);
+                                                $('#image').val(imageName);
+                                                $('#amount').val(amount);
+                            
+                                            });
+                            
+                                            </script>
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                                     <input type="text" class="form-control form-control-user" id="vid"
@@ -277,14 +302,14 @@
                                                     placeholder="Damage Date">
                                             </div>
 
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <input type="file" class="form-control" id="image"
                                                     placeholder="Image">
-                                            </div>
+                                            </div> -->
 
 
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="damount"
+                                                <input type="text" class="form-control form-control-user" id="amount"
                                                     placeholder="Amount">
                                             </div>
 
