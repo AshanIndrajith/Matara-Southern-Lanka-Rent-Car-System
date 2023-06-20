@@ -56,9 +56,7 @@ public class CustomerService implements CustomerServiceImpl{
     }
 
 
-    public Customer findCustomerByName() {
-        return customerRepo.findCustomerByName();
-    }
+
 
 
 }

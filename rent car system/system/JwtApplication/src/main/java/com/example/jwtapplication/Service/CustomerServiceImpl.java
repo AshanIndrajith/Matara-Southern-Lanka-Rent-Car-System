@@ -18,7 +18,7 @@ public interface CustomerServiceImpl {
     void deleteCustomerById(Long id);
 
 
-    public Customer findCustomerByName();
+
 
 
 

@@ -89,15 +89,8 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/byname")
-    public ResponseEntity<Customer> findCustomerByName() {
-        Customer customer = customerService.findCustomerByName();
-        if (customer != null) {
-            return ResponseEntity.ok(customer);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+
+
 
 
 

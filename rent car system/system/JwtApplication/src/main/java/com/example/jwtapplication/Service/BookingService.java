@@ -50,4 +50,9 @@ public class BookingService implements BookingServiceImpl{
         bookingRepo.deleteById(id);
 
     }
+
+    @Override
+    public  Booking findByStatus() {
+        return bookingRepo.findByStatus();
+    }
 }

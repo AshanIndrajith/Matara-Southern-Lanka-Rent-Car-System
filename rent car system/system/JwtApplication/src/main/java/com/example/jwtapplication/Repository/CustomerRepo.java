@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepo extends CrudRepository<Customer, Integer> {
 
-    @Query(value = "SELECT * FROM customer WHERE name = 'ashan'", nativeQuery = true)
-    Customer findCustomerByName();
+
 
 }
 

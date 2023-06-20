@@ -25,11 +25,11 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
+
     @Column(name = "address")
     private String address;
 
-    @Column(name = "nicimage")
-    private String  nicimage;
+
 
 //    @Transient
 //    private MultipartFile imageFileNic;
@@ -37,14 +37,14 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long id, String name, String nic, String email, String phone, String address, String nicimage) {
+    public Customer(Long id, String name, String nic, String email, String phone, String address) {
         this.id = id;
         this.name = name;
         this.nic = nic;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.nicimage = nicimage;
+
 
     }
 
@@ -96,13 +96,7 @@ public class Customer {
         this.address = address;
     }
 
-    public String getNicimage() {
-        return nicimage;
-    }
 
-    public void setNicimage(String nicimage) {
-        this.nicimage = nicimage;
-    }
 
 //    public MultipartFile getImageFileNic() {
 //        return imageFileNic;

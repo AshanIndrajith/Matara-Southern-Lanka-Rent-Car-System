@@ -7,6 +7,54 @@ function saveEmployee() {
     let date = $('#date').val();
     let image = $('#image').prop('files')[0];
     let amount = $('#damount').val();
+
+
+
+    if (vid === '') {
+      alert('Please enter a Vehicle Id.');
+      return false;
+  }
+  
+  // Check for special characters in Vehicle Id field
+  if (/[^a-zA-Z0-9]/.test(vid)) {
+      alert('Vehicle Id should not contain special characters.');
+      return false;
+  }
+  
+  if (description === '') {
+      alert('Please enter a Description.');
+      return false;
+  }
+  
+  if (date === '') {
+      alert('Please select a Damage Date.');
+      return false;
+  }
+  
+  if (image === '') {
+      alert('Please select an Image.');
+      return false;
+  }
+  
+  if (damount === '') {
+      alert('Please enter an Amount.');
+      return false;
+  }
+  
+  // Validate Amount as a double
+  if (isNaN(parseFloat(damount))) {
+      alert('Amount should be a valid number.');
+      return false;
+  }
+
+
+
+
+
+
+
+
+
   
     // Create a new FormData object
     let formData = new FormData();

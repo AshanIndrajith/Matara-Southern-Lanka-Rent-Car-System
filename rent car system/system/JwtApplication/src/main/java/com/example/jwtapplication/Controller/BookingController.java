@@ -90,4 +90,17 @@ public class BookingController {
     }
 
 
+
+
+    @GetMapping("/byStatus")
+    public ResponseEntity<Booking> findByStatus() {
+        Booking booking = bookingService.findByStatus();
+        if (booking != null) {
+            return ResponseEntity.ok(booking);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }

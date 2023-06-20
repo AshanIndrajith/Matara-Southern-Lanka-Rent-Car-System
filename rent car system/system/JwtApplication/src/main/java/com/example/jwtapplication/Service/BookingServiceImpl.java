@@ -1,6 +1,7 @@
 package com.example.jwtapplication.Service;
 
 import com.example.jwtapplication.Entity.Booking;
+import com.example.jwtapplication.Entity.Customer;
 import com.example.jwtapplication.Entity.Damage;
 
 import java.awt.print.Book;
@@ -17,4 +18,7 @@ public interface BookingServiceImpl {
     Booking updateBooking(Booking booking);
     //
     void deleteBookingById(Long id);
+
+
+    public  Booking findByStatus();
 }
