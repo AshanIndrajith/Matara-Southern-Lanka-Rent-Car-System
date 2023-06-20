@@ -61,6 +61,9 @@ function saveEmployee(){
 
 // }
 
+
+
+
 function deleteBooking(empID){
   
 
@@ -72,7 +75,7 @@ function deleteBooking(empID){
     async:true,
 
     success:function(data){
-        alert("Deleted")
+        alert("deleted");
         getAllBooking() 
     },
     error:function(xhr,exception){
@@ -81,6 +84,60 @@ function deleteBooking(empID){
  })
 
 }
+
+
+
+function updateStatusBooking(id) {
+  $.ajax({
+    method: "PUT",
+    url: "http://localhost:8080/booking/update/" + id,
+    contentType: "application/json",
+    data: JSON.stringify({
+      // Update any relevant properties here
+    }),
+    success: function(response) {
+      // Handle the successful response
+      //console.log("Booking status updated:", response);
+
+      alert("suceesfully accepted");
+      // You can perform additional actions or update the UI as needed
+      getAllBooking();
+    },
+    error: function(xhr, status, error) {
+      // Handle the error response
+      console.log("Error updating booking status:", error);
+      // You can display an error message or perform alternative actions
+    }
+  });
+}
+
+
+
+
+function rejectedStatusBooking(id) {
+  $.ajax({
+    method: "PUT",
+    url: "http://localhost:8080/booking/rejected/" + id,
+    contentType: "application/json",
+    data: JSON.stringify({
+      // Update any relevant properties here
+    }),
+    success: function(response) {
+      // Handle the successful response
+      //console.log("Booking status updated:", response);
+
+      alert("Booking is rejected");
+      // You can perform additional actions or update the UI as needed
+      getAllBooking();
+    },
+    error: function(xhr, status, error) {
+      // Handle the error response
+      console.log("Error updating booking status:", error);
+      // You can display an error message or perform alternative actions
+    }
+  });
+}
+
  
 
 
@@ -138,12 +195,12 @@ function getAllBooking() {
           let vehicleID = booking.vehicle_id;
           let fromDate = booking.from_date;
           let toDate = booking.to_date;
+          let  status=booking.status;
 
-         
-        
-        
-  
-          let newRow = `<tr>
+
+          if( status== '1'){
+
+            let newRow = `<tr>
             <td>${id}</td>
             <td>${cusName}</td>
             <td>${cusNIC}</td>
@@ -158,6 +215,17 @@ function getAllBooking() {
             </td>
           </tr>`;
           $('#RentTable tbody').append(newRow);
+
+
+
+
+          }
+
+         
+        
+        
+  
+          
         }
       },
       error: function(xhr, status, error) {
@@ -201,7 +269,7 @@ function getAllBooking() {
 
 
   function getAllReqBooking() {
-    alert("hi");
+
   
     $.ajax({
       method: "GET",
@@ -222,11 +290,7 @@ function getAllBooking() {
           let vehicleID = booking.vehicle_id;
           let fromDate = booking.from_date;
           let toDate = booking.to_date;
-  
-          alert(id);
-
-          alert(cusName)
-  
+        
           let newRow = `<tr>
             <td>${id}</td>
             <td>${cusName}</td>
@@ -236,8 +300,8 @@ function getAllBooking() {
             <td>${fromDate}</td>
             <td>${toDate}</td>
             <td>
-              <button type="button" class="accept" onclick="getBookingDetails(${id})">Update</button>
-              <button type="button" onclick="deleteBooking(${id})" class="reject">Delete</button>
+              <button type="button" class="accept btn btn-success" onclick="updateStatusBooking(${id})">Accept</button>
+              <button type="button" onclick="rejectedStatusBooking(${id})" class="reject btn btn-danger">Reject</button>
             </td>
           </tr>`;
           $('#RentRTable tbody').append(newRow);

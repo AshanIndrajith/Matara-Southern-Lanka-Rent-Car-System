@@ -1,4 +1,4 @@
-getAllStudents()
+getAllDamage() 
 
 
 function saveEmployee() {
@@ -41,11 +41,11 @@ function saveEmployee() {
       return false;
   }
   
-  // Validate Amount as a double
-  if (isNaN(parseFloat(damount))) {
-      alert('Amount should be a valid number.');
-      return false;
-  }
+  // // Validate Amount as a double
+  // if (isNaN(parseFloat(damount))) {
+  //     alert('Amount should be a valid number.');
+  //     return false;
+  // }
 
 
 
@@ -74,7 +74,9 @@ function saveEmployee() {
       data: formData,
       success: function (data) {
         alert("Saved");
-        getAllStudents()
+        getAllDamage() 
+
+        window.location.href = "DamageView.html";
       },
       error: function (xhr, exception) {
         alert("Error occurred while saving damage");
@@ -85,13 +87,11 @@ function saveEmployee() {
 function updateDamage(){
 
 
-let id=$('#uid').val();
+ let id=$('#id').val();
  let vID=$('#vid').val();
  let description=$('#description').val();
  let date=$('#date').val();
  let amount=$('#amount').val();
-
-
 
 
 
@@ -110,17 +110,14 @@ let id=$('#uid').val();
     }),
     success:function(data){
 
-      function closeAlert() {
-        var alertBox = document.querySelector('.alert');
-        alertBox.style.display = 'none';
-      }
+     
 
-   
+  
       
         alert("Updated")
-        getAllStudents()
+        getAllDamage() 
 
-        window.location.href = "view_Damage_Details.html";
+        window.location.href = "DamageView.html";
     },
     error:function(xhr,exception){
         alert("Error")
@@ -198,42 +195,9 @@ function getDamageDetails(id) {
 
 
 
-  function getAllDamages() {
-    $.ajax({
-      method: "GET",
-      url: "http://localhost:8080/damage/view",
-      success: function (data) {
-        populateTable(data);
-      },
-      error: function (xhr, exception) {
-        alert("Error occurred while retrieving damages");
-      }
-    });
-
-  
-  }
-  
-  function populateTable(data) {
-    var table = $("#damageTable");
-  
-    // Clear existing table rows
-    table.empty();
-  
-    // Iterate over the received data and add rows to the table
-    data.forEach(function (damage) {
-      var row = $("<tr>");
-      row.append($("<td>").text(damage.id));
-      row.append($("<td>").text(damage.vehicle_id));
-      row.append($("<td>").text(damage.description));
-      row.append($("<td>").text(damage.date));
-      row.append($("<td>").text(damage.imageName));
-      row.append($("<td>").text(damage.amount));
-      table.append(row);
-    });
-  }
 
 
-  function getAllStudents() {
+  function getAllDamage() {
     $.ajax({
       method: "GET",
       url: "http://localhost:8080/damage/view",

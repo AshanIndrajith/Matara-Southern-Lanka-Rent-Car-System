@@ -19,6 +19,11 @@ public interface BookingServiceImpl {
     //
     void deleteBookingById(Long id);
 
+    Booking updateReqBooking(Booking booking);
+
+
+    Booking rejectedReqBooking(Booking booking);
+
 
     public  Booking findByStatus();
 }

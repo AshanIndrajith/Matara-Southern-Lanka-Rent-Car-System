@@ -1,54 +1,40 @@
 getAllCustomer() 
 
-
 function saveCustomer() {
+  let cname = $('#cname').val();
+  let nic = $('#nic').val();
+  let email = $('#email').val();
+  let phone = $('#phone').val();
+  let address = $('#address').val();
 
+  // Create a new FormData object
+  let formData = new FormData();
+  formData.append("name", cname);
+  formData.append("nic", nic);
+  formData.append("email", email);
+  formData.append("phone", phone);
+  formData.append("address", address);
 
- 
-    let cname = $('#cname').val();
-    let nic = $('#nic').val();
-    let email = $('#email').val();
-    let phone = $('#phone').val();
-    let address = $('#address').val();
-    
-
-  
- 
-  
-    // Create a new FormData object
-    let formData = new FormData();
-    formData.append("name", cname);
-    formData.append("nic", nic);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("address", address);
-   
-
-    alert(address)
-  
-    $.ajax({
-      method: "POST",
-      url: "http://localhost:8080/customer/save",
-    
-      processData: false,
-      contentType: false,
-      data: formData,
-      success: function (data) {
-        alert("Saved");
-        getAllCustomer()
-      },
-      error: function (xhr, status, error) {
-        if (xhr.responseJSON && xhr.responseJSON.message) {
-          console.log(xhr.responseJSON.message);
-          alert("Error occurred while saving customer: " + xhr.responseJSON.message);
-        } else {
-          console.log(xhr.responseText);
-          alert("Error occurred while saving customer. Check the console for more details.");
-        }
+  $.ajax({
+    method: "POST",
+    url: "http://localhost:8080/customer/save",
+    processData: false,
+    contentType: false,
+    data: formData,
+    success: function (data) {
+      alert("Saved");
+      getAllCustomer();
+    },
+    error: function (xhr, status, error) {
+      if (xhr.responseJSON && xhr.responseJSON.message) {
+        alert("Error occurred while saving customer: " + xhr.responseJSON.message);
+      } else {
+        alert("Error occurred while saving customer. Check the console for more details.");
       }
-    });
-  }
-
+      console.log(xhr.responseText);
+    }
+  });
+}
 
 
 //   let cname = $('#cname').val();
@@ -91,7 +77,7 @@ function saveCustomer() {
 
 
 
-function updateDamage(){
+function updateCustomer(){
 
 
  let id=$('#id').val();
@@ -128,7 +114,7 @@ function updateDamage(){
         alert("Updated")
         getAllCustomer();
 
-        window.location.href = "view_Customer_Details.html";
+        window.location.href = "customerView.html";
     },
     error:function(xhr,exception){
         alert("faild to update")
@@ -181,7 +167,7 @@ function getCustomerDetails(id) {
       
 
         // Construct the URL for the new page with query parameters
-        var url = "update_Customer_details.html" +
+        var url = "customerUpdate.html" +
           "?id=" + encodeURIComponent(id) +
           "&name=" + encodeURIComponent(name) +
           "&nic=" + encodeURIComponent(nic) +
@@ -287,51 +273,3 @@ function getCustomerDetails(id) {
 }
 
   
-  
-  // function getAllCustomer() {
-
-  //   alert("1");
-  //   $.ajax({
-  //     method: "GET",
-  //     url: "http://localhost:8080/customer/view",
-  //     success: function(data) {
-  //       // Clear existing table rows
-  //       $('#RentTable tbody').empty();
-  
-       
-  //       // Loop through the array and create table rows dynamically
-  //       data.forEach(function(customer) {
-  //         let id = customer.id;
-  //         let name = customer.name;
-  //         let nic = customer.nic;
-  //         let email = customer.email;
-  //         let phone = customer.phone;
-  //         let address = customer.address;
-
-          
-  
-  //         let newRow = `
-  //           <tr>
-  //             <td>${id}</td>
-  //             <td>${name}</td>
-  //             <td>${nic}</td>
-  //             <td>${email}</td>
-  //             <td>${phone}</td>
-  //             <td>${address}</td>
-  //             <td>
-  //               <button type="button" class="update" onclick="getDamageDetails(${id})">Update</button>
-  //               <button type="button" onclick="deleteEmployee(${id})" class="delete">Delete</button>
-  //             </td>
-  //           </tr>
-  //         `;
-  
-  //         $('#RentTable tbody').append(newRow);
-  //       });
-  //     },
-  //     error: function(xhr, status, error) {
-  //       // Handle the error response
-  //       console.log("Error:", error);
-  //     }
-  //   });
-  // }
-

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Vehicle Booking</title> 
+    <title>Dashboard</title> 
 
    
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,8 +20,10 @@
    
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <script src="js/jquery-3.6.1.min.js"></script>
-    <script src="js/booking.js"></script>
+
+    
+		<script src="js/jquery-3.6.1.min.js"></script>
+		<script src="js/customer.js"></script>
 
 </head>
 
@@ -69,8 +71,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Customer:</h6>
-                        <a class="collapse-item" href="customerInsert.html">Add</a>
-                        <a class="collapse-item" href="customerView.html">View</a>
+                        <a class="collapse-item" href="buttons.html">Add</a>
+                        <a class="collapse-item" href="cards.html">View</a>
                     </div>
                 </div>
             </li>
@@ -86,8 +88,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Vehicle:</h6>
-                        <a class="collapse-item" href="vehicleInsert.html">Add</a>
-                        <a class="collapse-item" href="VehicleView.html">View</a>
+                        <a class="collapse-item" href="utilities-color.html">Add</a>
+                        <a class="collapse-item" href="utilities-border.html">View</a>
                     </div>
                 </div>
             </li>
@@ -101,9 +103,9 @@
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Booking:</h6>
-                        <a class="collapse-item" href="index.html">Booking Requests</a>
-                        <a class="collapse-item" href="BookingInsert.html">Add</a>
-                        <a class="collapse-item" href="BookingView.html">View</a>
+                        <a class="collapse-item" href="buttons.html">Booking Requests</a>
+                        <a class="collapse-item" href="buttons.html">Add</a>
+                        <a class="collapse-item" href="cards.html">View</a>
                     </div>
                 </div>
             </li>
@@ -117,8 +119,8 @@
                 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Damage:</h6>
-                        <a class="collapse-item" href="damageInsert.html">Add</a>
-                        <a class="collapse-item" href="DamageView.html">View</a>
+                        <a class="collapse-item" href="buttons.html">Add</a>
+                        <a class="collapse-item" href="cards.html">View</a>
                     </div>
                 </div>
             </li>
@@ -179,7 +181,6 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-
             </div>
 
 
@@ -246,48 +247,97 @@
 
                 <div class="container">
 
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-5 d-none d-lg-block" style="padding-top:50px;">
+                                    <img src="img/customer.jpg" width="80%">
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Create a customer account!</h1>
+                                        </div>
+                                        <form class="user"  >
 
+                                            <script>
 
-
-                    
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary" style="text-align: center;">Pending Booking Details</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="RentRTable" width="100%" cellspacing="0">
-                                    <thead class="bg-primary text-white">
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Customer Name</th>
-                                            <th>Nic</th>
+                                                $(document).ready(function() {
+                            
+                                                
+                                                // Read the query parameters from the URL
+                                                var params = new URLSearchParams(window.location.search);
+                                                var id = params.get("id");
+                                                var name = params.get("name");
+                                                var nic = params.get("nic");
+                                                var email = params.get("email");
+                                                // var imageName = params.get("imageName");
+                                                var phone = params.get("phone");
+                                                var address = params.get("address");
+                        
                                             
-                                            <th>Phone</th>
-                                            <th>Vehicle Id</th>
-                                            <th>From Date</th>
-                                            <th>To Date</th>
-                                            <th>Action</th>
-                                        
+                                           
+                                                // Set the values of the elements on the page
+                                                $('#id').val(id);
+                                                $('#cname').val(name);
+                                                $('#nic').val(nic);
+                                                $('#email').val(email);
+                                                // $('#image').val(imageName);
+                                                $('#phone').val(phone);
+                                                $('#address').val(address);
+                            
+                                            });
+                            
+                                            </script>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                            
+                                          
+                            
+                                            </script>
 
-                                        
-                                    </tbody>
-                                    
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="id"
+                                                    placeholder="Id">
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="text" class="form-control form-control-user" id="cname"
+                                                        placeholder="Customer Name">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-user" id="nic"
+                                                        placeholder="Customer Nic">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control form-control-user" id="email"
+                                                    placeholder="Email Address">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="phone"
+                                                    placeholder="Phone Number">
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="address"
+                                                    placeholder="address">
+                                            </div>
+                                            
+                                            <button type="button" class="submit" onclick="updateCustomer()">Submit</button> 
+                                          
+                                          
+                                        </form>
+                                     
                                       
-                                    
-                                   
-                                </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    
             
                 </div>
             
@@ -357,8 +407,7 @@
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
 
-   
-    
+ 
 
 </body>
 

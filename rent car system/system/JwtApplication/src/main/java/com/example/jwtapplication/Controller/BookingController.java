@@ -68,26 +68,26 @@ public class BookingController {
         }
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateBooking(@PathVariable("id") Long id, @RequestBody Booking updateBooking) {
-        Booking existingBooking = bookingService.getBookingById(id);
-        if (existingBooking != null) {
-            existingBooking.setId(updateBooking.getId());
-            existingBooking.setCus_nic(updateBooking.getCus_nic());
-            existingBooking.setCus_email(updateBooking.getCus_email());
-            existingBooking.setCus_phone(updateBooking.getCus_phone());
-            existingBooking.setVehicle_id(updateBooking.getVehicle_id());
-            existingBooking.setFrom_date(updateBooking.getFrom_date());
-            existingBooking.setTo_date(updateBooking.getTo_date());
-            existingBooking.setStatus(String.valueOf(0));
-
-
-            Booking updatedBookingObj = bookingService.updateBooking(existingBooking);
-            return ResponseEntity.ok(updatedBookingObj);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<?> updateBooking(@PathVariable("id") Long id, @RequestBody Booking updateBooking) {
+//        Booking existingBooking = bookingService.getBookingById(id);
+//        if (existingBooking != null) {
+//            existingBooking.setId(updateBooking.getId());
+//            existingBooking.setCus_nic(updateBooking.getCus_nic());
+//            existingBooking.setCus_email(updateBooking.getCus_email());
+//            existingBooking.setCus_phone(updateBooking.getCus_phone());
+//            existingBooking.setVehicle_id(updateBooking.getVehicle_id());
+//            existingBooking.setFrom_date(updateBooking.getFrom_date());
+//            existingBooking.setTo_date(updateBooking.getTo_date());
+//            existingBooking.setStatus(String.valueOf(0));
+//
+//
+//            Booking updatedBookingObj = bookingService.updateBooking(existingBooking);
+//            return ResponseEntity.ok(updatedBookingObj);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
 
 
@@ -97,6 +97,33 @@ public class BookingController {
         Booking booking = bookingService.findByStatus();
         if (booking != null) {
             return ResponseEntity.ok(booking);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateStatusBooking(@PathVariable("id") Long id, @RequestBody Booking updateReqBooking) {
+        Booking existingReqBooking = bookingService.getBookingById(id);
+        if (existingReqBooking != null) {
+            existingReqBooking.setStatus("1");
+            Booking updatedReqBookingObj = bookingService.updateBooking(existingReqBooking);
+            return ResponseEntity.ok(updatedReqBookingObj);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
+    @PutMapping("/rejected/{id}")
+    public ResponseEntity<?> rejectedStatusBooking(@PathVariable("id") Long id, @RequestBody Booking rejectedReqBooking) {
+        Booking rejected = bookingService.getBookingById(id);
+        if (rejected != null) {
+            rejected.setStatus("2");
+            Booking updatedReqBookingObj = bookingService.updateBooking(rejected);
+            return ResponseEntity.ok(updatedReqBookingObj);
         } else {
             return ResponseEntity.notFound().build();
         }

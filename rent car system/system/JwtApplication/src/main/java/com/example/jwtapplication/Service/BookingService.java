@@ -52,6 +52,16 @@ public class BookingService implements BookingServiceImpl{
     }
 
     @Override
+    public Booking updateReqBooking(Booking booking) {
+        return bookingRepo.save(booking);
+    }
+
+    @Override
+    public Booking rejectedReqBooking(Booking booking) {
+        return bookingRepo.save(booking);
+    }
+
+    @Override
     public  Booking findByStatus() {
         return bookingRepo.findByStatus();
     }

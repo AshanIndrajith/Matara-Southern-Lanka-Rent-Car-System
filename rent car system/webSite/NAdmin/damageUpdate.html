@@ -268,6 +268,7 @@
                                                 
                                                 // Read the query parameters from the URL
                                                 var params = new URLSearchParams(window.location.search);
+                                                var id = params.get("id");
                                                 var vehicleId = params.get("vehicle_id");
                                                 var description = params.get("description");
                                                 var date = params.get("date");
@@ -275,6 +276,7 @@
                                                 var amount = params.get("amount");
                             
                                                 // Set the values of the elements on the page
+                                                $('#id').val(id);
                                                 $('#vid').val(vehicleId);
                                                 $('#description').val(description);
                                                 $('#date').val(date);
@@ -284,16 +286,26 @@
                                             });
                             
                                             </script>
+
+                                            
+
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input type="text" class="form-control form-control-user" id="vid"
+                                                    <input type="text" class="form-control form-control-user" id="id"
                                                         placeholder="Vehicle Id">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control form-control-user" id="description"
+                                                    <input type="text" class="form-control form-control-user" id="vid"
                                                         placeholder="Description">
                                                 </div>
                                             </div>
+
+                                            
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="description"
+                                                    placeholder="description">
+                                            </div>
+
 
 
                                         
@@ -318,7 +330,7 @@
                  
 
 
-                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="saveEmployee()">Submit</button>
+                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="updateDamage()">Submit</button>
 
                                             <button type="reset" class="reset btn btn-danger btn-user btn-block">Reset</button>
                                           
