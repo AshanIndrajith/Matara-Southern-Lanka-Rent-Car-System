@@ -15,33 +15,70 @@ function saveEmployee() {
 
 
     if (vid === '') {
-      alert('Please enter a Vehicle Id.');
+
+      swal({
+        title: "Please enter a Vehicle Id.",
+        button: {
+          className: "custom-button-class",
+        },
+      });
+     
       return false;
   }
   
   // Check for special characters in Vehicle Id field
   if (/[^a-zA-Z0-9]/.test(vid)) {
-      alert('Vehicle Id should not contain special characters.');
+    swal({
+      title: "Vehicle Id should not contain special characters",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+      
       return false;
   }
   
   if (description === '') {
-      alert('Please enter a Description.');
+    swal({
+      title: "Please enter a Description",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+      
       return false;
   }
   
   if (date === '') {
-      alert('Please select a Damage Date.');
+    swal({
+      title: "Please select a Damage Date",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+      
       return false;
   }
   
   if (image === '') {
-      alert('Please select an Image.');
+    swal({
+      title: "Please select an Image",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+      
       return false;
   }
   
   if (damount === '') {
-      alert('Please enter an Amount.');
+    swal({
+      title: "Please enter an Amount",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+     
       return false;
   }
   
@@ -237,7 +274,7 @@ function getDamageDetails(id) {
             '<td>' + description + '</td>' +
             '<td>' + date + '</td>' +
             '<td><img src="../../system/JwtApplication/images/'+id+'/'+image+'" width="70px"></td>' +
-            '<td>' + amount + '</td>' +
+            '<td>  <label> Rs :</label>'+ amount + '<label> .00</label></td>' +
             '<td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
             // Add other table cells as needed
             '</tr>';

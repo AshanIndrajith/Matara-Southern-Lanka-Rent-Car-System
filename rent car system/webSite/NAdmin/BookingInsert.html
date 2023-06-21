@@ -24,6 +24,24 @@
     <script src="js/jquery-3.6.1.min.js"></script>
 		<script src="js/booking.js"></script>
 
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <style>
+           .custom-button-class {
+               background-color: #FF0000; /* Set your desired button color */
+              color:black; /* Set your desired text color */
+              
+                }
+
+                .swal-button:focus,
+                .swal-button:hover {
+                 box-shadow: none !important;
+                outline: none !important;
+}
+            
+        </style>
+
 </head>
 
 <body id="page-top">
@@ -262,7 +280,7 @@
                                         </div>
                                         <form class="user" id="bookingForm">
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="cname" placeholder="Customer Name">
+                                                <input type="text" class="form-control form-control-user" id="cname" placeholder="Customer Name" required/>
                                             </div>
                                         
                                             <div class="form-group">

@@ -9,6 +9,87 @@ function saveBooking() {
   let fromDate = $('#fromDate').val();
   let toDate = $('#toDate').val();
 
+  // Validation checks
+  if (cname.trim() === "") {
+    swal({
+      title: "please enter the name",
+      button: {
+        className: "custom-button-class",
+      },
+      closeOnClickOutside: false,
+    });
+   
+    return;
+  }
+  if (!/^\d+[a-zA-Z]$/.test(cnic)) {
+
+    swal({
+      title: "Invalid NIC. Must be a number followed by a single character.",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    
+    return;
+  }
+  if (email.trim() === "") {
+
+    swal({
+      title: "Email address is required.",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+   
+    return;
+  }
+  if (!/^\d{10}$/.test(phone)) {
+
+    swal({
+      title: "Invalid phone number. Must be 10 digits",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+
+    
+    return;
+  }
+  if (vid.trim() === "") {
+    swal({
+      title: "Vehicle ID is required.",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    
+    return;
+  }
+  if (fromDate.trim() === "" || toDate.trim() === "") {
+
+
+    swal({
+      title: "From date and To date are required.",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+  
+    return;
+  }
+  if (new Date(toDate) < new Date(fromDate)) {
+     
+    swal({
+      title: "Days before the from date won't be selectable",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+   
+    //alert("Days before the from date won't be selectable.");
+    return;
+  }
+
   let formData = new FormData();
   formData.append("cusName", cname);
   formData.append("cusNIC", cnic);
@@ -113,6 +194,7 @@ function updateStatusBooking(id) {
 
       alert("suceesfully accepted");
       // You can perform additional actions or update the UI as needed
+      window.location.href="BookingView.html"
       getAllBooking();
     },
     error: function(xhr, status, error) {
@@ -222,7 +304,7 @@ function getAllBooking() {
             <td>${fromDate}</td>
             <td>${toDate}</td>
             <td>
-              <button type="button" class="update btn btn-success" onclick="getBookingDetails(${id})">Update</button>
+              <button type="button" class="update btn btn-success" onclick="getBookingDetails(${id})">Update</button><br><br>
               <button type="button" onclick="deleteBooking(${id})" class="delete btn btn-danger">Delete</button>
             </td>
           </tr>`;

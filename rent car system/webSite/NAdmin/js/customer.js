@@ -1,15 +1,64 @@
 getAllCustomer() 
 
 function saveCustomer() {
-
   let cname = $('#cname').val();
   let nic = $('#nic').val();
   let email = $('#email').val();
   let phone = $('#phone').val();
   let address = $('#address').val();
 
+  // Validation checks
+  if (cname.trim() === "") {
 
-  
+    swal({
+      title: "Name  is required",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+   
+    return;
+  }
+  if (!/^[0-9]+[a-zA-Z]$/.test(nic)) {
+    swal({
+      title: "Invalid NIC. Must be numeric followed by a single characte.",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    
+    return;
+  }
+  if (email.trim() === "") {
+    swal({
+      title: "Email address is required",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+
+    return;
+  }
+  if (!/^\d{10}$/.test(phone)) {
+    swal({
+      title: "Invalid phone number. Must be 10 digits",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+
+    return;
+  }
+  if (address.trim() === "") {
+    swal({
+      title: "Address is required",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+   
+    return;
+  }
 
   // Create a new FormData object
   let formData = new FormData();
@@ -33,12 +82,13 @@ function saveCustomer() {
       if (xhr.responseJSON && xhr.responseJSON.message) {
         alert("Error occurred while saving customer: " + xhr.responseJSON.message);
       } else {
-        alert("Error occurred while saving customer. Check the console for more details."+error.message);
+        alert("Error occurred while saving customer. Check the console for more details." + error.message);
       }
       console.log(xhr.responseText);
     }
   });
 }
+
 
 
 //   let cname = $('#cname').val();
@@ -81,51 +131,60 @@ function saveCustomer() {
 
 
 
-function updateCustomer(){
+function updateCustomer() {
+  let id = $('#id').val();
+  let name = $('#cname').val();
+  let nic = $('#nic').val();
+  let email = $('#email').val();
+  let phone = $('#phone').val();
+  let address = $('#address').val();
 
+  // Validation checks
+  if (name.trim() === "") {
+      alert("Invalid name. Please enter a valid name.");
+      return;
+  }
+  if (!/^[0-9]+[a-zA-Z]$/.test(nic)) {
+      alert("Invalid NIC. Must be numeric followed by a single character.");
+      return;
+  }
+  if (email.trim() === "") {
+      alert("Email address is required.");
+      return;
+  }
+  if (!/^\d{10}$/.test(phone)) {
+      alert("Invalid phone number. Must be 10 digits.");
+      return;
+  }
+  if (address.trim() === "") {
+      alert("Address is required.");
+      return;
+  }
 
- let id=$('#id').val();
- let name=$('#name').val();
- let nic=$('#nic').val();
- let email=$('#email').val();
- let phone=$('#phone').val();
- let address=$('#address').val();
-
-
-
-
-
-
-
- $.ajax({
-    method: "PUT",
-    contentType: "application/json",
-    url:"http://localhost:8080/customer/update/"+id,
-    async:true,
-    data:JSON.stringify({
-        "name":name,
-        "nic":nic,
-        "email":email,
-        "phone":phone,
-        "address":address,
-
-        
-
-
-    }),
-    success:function(data){
-   
-        alert("Updated")
-        getAllCustomer();
-
-        window.location.href = "customerView.html";
-    },
-    error:function(xhr,exception){
-        alert("faild to update")
-    }
- })
-
+  // AJAX request
+  $.ajax({
+      method: "PUT",
+      contentType: "application/json",
+      url: "http://localhost:8080/customer/update/" + id,
+      async: true,
+      data: JSON.stringify({
+          "name": name,
+          "nic": nic,
+          "email": email,
+          "phone": phone,
+          "address": address
+      }),
+      success: function(data) {
+          alert("Updated");
+          getAllCustomer();
+          window.location.href = "customerView.html";
+      },
+      error: function(xhr, exception) {
+          alert("Failed to update");
+      }
+  });
 }
+
 
 function deleteCustomer(empID){
     
@@ -140,6 +199,7 @@ function deleteCustomer(empID){
     success:function(data){
         alert("Deleted")
        getAllCustomer();
+       window.location.href = "customerView.html";
     },
     error:function(xhr,exception){
         alert("Error")
