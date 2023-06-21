@@ -173,7 +173,7 @@ public class DamageController {
             existingDamage.setVehicle_id(updateDamage.getVehicle_id());
             existingDamage.setDescription(updateDamage.getDescription());
             existingDamage.setDate(updateDamage.getDate());
-            existingDamage.setImageName(updateDamage.getImageName());
+           // existingDamage.setImageName(updateDamage.getImageName());
             existingDamage.setAmount(updateDamage.getAmount());
             existingDamage.setImageFile(updateDamage.getImageFile());
 

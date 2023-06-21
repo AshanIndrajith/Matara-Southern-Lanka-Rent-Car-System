@@ -5,6 +5,7 @@ import com.example.jwtapplication.Entity.Customer;
 import com.example.jwtapplication.Entity.Damage;
 
 import java.awt.print.Book;
+import java.util.List;
 
 public interface BookingServiceImpl {
 
@@ -25,5 +26,11 @@ public interface BookingServiceImpl {
     Booking rejectedReqBooking(Booking booking);
 
 
-    public  Booking findByStatus();
+    //public  Booking findByStatus();
+
+
+    public List<Booking> findAllByStatus() ;
+
+
+
 }

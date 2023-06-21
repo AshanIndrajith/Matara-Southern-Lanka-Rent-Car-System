@@ -53,13 +53,6 @@ function saveEmployee() {
 
 
 
-
-
-
-
-
-
-  
     // Create a new FormData object
     let formData = new FormData();
     formData.append("vehicle_id", vid);
@@ -80,9 +73,9 @@ function saveEmployee() {
 
         swal({
           title: "Good job!",
-          text: "You clicked the button!",
+          text: "Successfully Added!",
           icon: "success",
-          button: "Aww yiss!",
+          button: "OK!",
         }).then(() => {
           // Redirect to DamageView.html
           window.location.href = "DamageView.html";
@@ -155,8 +148,11 @@ function deleteEmployee(empID){
     async:true,
 
     success:function(data){
+
+
+
         alert("Deleted")
-        getAllStudents()
+        getAllDamage() 
     },
     error:function(xhr,exception){
         alert("Error")

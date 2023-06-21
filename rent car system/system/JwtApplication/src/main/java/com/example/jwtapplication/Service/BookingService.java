@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @Service
-public class BookingService implements BookingServiceImpl{
+public class BookingService implements BookingServiceImpl {
 
 
     @Autowired
@@ -61,8 +61,8 @@ public class BookingService implements BookingServiceImpl{
         return bookingRepo.save(booking);
     }
 
-    @Override
-    public  Booking findByStatus() {
-        return bookingRepo.findByStatus();
+    public List<Booking> findAllByStatus() {
+        return bookingRepo.findAllByStatus();
     }
+
 }
