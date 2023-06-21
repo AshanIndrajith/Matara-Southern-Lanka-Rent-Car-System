@@ -42,8 +42,6 @@ public class Vehicle {
     @Column(name = "add_hour_price")
     private Double add_hour_price;
 
-
-
     @Transient
     private MultipartFile imageFile;
 

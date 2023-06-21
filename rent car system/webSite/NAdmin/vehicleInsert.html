@@ -19,6 +19,9 @@
 
    
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+     
+    <script src="js/jquery-3.6.1.min.js"></script>
+	<script src="js/vehicle.js"></script>
 
 </head>
 
@@ -254,10 +257,10 @@
                                         <div class="text-center">
                                             <h1 class="h4 text-gray-900 mb-4">Insert Vehicle Details!</h1>
                                         </div>
-                                        <form class="user">
+                                        <form class="user" enctype="multipart/form-data">
 
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="registration number"
+                                                <input type="text" class="form-control form-control-user" id="reqnum"
                                                     placeholder="Registration Number">
                                             </div>
 
@@ -289,7 +292,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="image"
+                                                <input type="file" class="form-control form-control-user" id="image"
                                                     placeholder="Image">
                                             </div>
 
@@ -308,9 +311,7 @@
                                                 </div>
                                             </div>
 
-                                            <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                                Submit
-                                            </a>
+                                            <button type="button" class="submit" onclick="saveVehicle()">Submit</button> 
                                           
                                           
                                         </form>
@@ -390,9 +391,7 @@
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+   
 
 </body>
 
