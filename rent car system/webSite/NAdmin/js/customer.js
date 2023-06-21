@@ -8,10 +8,7 @@ function saveCustomer() {
   let phone = $('#phone').val();
   let address = $('#address').val();
 
-  alert(address);
-  alert(nic);
-  alert(email);
-  alert(phone);
+
   
 
   // Create a new FormData object

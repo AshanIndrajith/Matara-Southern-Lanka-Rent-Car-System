@@ -67,7 +67,7 @@ function LogEmployee(){
                 }),
                 contentType: 'application/json',
                 success: function() {
-                    window.location.href = '../admin/index3.html';
+                    window.location.href = 'index.html';
                 },
                 error: function(xhr,status,error) {
                     alert('Login failed');

@@ -222,8 +222,8 @@ function getAllBooking() {
             <td>${fromDate}</td>
             <td>${toDate}</td>
             <td>
-              <button type="button" class="update" onclick="getBookingDetails(${id})">Update</button>
-              <button type="button" onclick="deleteBooking(${id})" class="delete">Delete</button>
+              <button type="button" class="update btn btn-success" onclick="getBookingDetails(${id})">Update</button>
+              <button type="button" onclick="deleteBooking(${id})" class="delete btn btn-danger">Delete</button>
             </td>
           </tr>`;
           $('#RentTable tbody').append(newRow);
