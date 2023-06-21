@@ -9,11 +9,11 @@ public interface DamageServiceImpl {
     Iterable<Damage> getAllStudents();
 
     Damage saveDamage(Damage damage);
-//
+
     Damage getDamageById(Long id);
-//
+
    Damage updateDamage(Damage damage);
-//
+
    void deleteStudentById(Long id);
 
 
