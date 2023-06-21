@@ -39,7 +39,6 @@ public class CustomerController {
     }
 
 
-
     @GetMapping("/view")
     @ResponseBody
     public ResponseEntity<List<Customer>> listCustomer() {

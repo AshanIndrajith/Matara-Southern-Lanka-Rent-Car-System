@@ -1,33 +1,45 @@
 getAllBooking() 
 getAllReqBooking()
-function saveEmployee(){
- let name=$('#exampleFormControlInput2').val();
- let address=$('#exampleFormControlInput3').val();
- let number=$('#exampleFormControlInput4').val();
+function saveBooking() {
+  let cname = $('#cname').val();
+  let cnic = $('#cnic').val();
+  let email = $('#email').val();
+  let phone = $('#phone').val();
+  let vid = $('#vid').val();
+  let fromDate = $('#fromDate').val();
+  let toDate = $('#toDate').val();
 
+  let formData = new FormData();
+  formData.append("cusName", cname);
+  formData.append("cusNIC", cnic);
+  formData.append("cusEmail", email);
+  formData.append("cusPhone", phone);
+  formData.append("vehicleID", vid);
+  formData.append("fromDate", fromDate);
+  formData.append("toDate", toDate);
 
-
- $.ajax({
+  $.ajax({
     method: "POST",
-    contentType: "application/json",
-    url:"http://localhost:8080/api/v1/employee/saveEmployee",
-    async:true,
-    data:JSON.stringify({
-        "empID":"",
-        "empName":name,
-        "empAddress":address,
-        "empMNumber":number,
-    }),
-    success:function(data){
-        alert("saved")
-        getAllEmployees()
+    url: "http://localhost:8080/booking/save",
+    processData: false,
+    contentType: false,
+    data: formData,
+    success: function (data) {
+      alert("Booking saved successfully");
+      getAllBooking();
+      // Redirect to the booking view page
+      window.location.href = "BookingView.html";
     },
-    error:function(xhr,exception){
-        alert("Error")
+    error: function (xhr, status, error) {
+      let errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : "Error occurred while saving booking. Check the console for more details.";
+      alert("Error occurred while saving booking: " + errorMessage);
+      console.log(xhr.responseText);
     }
- })
-
+  });
 }
+
+
+
 
 // function updateEmployee(){
 
@@ -216,16 +228,9 @@ function getAllBooking() {
           </tr>`;
           $('#RentTable tbody').append(newRow);
 
-
-
-
           }
 
-         
-        
-        
-  
-          
+    
         }
       },
       error: function(xhr, status, error) {
@@ -233,25 +238,30 @@ function getAllBooking() {
       }
     });
   }
-  
+
+
+
+
+
+
   
   function getBookingDetails(empID) {
+
+
     
-    alert(empID);
     $.ajax({
       method: "GET",
       url: "http://localhost:8080/booking/get/" + empID,
       async: true,
-      success: function(data) {
-
-        var empID = data.content.id;
-        var cusName = data.content.cus_name;
-        var cusNIC = data.content.cus_nic;
-        var cusEmail = data.content.cus_email;
-        var cusPhone = data.content.cus_phone;
-        var vehicleID = data.content.vehicle_id;
+      success: function (data) {
+        var empID = data.id;
+        var cusName = data.cus_name;
+        var cusNIC = data.cus_nic;
+        var cusEmail = data.cus_email;
+        var cusPhone = data.cus_phone;
+        var vehicleID = data.vehicle_id;
   
-        var url = "update_Booking_details.html" +
+        var url = "BookingUpdate.html" +
           "?empID=" + encodeURIComponent(empID) +
           "&cusName=" + encodeURIComponent(cusName) +
           "&cusNIC=" + encodeURIComponent(cusNIC) +
@@ -260,10 +270,12 @@ function getAllBooking() {
           "&vehicleID=" + encodeURIComponent(vehicleID);
   
         window.location.href = url;
+      },
+      error: function (xhr, status, error) {
+        console.log("Error:", error);
       }
     });
   }
-
 
 
 
@@ -312,4 +324,43 @@ function getAllBooking() {
       }
     });
   }
+
+
+
+  function updateBooking() {
+    let empID = $('#id').val();
+    let cusName = $('#cname').val();
+    let cusNIC = $('#cnic').val();
+    let cusEmail = $('#email').val();
+    let cusPhone = $('#phone').val();
+    let vehicleID = $('#vid').val();
+  
+    alert(vehicleID);
+  
+    let bookingData = {
+      cus_name: cusName,
+      cus_nic: cusNIC,
+      cus_email: cusEmail,
+      cus_phone: cusPhone,
+      vehicle_id: vehicleID
+    };
+  
+    $.ajax({
+      method: "PUT",
+      contentType: "application/json",
+      url: "http://localhost:8080/booking/updateBooking/" + empID,
+      async: true,
+      data: JSON.stringify(bookingData),
+      success: function(data) {
+        alert("Updated");
+        getAllBooking();
+        window.location.href = "BookingView.html";
+      },
+      error: function(xhr, exception) {
+        alert("Error");
+      }
+    });
+  }
+  
+  
   

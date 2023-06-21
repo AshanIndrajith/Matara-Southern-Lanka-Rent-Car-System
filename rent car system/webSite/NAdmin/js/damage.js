@@ -1,5 +1,9 @@
 getAllDamage() 
 
+function test(){
+  
+  
+}
 
 function saveEmployee() {
     let vid = $('#vid').val();
@@ -73,10 +77,24 @@ function saveEmployee() {
       contentType: false,
       data: formData,
       success: function (data) {
-        alert("Saved");
+
+        swal({
+          title: "Good job!",
+          text: "You clicked the button!",
+          icon: "success",
+          button: "Aww yiss!",
+        }).then(() => {
+          // Redirect to DamageView.html
+          window.location.href = "DamageView.html";
+        });
+        
+
+
+        
         getAllDamage() 
 
-        window.location.href = "DamageView.html";
+        
+       
       },
       error: function (xhr, exception) {
         alert("Error occurred while saving damage");
@@ -222,9 +240,9 @@ function getDamageDetails(id) {
             '<td>' + vid + '</td>' +
             '<td>' + description + '</td>' +
             '<td>' + date + '</td>' +
-            '<td>' + image + '</td>' +
+            '<td><img src="../../system/JwtApplication/images/'+id+'/'+image+'" width="70px"></td>' +
             '<td>' + amount + '</td>' +
-            ' <td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
+            '<td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
             // Add other table cells as needed
             '</tr>';
           $('#RentTable tbody').append(newRow);

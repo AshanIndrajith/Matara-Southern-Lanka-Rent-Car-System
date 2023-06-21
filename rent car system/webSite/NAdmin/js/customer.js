@@ -1,11 +1,18 @@
 getAllCustomer() 
 
 function saveCustomer() {
+
   let cname = $('#cname').val();
   let nic = $('#nic').val();
   let email = $('#email').val();
   let phone = $('#phone').val();
   let address = $('#address').val();
+
+  alert(address);
+  alert(nic);
+  alert(email);
+  alert(phone);
+  
 
   // Create a new FormData object
   let formData = new FormData();
@@ -29,7 +36,7 @@ function saveCustomer() {
       if (xhr.responseJSON && xhr.responseJSON.message) {
         alert("Error occurred while saving customer: " + xhr.responseJSON.message);
       } else {
-        alert("Error occurred while saving customer. Check the console for more details.");
+        alert("Error occurred while saving customer. Check the console for more details."+error.message);
       }
       console.log(xhr.responseText);
     }

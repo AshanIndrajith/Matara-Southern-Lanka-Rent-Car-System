@@ -68,26 +68,26 @@ public class BookingController {
         }
     }
 
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<?> updateBooking(@PathVariable("id") Long id, @RequestBody Booking updateBooking) {
-//        Booking existingBooking = bookingService.getBookingById(id);
-//        if (existingBooking != null) {
-//            existingBooking.setId(updateBooking.getId());
-//            existingBooking.setCus_nic(updateBooking.getCus_nic());
-//            existingBooking.setCus_email(updateBooking.getCus_email());
-//            existingBooking.setCus_phone(updateBooking.getCus_phone());
-//            existingBooking.setVehicle_id(updateBooking.getVehicle_id());
-//            existingBooking.setFrom_date(updateBooking.getFrom_date());
-//            existingBooking.setTo_date(updateBooking.getTo_date());
-//            existingBooking.setStatus(String.valueOf(0));
-//
-//
-//            Booking updatedBookingObj = bookingService.updateBooking(existingBooking);
-//            return ResponseEntity.ok(updatedBookingObj);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PutMapping("/updateBooking/{id}")
+    public ResponseEntity<?> updateBooking(@PathVariable("id") Long id, @RequestBody Booking updateBooking) {
+        Booking existingBooking = bookingService.getBookingById(id);
+        if (existingBooking != null) {
+            existingBooking.setId(updateBooking.getId());
+            existingBooking.setCus_nic(updateBooking.getCus_nic());
+            existingBooking.setCus_email(updateBooking.getCus_email());
+            existingBooking.setCus_phone(updateBooking.getCus_phone());
+            existingBooking.setVehicle_id(updateBooking.getVehicle_id());
+            existingBooking.setFrom_date(updateBooking.getFrom_date());
+            existingBooking.setTo_date(updateBooking.getTo_date());
+            existingBooking.setStatus(String.valueOf(0));
+
+
+            Booking updatedBookingObj = bookingService.updateBooking(existingBooking);
+            return ResponseEntity.ok(updatedBookingObj);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 
