@@ -89,7 +89,11 @@ public class CustomerController {
 
 
 
-
+    @GetMapping("/custotal")
+    public ResponseEntity<Integer> getTotalCustomer() {
+        int All = customerService.getTotalCustomer();
+        return ResponseEntity.ok(All);
+    }
 
 
 

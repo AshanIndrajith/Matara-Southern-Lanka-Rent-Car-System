@@ -175,7 +175,13 @@ function updateCustomer() {
           "address": address
       }),
       success: function(data) {
-          alert("Updated");
+           
+      swal({
+        title: "Good job!",
+        text: "customer is Updated Successfully!",
+        icon: "success",
+        button: "ok!",
+      });
           getAllCustomer();
           window.location.href = "customerView.html";
       },
@@ -189,22 +195,42 @@ function updateCustomer() {
 function deleteCustomer(empID){
     
 
+  
+ swal({
+  title: "Are you sure?",
+  text: "Permanently delete selected data ?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+
+  if (willDelete) {
+    $.ajax({
+      method: "DELETE",
+      url:"http://localhost:8080/customer/delete/"+empID,
+      async:true,
+  
+      success:function(data){
+          alert("Deleted")
+         getAllCustomer();
+         window.location.href = "customerView.html";
+      },
+      error:function(xhr,exception){
+          alert("Error")
+      }
+   })
+    swal(" Damage detailes  is deleted!", {
+      icon: "success",
+    });
+  } else {
+    swal("Your detailes  is safe!");
+  }
+});
+
  //let empID=$('#exampleFormControlInput1').val();
 
- $.ajax({
-    method: "DELETE",
-    url:"http://localhost:8080/customer/delete/"+empID,
-    async:true,
-
-    success:function(data){
-        alert("Deleted")
-       getAllCustomer();
-       window.location.href = "customerView.html";
-    },
-    error:function(xhr,exception){
-        alert("Error")
-    }
- })
+ 
 
 }
 
@@ -335,5 +361,21 @@ function getCustomerDetails(id) {
         }
     });
 }
+
+
+
+$(document).ready(function() {
+  // Fetch pending booking count
+  $.ajax({
+      method: "GET",
+      url: "http://localhost:8080/customer/custotal",
+      success: function(data) {
+          $('#CustomerCount').text(data);
+      },
+      error: function(xhr, status, error) {
+          console.error("Failed to fetch customer count: " + error);
+      }
+  });
+});
 
   

@@ -1,4 +1,4 @@
-getAllDamage() 
+getAllVehicle()
 
 
 function saveVehicle() {
@@ -86,10 +86,16 @@ function updateDamage(){
     success:function(data){
 
      
-
+     
+        swal({
+          title: "Good job!",
+          text: "Vehicle updated successfully!",
+          icon: "success",
+          button: "ok!",
+        });
   
       
-        alert("Updated")
+        
         getAllDamage() 
 
         window.location.href = "DamageView.html";
@@ -101,19 +107,20 @@ function updateDamage(){
 
 }
 
-function deleteEmployee(empID){
+function deleteVehicle(empID){
     
 
  //let empID=$('#exampleFormControlInput1').val();
 
  $.ajax({
     method: "DELETE",
-    url:"http://localhost:8080/damage/delete/"+empID,
+    url:"http://localhost:8080/vehicle/delete/"+empID,
     async:true,
 
     success:function(data){
         alert("Deleted")
-        getAllStudents()
+       getAllVehicle()
+       window.href.url="VehicleView.html"
     },
     error:function(xhr,exception){
         alert("Error")
@@ -170,45 +177,46 @@ function getDamageDetails(id) {
 
 
 
-
-
-  function getAllDamage() {
-    $.ajax({
+function getAllVehicle() {
+  $.ajax({
       method: "GET",
-      url: "http://localhost:8080/damage/view",
+      url: "http://localhost:8080/vehicle/view",
       success: function(data) {
-        // Clear existing table rows
-        $('#RentTable tbody').empty();
-  
-        // Loop through the array and create table rows dynamically
-        for (let i = 0; i < data.length; i++) {
-          let damage = data[i];
-          let id = damage.id;
-          let vid = damage.vehicle_id;
-          let description = damage.description;
-          let date = damage.date;
-          let image = damage.imageName;
-          let amount = damage.amount;
+          // Clear existing table rows
+          $('#RentTable tbody').empty();
 
-        
-         
-          let newRow = '<tr>' +
-            '<td>' + id + '</td>' +
-            '<td>' + vid + '</td>' +
-            '<td>' + description + '</td>' +
-            '<td>' + date + '</td>' +
-            '<td><img src="../../system/JwtApplication/images/'+id+'/'+image+'" width="70px"></td>' +
-            '<td>' + amount + '</td>' +
-            '<td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
-            // Add other table cells as needed
-            '</tr>';
-          $('#RentTable tbody').append(newRow);
-        }
+          // Loop through the array and create table rows dynamically
+          for (let i = 0; i < data.length; i++) {
+              let vehicle = data[i];
+              let id = vehicle.id;
+              let regNumber = vehicle.reg_number;
+              let fuelType = vehicle.fuel_type;
+              let seat = vehicle.seat;
+              let ac = vehicle.ac;
+              let image = vehicle.image;
+              let dPrice = vehicle.dprice;
+              let akmPrice = vehicle.akmprice;
+              let addHourPrice = vehicle.add_hour_price;
+
+              let newRow = '<tr>' +
+                  '<td>' + id + '</td>' +
+                  '<td>' + regNumber + '</td>' +
+                  '<td>' + fuelType + '</td>' +
+                  '<td>' + seat + '</td>' +
+                  '<td>' + ac + '</td>' +
+                  '<td><img src="../../system/JwtApplication/images/' + image + '" width="70px"></td>' +
+                  '<td>' + dPrice + '</td>' +
+                  '<td>' + akmPrice + '</td>' +
+                  '<td>' + addHourPrice + '</td>' +
+                  '<td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button><br><br> <button type="button" onclick="deleteVehicle(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
+                  // Add other table cells as needed
+                  '</tr>';
+              $('#RentTable tbody').append(newRow);
+          }
       },
       error: function(xhr, status, error) {
-        // Handle the error response
-        console.log("Error:", error);
+          // Handle the error response
+          console.log("Error:", error);
       }
-    });
-  }                                                                       
-
+  });
+}

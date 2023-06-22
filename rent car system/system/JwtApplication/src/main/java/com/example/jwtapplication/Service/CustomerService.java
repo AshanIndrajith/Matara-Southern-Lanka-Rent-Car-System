@@ -55,7 +55,10 @@ public class CustomerService implements CustomerServiceImpl{
 
     }
 
-
+    @Override
+    public int getTotalCustomer() {
+        return customerRepo.getTotalCustomer();
+    }
 
 
 

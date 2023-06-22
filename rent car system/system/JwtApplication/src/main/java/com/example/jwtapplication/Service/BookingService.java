@@ -65,4 +65,16 @@ public class BookingService implements BookingServiceImpl {
         return bookingRepo.findAllByStatus();
     }
 
+
+    @Override
+    public int getTotalBookings() {
+        return bookingRepo.getTotalBookings();
+    }
+
+
+    @Override
+    public int getAllBookings() {
+        return bookingRepo.getAllBookings();
+    }
+
 }

@@ -158,23 +158,40 @@ function saveBooking() {
 
 
 function deleteBooking(empID){
+
+
+
+  swal({
+    title: "Are you sure?",
+    text: "Permanently delete selected data?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
   
-
- //let empID=$('#exampleFormControlInput1').val();
-
- $.ajax({
-    method: "DELETE",
-    url:"http://localhost:8080/booking/delete/"+empID,
-    async:true,
-
-    success:function(data){
-        alert("deleted");
-        getAllBooking() 
-    },
-    error:function(xhr,exception){
-        alert("Error")
+    if (willDelete) {
+      $.ajax({
+        method: "DELETE",
+        url:"http://localhost:8080/booking/delete/"+empID,
+        async:true,
+    
+        success:function(data){
+            alert("deleted");
+            getAllBooking() 
+        },
+        error:function(xhr,exception){
+            alert("Error")
+        }
+     })
+      swal(" Booking detailes  is deleted!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your detailes  is safe!");
     }
- })
+  });
+  
 
 }
 
@@ -192,10 +209,16 @@ function updateStatusBooking(id) {
       // Handle the successful response
       //console.log("Booking status updated:", response);
 
-      alert("suceesfully accepted");
-      // You can perform additional actions or update the UI as needed
-      window.location.href="BookingView.html"
+      swal({
+        title: "Good job!",
+        text: "suceesfully accepted!",
+        icon: "success",
+        button: "ok!",
+      });
+     
       getAllBooking();
+      window.location.href="BookingView.html"
+     
     },
     error: function(xhr, status, error) {
       // Handle the error response
@@ -220,7 +243,14 @@ function rejectedStatusBooking(id) {
       // Handle the successful response
       //console.log("Booking status updated:", response);
 
-      alert("Booking is rejected");
+      swal({
+        title: "Good job!",
+        text: "Booking is rejected!",
+        icon: "success",
+        button: "ok!",
+      });
+
+     
       // You can perform additional actions or update the UI as needed
       getAllBooking();
     },
@@ -409,40 +439,100 @@ function getAllBooking() {
 
 
 
+
+
   function updateBooking() {
-    let empID = $('#id').val();
-    let cusName = $('#cname').val();
-    let cusNIC = $('#cnic').val();
-    let cusEmail = $('#email').val();
-    let cusPhone = $('#phone').val();
-    let vehicleID = $('#vid').val();
+    let id = $('#empID').val();
+    let name = $('#cname').val();
+    let nic = $('#nic').val();
+    let email = $('#email').val();
+    let phone = $('#phone').val();
+    let vid = $('#vid').val();
+
   
-    alert(vehicleID);
+    // Validation checks
+    if (name.trim() === "") {
+      alert("Invalid name. Please enter a valid name.");
+      return;
+    }
+    // if (!/^[0-9]+[a-zA-Z]$/.test(nic)) {
+    //   alert("Invalid NIC. Must be numeric followed by a single character.");
+    //   return;
+   // }
+    if (email.trim() === "") {
+      alert("Email address is required.");
+      return;
+    }
+    if (!/^\d{10}$/.test(phone)) {
+      alert("Invalid phone number. Must be 10 digits.");
+      return;
+    }
+    if (vid.trim() === "") {
+      alert("Address is required.");
+      return;
+    }
   
-    let bookingData = {
-      cus_name: cusName,
-      cus_nic: cusNIC,
-      cus_email: cusEmail,
-      cus_phone: cusPhone,
-      vehicle_id: vehicleID
-    };
-  
+    // AJAX request
     $.ajax({
       method: "PUT",
       contentType: "application/json",
-      url: "http://localhost:8080/booking/updateBooking/" + empID,
+      url: "http://localhost:8080/booking/updateBooking/" + id,
       async: true,
-      data: JSON.stringify(bookingData),
+      data: JSON.stringify({
+        cus_name: name,
+        cus_nic: nic,
+        cus_email: email,
+        cus_phone: phone,
+        vehicle_id: vid
+      }),
       success: function(data) {
-        alert("Updated");
-        getAllBooking();
+        swal({
+          title: "Good job!",
+          text: "Booking updated successfully!",
+          icon: "success",
+          button: "ok!",
+        });
+        
+        getAllCustomer();
         window.location.href = "BookingView.html";
       },
-      error: function(xhr, exception) {
-        alert("Error");
+      error: function(xhr, status, error) {
+        alert("Failed to update booking. Error: " + error);
       }
     });
   }
   
+  
+
+
+  $(document).ready(function() {
+    // Fetch pending booking count
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:8080/booking/ptotal",
+        success: function(data) {
+            $('#pendingBookingCount').text(data);
+        },
+        error: function(xhr, status, error) {
+            console.error("Failed to fetch pending booking count: " + error);
+        }
+    });
+});
+
+
+
+$(document).ready(function() {
+  // Fetch pending booking count
+  $.ajax({
+      method: "GET",
+      url: "http://localhost:8080/booking/total",
+      success: function(data) {
+          $('#BookingCount').text(data);
+      },
+      error: function(xhr, status, error) {
+          console.error("Failed to fetch pending booking count: " + error);
+      }
+  });
+});
   
   

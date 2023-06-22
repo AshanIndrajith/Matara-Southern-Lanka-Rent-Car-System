@@ -31,6 +31,8 @@ public interface BookingServiceImpl {
 
     public List<Booking> findAllByStatus() ;
 
+    public int getTotalBookings();
 
+    public int getAllBookings();
 
 }

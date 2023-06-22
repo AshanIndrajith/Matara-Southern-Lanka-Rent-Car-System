@@ -21,6 +21,25 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        .custom-button-class {
+            background-color: #FF0000; /* Set your desired button color */
+           color:black; /* Set your desired text color */
+           
+             }
+
+             .swal-button:focus,
+             .swal-button:hover {
+              box-shadow: none !important;
+             outline: none !important;
+}
+         
+     </style>
+
+
     
     <script src="js/jquery-3.6.1.min.js"></script>
     <script src="js/Authentication.js"></script>
@@ -33,7 +52,7 @@
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
-
+            <h1 class="font-weight-bold"><br>Sourthen Lanka Car Rental</h1>
             <div class="col-xl-10 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
@@ -67,7 +86,7 @@
                                         </div>
                     
 
-                                        <button type="button" class="Login btn btn-primary btn-user btn-block" onclick="LogEmployee()">Login</button>
+                                        <button type="button" class="Login btn btn-warning btn-user btn-block text-dark" onclick="LogEmployee()">Login</button>
                                       
                                       
                                     </form>

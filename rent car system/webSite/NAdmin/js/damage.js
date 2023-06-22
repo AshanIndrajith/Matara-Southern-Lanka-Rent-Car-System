@@ -162,7 +162,12 @@ function updateDamage(){
 
   
       
-        alert("Updated")
+      swal({
+        title: "Good job!",
+        text: "Damage is Updated Successfully!",
+        icon: "success",
+        button: "ok!",
+      });
         getAllDamage() 
 
         window.location.href = "DamageView.html";
@@ -175,26 +180,41 @@ function updateDamage(){
 }
 
 function deleteEmployee(empID){
+
     
 
  //let empID=$('#exampleFormControlInput1').val();
 
- $.ajax({
-    method: "DELETE",
-    url:"http://localhost:8080/damage/delete/"+empID,
-    async:true,
+ swal({
+  title: "Are you sure?",
+  text: "Permanently delete selected data?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
 
-    success:function(data){
+  if (willDelete) {
+    $.ajax({
+      method: "DELETE",
+      url:"http://localhost:8080/damage/delete/"+empID,
+      async:true,
+  
+      success:function(data){
+          getAllDamage() 
+      },
+      error:function(xhr,exception){
+          alert("Error")
+      }
+   })
+    swal(" Damage detailes  is deleted!", {
+      icon: "success",
+    });
+  } else {
+    swal("Your detailes  is safe!");
+  }
+});
 
-
-
-        alert("Deleted")
-        getAllDamage() 
-    },
-    error:function(xhr,exception){
-        alert("Error")
-    }
- })
 
 }
 
@@ -240,10 +260,6 @@ function getDamageDetails(id) {
     }
   });
 }
-
-
-
-
 
 
 
