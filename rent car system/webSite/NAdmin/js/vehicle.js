@@ -2,7 +2,7 @@ getAllVehicle()
 
 
 function saveVehicle() {
-  alert("hello")
+  
     let req = $('#reqnum').val();
     let fueltype = $('#fueltype').val();
     let seat = $('#seat').val();
@@ -42,7 +42,7 @@ function saveVehicle() {
           button: "Aww yiss!",
         }).then(() => {
           // Redirect to DamageView.html
-          window.location.href = "DamageView.html";
+          window.location.href = ".html";
         });
         
 
@@ -54,7 +54,7 @@ function saveVehicle() {
        
       },
       error: function (xhr, exception) {
-        alert("Error occurred while saving damage");
+        alert("Error occurred while saving vehicle");
       }
     });
   }
@@ -108,24 +108,48 @@ function updateDamage(){
 }
 
 function deleteVehicle(empID){
+
+
+
+
+  
+ swal({
+  title: "Are you sure?",
+  text: "Permanently delete selected data ?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+
+  if (willDelete) {
+    $.ajax({
+      method: "DELETE",
+      url:"http://localhost:8080/vehicle/delete/"+empID,
+      async:true,
+  
+      success:function(data){
+        
+         getAllVehicle()
+         window.href.url="VehicleView.html"
+      },
+      error:function(xhr,exception){
+          alert("Error")
+      }
+   })
+    swal(" Vehicle detailes  is deleted!", {
+      icon: "success",
+    });
+  } else {
+    swal("Your detailes  is safe!");
+  }
+});
+
     
 
  //let empID=$('#exampleFormControlInput1').val();
 
- $.ajax({
-    method: "DELETE",
-    url:"http://localhost:8080/vehicle/delete/"+empID,
-    async:true,
 
-    success:function(data){
-        alert("Deleted")
-       getAllVehicle()
-       window.href.url="VehicleView.html"
-    },
-    error:function(xhr,exception){
-        alert("Error")
-    }
- })
 
 }
 
@@ -205,9 +229,10 @@ function getAllVehicle() {
                   '<td>' + seat + '</td>' +
                   '<td>' + ac + '</td>' +
                   '<td><img src="../../system/JwtApplication/images/' + image + '" width="70px"></td>' +
-                  '<td>' + dPrice + '</td>' +
-                  '<td>' + akmPrice + '</td>' +
-                  '<td>' + addHourPrice + '</td>' +
+                  '<td>  <label> Rs :</label>'+ dPrice + '<label> .00</label></td>'+
+                  '<td>  <label> Rs :</label>'+ akmPrice + '<label> .00</label></td>'+
+                  '<td>  <label> Rs :</label>'+ addHourPrice + '<label> .00</label></td>'+
+                  
                   '<td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button><br><br> <button type="button" onclick="deleteVehicle(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
                   // Add other table cells as needed
                   '</tr>';

@@ -232,34 +232,44 @@ function updateStatusBooking(id) {
 
 
 function rejectedStatusBooking(id) {
-  $.ajax({
-    method: "PUT",
-    url: "http://localhost:8080/booking/rejected/" + id,
-    contentType: "application/json",
-    data: JSON.stringify({
-      // Update any relevant properties here
-    }),
-    success: function(response) {
-      // Handle the successful response
-      //console.log("Booking status updated:", response);
 
-      swal({
-        title: "Good job!",
-        text: "Booking is rejected!",
-        icon: "success",
-        button: "ok!",
+
+  
+  swal({
+    title: "Are you sure?",
+    text: " Rejected selected data?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+  
+    if (willDelete) {
+      $.ajax({
+        method: "PUT",
+        url: "http://localhost:8080/booking/rejected/" + id,
+        contentType: "application/json",
+        data: JSON.stringify({
+          // Update any relevant properties here
+        }),
+        success: function(response) {
+          
+          getAllBooking();
+        },
+        error: function(xhr, status, error) {
+          // Handle the error response
+          console.log("Error updating booking status:", error);
+          // You can display an error message or perform alternative actions
+        }
       });
-
-     
-      // You can perform additional actions or update the UI as needed
-      getAllBooking();
-    },
-    error: function(xhr, status, error) {
-      // Handle the error response
-      console.log("Error updating booking status:", error);
-      // You can display an error message or perform alternative actions
+      swal(" Booking   is rejected!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your detailes  is safe!");
     }
   });
+ 
 }
 
  
@@ -451,20 +461,33 @@ function getAllBooking() {
 
   
     // Validation checks
-    if (name.trim() === "") {
-      alert("Invalid name. Please enter a valid name.");
+    if (name.trim() === "") 
+
+      {
+        swal({
+          title: "Invalid name. Please enter a valid name",
+          button: {
+            className: "custom-button-class",
+          },
+        });
+       
+    
       return;
     }
-    // if (!/^[0-9]+[a-zA-Z]$/.test(nic)) {
-    //   alert("Invalid NIC. Must be numeric followed by a single character.");
-    //   return;
-   // }
+    
     if (email.trim() === "") {
       alert("Email address is required.");
       return;
     }
     if (!/^\d{10}$/.test(phone)) {
-      alert("Invalid phone number. Must be 10 digits.");
+
+      swal({
+        title: "Invalid phone number. Must be 10 digits.",
+        button: {
+          className: "custom-button-class",
+        },
+      });
+    
       return;
     }
     if (vid.trim() === "") {

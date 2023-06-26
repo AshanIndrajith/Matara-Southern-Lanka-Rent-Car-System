@@ -105,7 +105,7 @@ function saveEmployee() {
 
             swal({
                 title: "Good job!",
-                text: "Saved!",
+                text: "Registed!",
                 icon: "success",
                 button: "OK!",
               })

@@ -68,23 +68,28 @@ function saveCustomer() {
   formData.append("phone", phone);
   formData.append("address", address);
 
+
   $.ajax({
     method: "POST",
     url: "http://localhost:8080/customer/save",
     processData: false,
-    contentType: false,
+    contentType: JSON,
     data: formData,
     success: function (data) {
-      alert("Saved");
-      getAllCustomer();
+
+      swal({
+        title: "Good job!",
+        text: "Successfully Added!",
+        icon: "success",
+        button: "OK!",
+      }).then(() => {
+        // Redirect to DamageView.html
+        window.location.href = "DamageView.html";
+      });      
+     
     },
-    error: function (xhr, status, error) {
-      if (xhr.responseJSON && xhr.responseJSON.message) {
-        alert("Error occurred while saving customer: " + xhr.responseJSON.message);
-      } else {
-        alert("Error occurred while saving customer. Check the console for more details." + error.message);
-      }
-      console.log(xhr.responseText);
+    error: function (xhr, exception) {
+      alert("Error occurred while saving damage");
     }
   });
 }
@@ -141,23 +146,54 @@ function updateCustomer() {
 
   // Validation checks
   if (name.trim() === "") {
-      alert("Invalid name. Please enter a valid name.");
+
+    swal({
+      title: "Invalid name. Please enter a valid name",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+     
       return;
   }
   if (!/^[0-9]+[a-zA-Z]$/.test(nic)) {
-      alert("Invalid NIC. Must be numeric followed by a single character.");
+    swal({
+      title: "Invalid NIC. Must be numeric followed by a single character",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+     
       return;
   }
   if (email.trim() === "") {
-      alert("Email address is required.");
+    swal({
+      title: "Email address is required",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+   
       return;
   }
   if (!/^\d{10}$/.test(phone)) {
-      alert("Invalid phone number. Must be 10 digits.");
+    swal({
+      title: "Invalid phone number. Must be 10 digits",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+   
       return;
   }
   if (address.trim() === "") {
-      alert("Address is required.");
+    swal({
+      title: "Address is required",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+     
       return;
   }
 
@@ -212,7 +248,7 @@ function deleteCustomer(empID){
       async:true,
   
       success:function(data){
-          alert("Deleted")
+         
          getAllCustomer();
          window.location.href = "customerView.html";
       },

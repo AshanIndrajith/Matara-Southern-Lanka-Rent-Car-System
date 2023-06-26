@@ -27,9 +27,9 @@ function saveEmployee() {
   }
   
   // Check for special characters in Vehicle Id field
-  if (/[^a-zA-Z0-9]/.test(vid)) {
+  if (!/^[a-zA-Z0-9\s\-]+$/.test(vid)) {
     swal({
-      title: "Vehicle Id should not contain special characters",
+      title: "Enter Valid Register number :",
       button: {
         className: "custom-button-class",
       },

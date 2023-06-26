@@ -30,6 +30,7 @@ public class SecurityConfig  {
                 .requestMatchers("/customer/**").permitAll()
                 .requestMatchers("/booking/**").permitAll()
                 .requestMatchers("/vehicle/**").permitAll()
+                .requestMatchers("/api/reports/**").permitAll()
 
                 .anyRequest().authenticated()
                 .and()
