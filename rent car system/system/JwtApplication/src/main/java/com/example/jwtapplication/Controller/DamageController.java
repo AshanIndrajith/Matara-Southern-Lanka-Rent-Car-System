@@ -5,6 +5,7 @@ import com.example.jwtapplication.Entity.Damage;
 import com.example.jwtapplication.Service.DamageService;
 import com.example.jwtapplication.Service.DamageServiceImpl;
 import com.example.jwtapplication.Util.FileUploadUtil;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -183,6 +185,16 @@ public class DamageController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+
+    @GetMapping("/report/{format}")
+    public String generateReport(@PathVariable String format) throws IOException, JRException {
+        return damageService.exportReport(format);
+    }
+
+
+
 
 
 }

@@ -2,6 +2,10 @@ package com.example.jwtapplication.Service;
 
 import com.example.jwtapplication.Entity.Damage;
 import com.example.jwtapplication.Repository.DamageRepository;
+import net.sf.jasperreports.engine.JRException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public interface DamageServiceImpl {
 
@@ -17,7 +21,5 @@ public interface DamageServiceImpl {
    void deleteStudentById(Long id);
 
 
-
-
-
+    String exportReport(String format) throws IOException, JRException;
 }

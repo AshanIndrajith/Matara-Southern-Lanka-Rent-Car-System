@@ -73,7 +73,7 @@ function saveCustomer() {
     method: "POST",
     url: "http://localhost:8080/customer/save",
     processData: false,
-    contentType: JSON,
+    contentType: false,
     data: formData,
     success: function (data) {
 
@@ -85,7 +85,7 @@ function saveCustomer() {
       }).then(() => {
         // Redirect to DamageView.html
         window.location.href = "DamageView.html";
-      });      
+      });     
      
     },
     error: function (xhr, exception) {

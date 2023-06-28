@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Controller
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("/customer")
 public class CustomerController {
 
