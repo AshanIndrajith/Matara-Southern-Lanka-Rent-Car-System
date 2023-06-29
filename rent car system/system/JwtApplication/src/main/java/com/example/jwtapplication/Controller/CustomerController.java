@@ -31,6 +31,7 @@ public class CustomerController {
         try {
             // Save customer to the database
             customerService.saveCustomer(customer);
+
             return ResponseEntity.ok("Customer saved successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -35,20 +35,13 @@ function saveVehicle() {
       data: formData,
       success: function (data) {
 
-        swal({
-          title: "Good job!",
-          text: "You clicked the button!",
-          icon: "success",
-          button: "Aww yiss!",
-        }).then(() => {
-          // Redirect to DamageView.html
-          window.location.href = ".html";
-        });
+       
         
-
+       alert("save");
 
         
         getAllDamage() 
+        window.location.href = "view_vehicle_table.html";
 
         
        
@@ -217,7 +210,7 @@ function getAllVehicle() {
               let fuelType = vehicle.fuel_type;
               let seat = vehicle.seat;
               let ac = vehicle.ac;
-              let image = vehicle.image;
+              let image = vehicle.imageName;
               let dPrice = vehicle.dprice;
               let akmPrice = vehicle.akmprice;
               let addHourPrice = vehicle.add_hour_price;
@@ -228,7 +221,7 @@ function getAllVehicle() {
                   '<td>' + fuelType + '</td>' +
                   '<td>' + seat + '</td>' +
                   '<td>' + ac + '</td>' +
-                  '<td><img src="../../system/JwtApplication/images/' + image + '" width="70px"></td>' +
+                  '<td><img src="../../system/JwtApplication/vehicle/'+ id +'/'+ image +'" width="100px"></td>' +
                   '<td>  <label> Rs :</label>'+ dPrice + '<label> .00</label></td>'+
                   '<td>  <label> Rs :</label>'+ akmPrice + '<label> .00</label></td>'+
                   '<td>  <label> Rs :</label>'+ addHourPrice + '<label> .00</label></td>'+

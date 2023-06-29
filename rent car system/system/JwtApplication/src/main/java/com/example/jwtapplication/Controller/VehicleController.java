@@ -42,7 +42,7 @@ public class VehicleController {
         try {
             if (!multipartFile.isEmpty()) {
                 String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-                vehicle.setImage(filename);
+                vehicle.setImageName(filename);
                 Vehicle savedVehicle = vehicleService.saveVehicle(vehicle);
                 String uploadPath = "vehicle/" + savedVehicle.getId();
 
@@ -69,7 +69,7 @@ public class VehicleController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteVehicle(@PathVariable Long id) {
         try {
-            vehicleService.deleteVehicleById(id);
+                  vehicleService.deleteVehicleById(id);
             return ResponseEntity.ok("vehicle deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

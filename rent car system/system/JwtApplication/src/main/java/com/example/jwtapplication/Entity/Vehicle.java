@@ -28,8 +28,8 @@ public class Vehicle {
     private String ac;
 
 
-    @Column(name = "Image")
-    private String image;
+    @Column(name = "image_name")
+    private String imageName;
 
     @Column(name = "dprice")
     private Double dprice;
@@ -49,19 +49,18 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(Long id, String reg_number, String fuel_type, String seat, String ac, String image, Double dprice, Double akmprice, Double add_hour_price, MultipartFile imageFile) {
+    public Vehicle(Long id, String reg_number, String fuel_type, String seat, String ac, String imageName, Double dprice, Double akmprice, Double add_hour_price, MultipartFile imageFile) {
         this.id = id;
         this.reg_number = reg_number;
         this.fuel_type = fuel_type;
         this.seat = seat;
         this.ac = ac;
-        this.image = image;
+        this.imageName = imageName;
         this.dprice = dprice;
         this.akmprice = akmprice;
         this.add_hour_price = add_hour_price;
         this.imageFile = imageFile;
     }
-
 
     public Long getId() {
         return id;
@@ -103,12 +102,12 @@ public class Vehicle {
         this.ac = ac;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public Double getDprice() {
