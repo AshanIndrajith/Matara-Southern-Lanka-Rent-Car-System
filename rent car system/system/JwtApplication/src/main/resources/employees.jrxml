@@ -10,8 +10,6 @@
     </field>
     <field name="date" class="java.lang.String">
     </field>
-    <field name="amount" class="java.lang.Double">
-    </field>
 
     <background>
         <band/>
@@ -81,15 +79,6 @@
                 </textElement>
                 <text><![CDATA[date]]></text>
             </staticText>
-            <staticText>
-                <reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6d3e02fc-d8db-485a-96c9-54fa46d8a0ef">
-                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95c0a1aa-91d9-473d-a271-b59d6dea0342"/>
-                </reportElement>
-                <textElement textAlignment="Center">
-                    <font size="14" isBold="true"/>
-                </textElement>
-                <text><![CDATA[amount]]></text>
-            </staticText>
 
         </band>
     </columnHeader>
@@ -133,15 +122,6 @@
                     <font size="14"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
-            </textField>
-            <textField isStretchWithOverflow="true">
-                <reportElement x="444" y="0" width="111" height="20" uuid="f6b932f3-4a67-4720-9e27-53a9da43dedc">
-                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95c0a1aa-91d9-473d-a271-b59d6dea0342"/>
-                </reportElement>
-                <textElement textAlignment="Center">
-                    <font size="14"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
             </textField>
 
         </band>

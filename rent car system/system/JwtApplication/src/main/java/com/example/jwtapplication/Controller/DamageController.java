@@ -189,9 +189,18 @@ public class DamageController {
 
 
     @GetMapping("/report/{format}")
-    public String generateReport(@PathVariable String format) throws IOException, JRException {
-        return damageService.exportReport(format);
+    public ResponseEntity<String> generateReport(@PathVariable String format) throws IOException, JRException {
+        String reportPath = damageService.exportReport(format);
+
+        if (reportPath != null) {
+            // Report generation successful
+            return ResponseEntity.ok("Report generated successfully. Path: " + reportPath);
+        } else {
+            // Report generation failed
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to generate report.");
+        }
     }
+
 
 
 

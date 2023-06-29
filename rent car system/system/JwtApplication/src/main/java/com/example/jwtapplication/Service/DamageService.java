@@ -11,6 +11,7 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.springframework.core.io.ClassPathResource;
@@ -60,25 +61,38 @@ public class DamageService  implements  DamageServiceImpl {
 
     @Override
     public String exportReport(String reportFormat) throws FileNotFoundException, JRException {
-        String path = "C:\\Users\\INSIGHT\\Desktop\\New folder";
-        Iterable<Damage> damages = damageRepository.findAll();
-        //load file and compile it
+        String folderPath = "C:\\Users\\INSIGHT\\Desktop\\New folder";
+        List<Damage> damages = (List<Damage>) damageRepository.findAll();
+
+// Load the JRXML file and compile it
         File file = ResourceUtils.getFile("classpath:Damage.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource((Collection<?>) damages);
+
+// Create a data source from the list of damages
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(damages);
+
+// Set report parameters
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Java Techie");
+
+// Fill the report with data
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-        if (reportFormat.equalsIgnoreCase("html")) {
-            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\damage.html");
-        }
+
+// Generate a unique file name using timestamp
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String fileName = "damage_" + timestamp + ".pdf";
+        String outputPath = folderPath + "\\" + fileName;
+
+// Export the report to the specified format
         if (reportFormat.equalsIgnoreCase("pdf")) {
-            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\damage.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, outputPath);
+            return "Report generated successfully. Path: " + outputPath;
+        } else {
+            return "Invalid report format. Please provide 'pdf' as the report format.";
         }
 
-        return "report generated in path : " + path;
-    }
 
+    }
 }
 
 
