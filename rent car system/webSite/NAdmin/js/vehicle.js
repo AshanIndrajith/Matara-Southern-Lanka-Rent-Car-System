@@ -149,31 +149,37 @@ function deleteVehicle(empID){
 
 
 
-function getDamageDetails(id) {
+function getVehicleDetails(id) {
   $.ajax({
     method: "GET",
-    url: "http://localhost:8080/damage/get/" + id,
+    url: "http://localhost:8080/vehicle/get/" + id,
     async: true,
     success: function(data) {
       if (data != null) {
         var id = data.id;
-        var vId = data.vehicle_id; // Adjust property name based on your Damage object
-        var description = data.description; // Adjust property name based on your Damage object
-        var date = data.date; // Adjust property name based on your Damage object
-        var image = data.imageName; // Adjust property name based on your Damage object
-        var amount = data.amount; // Adjust property name based on your Damage object
+        var rnum = data.reg_number;
+        var fuel_type = data.fuel_type;
+        var seat = data.seat; 
+        var ac = data.ac; 
+        var image = data.image; 
+        var dprice = data.dprice;
+        var akmPrice = data.akmPrice; 
+        var add_hour_price = data.add_hour_price; 
 
         
-      
 
         // Construct the URL for the new page with query parameters
-        var url = "damageUpdate.html" +
+        var url = "vehicleUpdate.html" +
           "?id=" + encodeURIComponent(id) +
-          "&vehicle_id=" + encodeURIComponent(vId) +
-          "&description=" + encodeURIComponent(description) +
-          "&date=" + encodeURIComponent(date) +
-          "&imageName=" + encodeURIComponent(image) +
-          "&amount=" + encodeURIComponent(amount);
+          "&reg_number=" + encodeURIComponent(rnum) +
+          "&fuel_type=" + encodeURIComponent(fuel_type) +
+          "&seat=" + encodeURIComponent(seat) +
+          "&ac=" + encodeURIComponent(ac) +
+          "&image=" + encodeURIComponent(image);
+          "&dprice=" + encodeURIComponent(dprice) +
+          "&akmPrice=" + encodeURIComponent(akmPrice)+
+          "&add_hour_price=" + encodeURIComponent(add_hour_price);
+          
 
        
 
@@ -226,7 +232,7 @@ function getAllVehicle() {
                   '<td>  <label> Rs :</label>'+ akmPrice + '<label> .00</label></td>'+
                   '<td>  <label> Rs :</label>'+ addHourPrice + '<label> .00</label></td>'+
                   
-                  '<td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button><br><br> <button type="button" onclick="deleteVehicle(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
+                  '<td><button type="button" class="update btn btn-success" onclick="getVehicleDetails(' + id + ')" >Update</button><br><br> <button type="button" onclick="deleteVehicle(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
                   // Add other table cells as needed
                   '</tr>';
               $('#RentTable tbody').append(newRow);

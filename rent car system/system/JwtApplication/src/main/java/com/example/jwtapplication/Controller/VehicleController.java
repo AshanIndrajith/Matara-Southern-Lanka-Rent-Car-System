@@ -77,5 +77,17 @@ public class VehicleController {
         }
     }
 
+    @GetMapping("/get/{id}")
+    @ResponseBody
+    public ResponseEntity<Vehicle> getDamageById(@PathVariable Long id) {
+        Vehicle vehicle = vehicleService.getVehicleById(id);
+        if (vehicle == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(vehicle);
+    }
+
+
+
 
 }
