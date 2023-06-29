@@ -302,5 +302,32 @@ function getDamageDetails(id) {
         console.log("Error:", error);
       }
     });
-  }                                                                       
+  }   
+  
+  
+
+  function generateReport() {
+    
+
+    let pdf="pdf";
+    $.ajax({
+      url: "http://localhost:8080/damage/report/" + pdf,
+      method: "GET",
+      success: function(response) {
+        // Report generation successful
+
+        swal(" Report generated successfully", {
+          icon: "success",
+        });
+        console.log("Report generated successfully. Path: " + response);
+        // Perform any further actions you want after successful report generation
+      },
+      error: function(xhr, status, error) {
+        // Report generation failed
+        console.error("Failed to generate report. Error: " + error);
+        // Perform any error handling or display error message to the user
+      }
+    });
+  }
+  
 

@@ -64,26 +64,25 @@ public class DamageService  implements  DamageServiceImpl {
         String folderPath = "C:\\Users\\INSIGHT\\Desktop\\New folder";
         List<Damage> damages = (List<Damage>) damageRepository.findAll();
 
-// Load the JRXML file and compile it
+        // Load the JRXML file and compile it
         File file = ResourceUtils.getFile("classpath:Damage.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
 
-// Create a data source from the list of damages
+        // Create a data source from the list of damages
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(damages);
 
-// Set report parameters
+        // Set report parameters
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Java Techie");
-
-// Fill the report with data
+        // Fill the report with data
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-// Generate a unique file name using timestamp
+        // Generate a unique file name using timestamp
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String fileName = "damage_" + timestamp + ".pdf";
         String outputPath = folderPath + "\\" + fileName;
 
-// Export the report to the specified format
+        // Export the report to the specified format
         if (reportFormat.equalsIgnoreCase("pdf")) {
             JasperExportManager.exportReportToPdfFile(jasperPrint, outputPath);
             return "Report generated successfully. Path: " + outputPath;
