@@ -251,8 +251,18 @@
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
                             <div class="row">
+
+                                
                                 <div class="col-lg-5 d-none d-lg-block" style="padding-top:50px;">
-                                    <img src="img/customer.jpg" width="80%">
+                                    <script>  
+                                        var params = new URLSearchParams(window.location.search);
+                                        var id = params.get("id");
+                                        var image = params.get("image");
+                                        var imageUrl = "../../system/JwtApplication/vehicle/" + id + "/" + image;
+                                        document.write('<img src="' + imageUrl + '" width="100%" style="padding-top:85px;padding-left:55px">');
+                                    </script>
+
+                                    <!-- <img src="../../system/JwtApplication/vehicle/1/rentcar.png"> -->
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="p-5">
@@ -261,10 +271,51 @@
                                         </div>
                                         <form class="user" enctype="multipart/form-data">
 
+                                           
+
+
+                                            <script>
+
+                                                $(document).ready(function() {
+
+
+                                                
+                                                // Read the query parameters from the URL
+                                                var params = new URLSearchParams(window.location.search);
+                                                var id = params.get("id");
+                                                var reg_number = params.get("reg_number");
+                                                var fuel_type = params.get("fuel_type");
+                                                var seat = params.get("seat");
+                                                var ac = params.get("ac");
+                                                var image = params.get("image");
+                                                var dprice = params.get("dprice");
+                                                var akmPrice = params.get("akmPrice");
+                                                var add_hour_price = params.get("add_hour_price");
+
+                                            
+                                                // Set the values of the elements on the page
+                                                $('#id').val(id);
+                                                $('#reqnum').val(reg_number);
+                                                $('#fueltype').val(fuel_type);
+                                                $('#seat').val(seat);
+                                                $('#ac').val(ac);
+                                                $('#image').val(image);
+                                              
+                                                $('#dayprice').val(dprice);
+                                                $('#additionalkm').val(akmPrice);
+                                                $('#additionalhour').val(add_hour_price);
+                            
+                            
+                                            });
+                            
+                                            </script>
+
+
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="reqnum"
-                                                    placeholder="Registration Number">
+                                                  <input type="text" class="form-control form-control-user" id="reqnum"
+                                                  placeholder="Registration Number">
                                             </div>
+
 
                                             <!-- <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -293,10 +344,10 @@
                                                     placeholder="AC">
                                             </div>
 
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <input type="file" class="form-control form-control-user" id="image"
                                                     placeholder="Image">
-                                            </div>
+                                            </div> -->
 
                                             <div class="form-group row">
                                                 <div class="col-sm-4">

@@ -161,10 +161,15 @@ function getVehicleDetails(id) {
         var fuel_type = data.fuel_type;
         var seat = data.seat; 
         var ac = data.ac; 
-        var image = data.image; 
-        var dprice = data.dprice;
-        var akmPrice = data.akmPrice; 
+        var image = data.imageName; 
+        var dprice = data.dprice
+        var akmPrice = data.akmprice; 
         var add_hour_price = data.add_hour_price; 
+
+
+       
+        
+
 
         
 
@@ -175,7 +180,7 @@ function getVehicleDetails(id) {
           "&fuel_type=" + encodeURIComponent(fuel_type) +
           "&seat=" + encodeURIComponent(seat) +
           "&ac=" + encodeURIComponent(ac) +
-          "&image=" + encodeURIComponent(image);
+          "&image=" + encodeURIComponent(image)+
           "&dprice=" + encodeURIComponent(dprice) +
           "&akmPrice=" + encodeURIComponent(akmPrice)+
           "&add_hour_price=" + encodeURIComponent(add_hour_price);
