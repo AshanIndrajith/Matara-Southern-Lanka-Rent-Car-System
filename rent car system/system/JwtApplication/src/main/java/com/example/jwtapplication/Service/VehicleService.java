@@ -1,12 +1,14 @@
 package com.example.jwtapplication.Service;
 
 
+import com.example.jwtapplication.Entity.Damage;
 import com.example.jwtapplication.Entity.Vehicle;
 import com.example.jwtapplication.Repository.VehicleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -33,12 +35,13 @@ public class VehicleService implements VehicleServiceImpl{
 
     @Override
     public Vehicle getVehicleById(Long id) {
-        return null;
+        Optional<Vehicle> vehicleOptional = vehicleRepo.findById(Math.toIntExact(id));
+        return vehicleOptional.orElse(null);
     }
 
     @Override
     public Vehicle updateVehicle(Vehicle vehicle) {
-        return null;
+        return vehicleRepo.save(vehicle);
     }
 
     @Override
