@@ -9,19 +9,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Vehicle</title> 
+    <title>Damage</title> 
 
    
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-     
+
     <script src="js/jquery-3.6.1.min.js"></script>
-	<script src="js/vehicle.js"></script>
+		<script src="js/damage.js"></script>
+
+      
 
 </head>
 
@@ -31,7 +33,8 @@
     <div id="wrapper">
 
 
-     
+
+        
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -245,141 +248,46 @@
                 <!-- End of Topbar -->
 
 
+                
+
+
                 <div class="container">
 
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-
-                                
-                                <div class="col-lg-5 d-none d-lg-block" style="padding-top:50px;">
-                                    <script>  
-                                        var params = new URLSearchParams(window.location.search);
-                                        var id = params.get("id");
-                                        var image = params.get("image");
-                                        var imageUrl = "../../system/JwtApplication/vehicle/" + id + "/" + image;
-                                        document.write('<img src="' + imageUrl + '" width="100%" style="padding-top:85px;padding-left:55px">');
-                                    </script>
-
-                                    <!-- <img src="../../system/JwtApplication/vehicle/1/rentcar.png"> -->
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="p-5">
-                                        <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Insert Vehicle Details!</h1>
-                                        </div>
-                                        <form class="user" enctype="multipart/form-data">
-
-                                           
 
 
-                                            <script>
 
-                                                $(document).ready(function() {
+                    
 
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h4 class="m-0 font-weight-bold text-dark" style="text-align: center; font-family: cursive;">Vehicle Damage Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="RentTable" width="100%" cellspacing="0">
+                                    <thead class="bg-gradient-dark text-white">
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Register number</th>
+                                            <th>Description</th>
+                                            <th>Damage Date</th>
+                                            <th>Image</th>
+                                            <th>Amount</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    
 
-                                                
-                                                // Read the query parameters from the URL
-                                                var params = new URLSearchParams(window.location.search);
-                                                var id = params.get("id");
-                                                var reg_number = params.get("reg_number");
-                                                var fuel_type = params.get("fuel_type");
-                                                var seat = params.get("seat");
-                                                var ac = params.get("ac");
-                                                var image = params.get("image");
-                                                var dprice = params.get("dprice");
-                                                var akmPrice = params.get("akmPrice");
-                                                var add_hour_price = params.get("add_hour_price");
-
-                                            
-                                                // Set the values of the elements on the page
-                                                $('#id').val(id);
-                                                $('#reqnum').val(reg_number);
-                                                $('#fueltype').val(fuel_type);
-                                                $('#seat').val(seat);
-                                                $('#ac').val(ac);
-                                                $('#image').val(image);
-                                              
-                                                $('#dayprice').val(dprice);
-                                                $('#additionalkm').val(akmPrice);
-                                                $('#additionalhour').val(add_hour_price);
-                            
-                            
-                                            });
-                            
-                                            </script>
-
-                                            
-                                                <div class="form-group">
-                                                      <input type="text" class="form-control form-control-user" id="id"
-                                                      placeholder="id">
-                                                </div>
-                                            <div class="form-group">
-                                                  <input type="text" class="form-control form-control-user" id="reqnum"
-                                                  placeholder="Registration Number">
-                                            </div>
-
-
-                                            <!-- <div class="form-group row">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="InsuranceDate" class="input-label" style="padding-left:50px;">Insurance Date</label>
-                                                    <input type="date" class="form-control form-control-user" id="InsuranceDate" placeholder="Insurance Date">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="licenceDate" class="input-label" style="padding-left:50px;">License Date</label>
-                                                    <input type="date" class="form-control form-control-user" id="licenceDate" placeholder="License Date">
-                                                </div>
-                                            </div> -->
-                                        
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="fueltype"
-                                                    placeholder="Fuel Type">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="seat"
-                                                    placeholder="Seat">
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="ac"
-                                                    placeholder="AC">
-                                            </div>
-
-                                            <!-- <div class="form-group">
-                                                <input type="file" class="form-control form-control-user" id="image"
-                                                    placeholder="Image">
-                                            </div> -->
-
-                                            <div class="form-group row">
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-user" id="dayprice"
-                                                        placeholder="Day Price">
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-user" id="additionalkm"
-                                                        placeholder="Additional Km Price">
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-user" id="additionalhour"
-                                                        placeholder="Additional Hour Price">
-                                                </div>
-                                            </div>
-
-                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="updateVehicle()">Submit</button> 
-                                            <button type="reset" class="reset btn btn-danger btn-user btn-block">Reset</button>
-                                          
-                                        </form>
-                                     
                                       
-                                    </div>
-                                </div>
+
+                                    
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-            
                 </div>
             
             
@@ -448,7 +356,6 @@
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
 
-   
 
 </body>
 

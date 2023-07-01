@@ -48,4 +48,9 @@ public class VehicleService implements VehicleServiceImpl{
     public void deleteVehicleById(Long id) {
         vehicleRepo.deleteById(Math.toIntExact(id));
     }
+
+    @Override
+    public int getTotalVehicle() {
+        return vehicleRepo.getTotalVehicle();
+    }
 }

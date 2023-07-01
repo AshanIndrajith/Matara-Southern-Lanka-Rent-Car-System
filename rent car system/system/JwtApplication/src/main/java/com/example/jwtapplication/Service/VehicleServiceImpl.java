@@ -16,5 +16,7 @@ public interface VehicleServiceImpl {
 
     void deleteVehicleById(Long id);
 
+    public int getTotalVehicle();
+
 
 }

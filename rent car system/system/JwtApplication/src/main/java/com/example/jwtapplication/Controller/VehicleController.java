@@ -113,4 +113,12 @@ public class VehicleController {
 
 
 
+    @GetMapping("/vehTotal")
+    public ResponseEntity<Integer> getTotalVehicle() {
+        int All = vehicleService.getTotalVehicle();
+        return ResponseEntity.ok(All);
+    }
+
+
+
 }

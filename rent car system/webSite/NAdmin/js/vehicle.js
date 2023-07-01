@@ -51,54 +51,63 @@ function saveVehicle() {
       }
     });
   }
-
-function updateDamage(){
-
-
- let id=$('#id').val();
- let vID=$('#vid').val();
- let description=$('#description').val();
- let date=$('#date').val();
- let amount=$('#amount').val();
-
-
-
-
-
- $.ajax({
-    method: "PUT",
-    contentType: "application/json",
-    url:"http://localhost:8080/damage/update/"+id,
-    async:true,
-    data:JSON.stringify({
-        "vehicle_id":vID,
-        "description":description,
-        "date":date,
-        "amount":amount,
-    }),
-    success:function(data){
-
-     
-     
-        swal({
-          title: "Good job!",
-          text: "Vehicle updated successfully!",
-          icon: "success",
-          button: "ok!",
-        });
+  function updateVehicle() {
+    var id = $('#id').val();
+    var regNumber = $('#reqnum').val();
+    var fuelType = $('#fueltype').val();
+    var seat = $('#seat').val();
+    var ac = $('#ac').val();
+    var dprice = $('#dayprice').val();
+    var akmPrice = $('#additionalkm').val();
+    var addHourPrice = $('#additionalhour').val();
   
-      
-        
-        getAllDamage() 
+    var updateData = {
+      reg_number: regNumber,
+      fuel_type: fuelType,
+      seat: seat,
+      ac: ac,
+      image: image,
+      dprice: dprice,
+      akmPrice: akmPrice,
+      add_hour_price: addHourPrice
+    };
+  
+    $.ajax({
+      method: "PUT",
+      contentType: "application/json",
+      url: "http://localhost:8080/vehicle/update/" + id,
+      async: true,
+      data: JSON.stringify(updateData),
+      success: function(data) {
+       
 
-        window.location.href = "DamageView.html";
-    },
-    error:function(xhr,exception){
-        alert("Error")
-    }
- })
+        alert("updated")
+  
+        // Redirect to the vehicle list page
+        window.location.href = "vehicleView.html";
+      },
+      error: function(xhr, status, error) {
+        swal({
+          title: "Error!",
+          text: "An error occurred while updating the vehicle.",
+          icon: "error",
+          button: "OK"
+        });
+      }
+    });
+  }
 
-}
+  
+
+
+
+
+
+
+
+
+
+
 
 function deleteVehicle(empID){
 
@@ -249,3 +258,18 @@ function getAllVehicle() {
       }
   });
 }
+
+
+$(document).ready(function() {
+  // Fetch pending booking count
+  $.ajax({
+      method: "GET",
+      url: "http://localhost:8080/vehicle/vehTotal",
+      success: function(data) {
+          $('#vehicleCount').text(data);
+      },
+      error: function(xhr, status, error) {
+          console.error("Failed to fetch customer count: " + error);
+      }
+  });
+});
