@@ -1,6 +1,8 @@
 getAllBooking() 
 getAllReqBooking()
 function saveBooking() {
+  
+ 
   let cname = $('#cname').val();
   let cnic = $('#cnic').val();
   let email = $('#email').val();
@@ -8,87 +10,16 @@ function saveBooking() {
   let vid = $('#vid').val();
   let fromDate = $('#fromDate').val();
   let toDate = $('#toDate').val();
-
-  // Validation checks
-  if (cname.trim() === "") {
-    swal({
-      title: "please enter the name",
-      button: {
-        className: "custom-button-class",
-      },
-      closeOnClickOutside: false,
-    });
-   
-    return;
-  }
-  if (!/^\d+[a-zA-Z]$/.test(cnic)) {
-
-    swal({
-      title: "Invalid NIC. Must be a number followed by a single character.",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-    
-    return;
-  }
-  if (email.trim() === "") {
-
-    swal({
-      title: "Email address is required.",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-   
-    return;
-  }
-  if (!/^\d{10}$/.test(phone)) {
-
-    swal({
-      title: "Invalid phone number. Must be 10 digits",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-
-    
-    return;
-  }
-  if (vid.trim() === "") {
-    swal({
-      title: "Vehicle ID is required.",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-    
-    return;
-  }
-  if (fromDate.trim() === "" || toDate.trim() === "") {
+  let postingDate=new Date();
 
 
-    swal({
-      title: "From date and To date are required.",
-      button: {
-        className: "custom-button-class",
-      },
-    });
+  alert(cname)
+ 
+
   
-    return;
-  }
-  if (new Date(toDate) < new Date(fromDate)) {
-     
-    swal({
-      title: "Days before the from date won't be selectable",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-   
-    //alert("Days before the from date won't be selectable.");
-    return;
-  }
+
+ 
+
 
   let formData = new FormData();
   formData.append("cusName", cname);
@@ -119,40 +50,6 @@ function saveBooking() {
   });
 }
 
-
-
-
-// function updateEmployee(){
-
-//  let empID=$('#exampleFormControlInput11').val();
-//  let name=$('#exampleFormControlInput12').val();
-//  let address=$('#exampleFormControlInput13').val();
-//  let number=$('#exampleFormControlInput14').val();
-
-
-
-//  $.ajax({
-//     method: "PUT",
-//     contentType: "application/json",
-//     url:"http://localhost:8080/api/v1/employee/updateEmployee",
-//     async:true,
-//     data:JSON.stringify({
-//         "empID":empID,
-//         "empName":name,
-//         "empAddress":address,
-//         "empMNumber":number,
-//     }),
-//     success:function(data){
-//         alert("Updated")
-//         getAllEmployees()
-//         window.location.href = "view_vehicle_table.html";
-//     },
-//     error:function(xhr,exception){
-//         alert("Error")
-//     }
-//  })
-
-// }
 
 
 
@@ -277,39 +174,6 @@ function rejectedStatusBooking(id) {
 
 
 
-function getEmployeeDetails(empID) {
-   
-
-
-    $.ajax({
-      method: "GET",
-      url: "http://localhost:8080/api/v1/employee/getEmployeeById/"+empID,
-      async: true,
-       
-      success: function (data) {
-
-        if (data.code === "00") {
-            var empID = data.content.empID;
-            var name = data.content.empName;
-            var address = data.content.empAddress;
-            var number = data.content.empMNumber;
-          
-            // Construct the URL for the new page with query parameters
-            var url = "update_vehicle_details.html" +
-                      "?empID=" + encodeURIComponent(empID) +
-                      "&name=" + encodeURIComponent(name) +
-                      "&address=" + encodeURIComponent(address) +
-                      "&number=" + encodeURIComponent(number);
-          
-            // Redirect the user to the new page
-            window.location.href = url;
-          }
-          
-    }
-
-    })
-    
-  }
 
 
 
@@ -557,5 +421,68 @@ $(document).ready(function() {
       }
   });
 });
+
+
+
+
+
   
-  
+function saveeBooking() {
+ 
+
+   var customerName =$("#cname").val();
+   var customerNIC= $("#cnic").val();
+   var email=$("#email").val();
+   var phone= $("#phone").val();
+   var vehicleID= $("#vid").val();
+   var fromDate= $("#fromDate").val();
+   var toDate= $("#toDate").val();
+
+
+
+
+   
+
+ 
+
+  // Send AJAX request
+  $.ajax({
+      method: "POST",
+      contentType: "application/json",
+      url: "http://localhost:8080/booking/save",
+      async: true,
+      data: JSON.stringify({
+        "cus_name": customerName,
+        "cus_nic": customerNIC,
+        "cus_email": email,
+        "cus_phone": phone,
+        "vehicle_id": vehicleID,
+        "from_date": fromDate,
+        "to_date": toDate
+      }),
+      success: function (data) {
+
+          swal({
+              title: "Good job!",
+              text: "saved!",
+              icon: "success",
+              button: "OK!",
+            })
+     
+          resetForm();
+      },
+      error: function (xhr, status, error) {
+          if (error.hasOwnProperty('message')) {
+              alert("Error Message: " + error.message);
+          } else {
+              alert("Unknown Error Occurred");
+          }
+      }
+  });
+}
+
+
+
+
+
+

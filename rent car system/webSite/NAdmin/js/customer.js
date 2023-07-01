@@ -6,6 +6,7 @@ function saveCustomer() {
   let email = $('#email').val();
   let phone = $('#phone').val();
   let address = $('#address').val();
+  let image = $('#image').prop('files')[0];
 
   // Validation checks
   if (cname.trim() === "") {
@@ -67,11 +68,12 @@ function saveCustomer() {
   formData.append("email", email);
   formData.append("phone", phone);
   formData.append("address", address);
+  formData.append("image", image);
 
 
   $.ajax({
     method: "POST",
-    url: "http://localhost:8080/customer/save",
+    url: "http://localhost:8080/customer/Save",
     processData: false,
     contentType: false,
     data: formData,
@@ -84,7 +86,7 @@ function saveCustomer() {
         button: "OK!",
       }).then(() => {
         // Redirect to DamageView.html
-        window.location.href = "DamageView.html";
+        window.location.href = "customerView.html";
       });     
      
     },

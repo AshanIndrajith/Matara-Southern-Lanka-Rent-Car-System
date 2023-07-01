@@ -29,23 +29,24 @@ public class Customer {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "imagename")
+    private String imageName;
 
-
-//    @Transient
-//    private MultipartFile imageFileNic;
+   @Transient
+   private MultipartFile imageFileNic;
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String nic, String email, String phone, String address) {
+    public Customer(Long id, String name, String nic, String email, String phone, String address, String imageName, MultipartFile imageFileNic) {
         this.id = id;
         this.name = name;
         this.nic = nic;
         this.email = email;
         this.phone = phone;
         this.address = address;
-
-
+        this.imageName = imageName;
+        this.imageFileNic = imageFileNic;
     }
 
     public Long getId() {
@@ -96,13 +97,21 @@ public class Customer {
         this.address = address;
     }
 
+    public MultipartFile getImageFileNic() {
+        return imageFileNic;
+    }
+
+    public void setImageFileNic(MultipartFile imageFileNic) {
+        this.imageFileNic = imageFileNic;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
 
 
-//    public MultipartFile getImageFileNic() {
-//        return imageFileNic;
-//    }
-//
-//    public void setImageFileNic(MultipartFile imageFileNic) {
-//        this.imageFileNic = imageFileNic;
-//    }
 }

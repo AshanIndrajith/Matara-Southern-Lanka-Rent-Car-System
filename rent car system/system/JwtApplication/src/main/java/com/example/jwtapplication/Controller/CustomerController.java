@@ -26,18 +26,47 @@ public class CustomerController {
     @Autowired
     private CustomerServiceImpl customerService;
 
-    @PostMapping("/save")
-    public ResponseEntity<String> saveCustomer(@RequestBody Customer customer) {
+//    @PostMapping("/save")
+//    public ResponseEntity<String> saveCustomer(@RequestBody Customer customer) {
+//        try {
+//            // Save customer to the database
+//            customerService.saveCustomer(customer);
+//
+//            return ResponseEntity.ok("Customer saved successfully");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body("Error occurred while saving customer: " + e.getMessage());
+//        }
+//    }
+
+
+    @PostMapping("/Save")
+    public ResponseEntity<String> saveCustomer(Customer customer, @RequestParam("image") MultipartFile multipartFile) {
         try {
-            // Save customer to the database
-            customerService.saveCustomer(customer);
+            if (!multipartFile.isEmpty()) {
+                String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+                customer.setImageName(filename);
+                Customer savedCustomer = customerService.saveCustomer(customer);
+                String uploadPath = "customer/" + savedCustomer.getId();
+
+                FileUploadUtil.saveFile(uploadPath, filename, multipartFile);
+            } else {
+                if (customer.getImageFileNic().isEmpty()) {
+                    customer.setImageFileNic(null);
+                }
+                customerService.saveCustomer(customer);
+            }
 
             return ResponseEntity.ok("Customer saved successfully");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error occurred while saving Customer: " + e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error occurred while saving customer: " + e.getMessage());
+                    .body("An unexpected error occurred: " + e.getMessage());
         }
     }
+
 
 
     @GetMapping("/view")
