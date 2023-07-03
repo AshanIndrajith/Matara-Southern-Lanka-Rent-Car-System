@@ -13,34 +13,44 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "Reg_Number")
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "registered_number")
     private String reg_number;
 
-    @Column(name = "Fuel_Type")
-    private String fuel_type;
 
-
-    @Column(name = "Seat")
-    private String seat;
-
-
-    @Column(name = "AC")
-    private String ac;
-
-
-    @Column(name = "image_name")
+    @Column(name = "image")
     private String imageName;
 
-    @Column(name = "dprice")
+    @Column(name = "price_per_day")
     private Double dprice;
 
 
-    @Column(name = "add_km_price")
+    @Column(name = "additional_price_per_km")
     private Double akmprice;
 
 
-    @Column(name = "add_hour_price")
+    @Column(name = "additional_price_per_hour")
     private Double add_hour_price;
+
+
+    @Column(name = "system_registered_date")
+    private String system_registered_date;
+
+    @Column(name = "insurence_date")
+    private String insurence_date;
+
+    @Column(name = "revenue_license_date")
+    private String revenue_license_date;
+
+    @Column(name = "is_service_out")
+    private int is_service_out;
+
+
+    @Column(name = "is_deleted")
+    private int is_deleted;
+
 
     @Transient
     private MultipartFile imageFile;
@@ -49,16 +59,19 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(Long id, String reg_number, String fuel_type, String seat, String ac, String imageName, Double dprice, Double akmprice, Double add_hour_price, MultipartFile imageFile) {
+    public Vehicle(Long id, String title, String reg_number, String imageName, Double dprice, Double akmprice, Double add_hour_price, String system_registered_date, String insurence_date, String revenue_license_date, int is_service_out, int is_deleted, MultipartFile imageFile) {
         this.id = id;
+        this.title = title;
         this.reg_number = reg_number;
-        this.fuel_type = fuel_type;
-        this.seat = seat;
-        this.ac = ac;
         this.imageName = imageName;
         this.dprice = dprice;
         this.akmprice = akmprice;
         this.add_hour_price = add_hour_price;
+        this.system_registered_date = system_registered_date;
+        this.insurence_date = insurence_date;
+        this.revenue_license_date = revenue_license_date;
+        this.is_service_out = is_service_out;
+        this.is_deleted = is_deleted;
         this.imageFile = imageFile;
     }
 
@@ -70,36 +83,20 @@ public class Vehicle {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getReg_number() {
         return reg_number;
     }
 
     public void setReg_number(String reg_number) {
         this.reg_number = reg_number;
-    }
-
-    public String getFuel_type() {
-        return fuel_type;
-    }
-
-    public void setFuel_type(String fuel_type) {
-        this.fuel_type = fuel_type;
-    }
-
-    public String getSeat() {
-        return seat;
-    }
-
-    public void setSeat(String seat) {
-        this.seat = seat;
-    }
-
-    public String getAc() {
-        return ac;
-    }
-
-    public void setAc(String ac) {
-        this.ac = ac;
     }
 
     public String getImageName() {
@@ -132,6 +129,46 @@ public class Vehicle {
 
     public void setAdd_hour_price(Double add_hour_price) {
         this.add_hour_price = add_hour_price;
+    }
+
+    public String getSystem_registered_date() {
+        return system_registered_date;
+    }
+
+    public void setSystem_registered_date(String system_registered_date) {
+        this.system_registered_date = system_registered_date;
+    }
+
+    public String getInsurence_date() {
+        return insurence_date;
+    }
+
+    public void setInsurence_date(String insurence_date) {
+        this.insurence_date = insurence_date;
+    }
+
+    public String getRevenue_license_date() {
+        return revenue_license_date;
+    }
+
+    public void setRevenue_license_date(String revenue_license_date) {
+        this.revenue_license_date = revenue_license_date;
+    }
+
+    public int getIs_service_out() {
+        return is_service_out;
+    }
+
+    public void setIs_service_out(int is_service_out) {
+        this.is_service_out = is_service_out;
+    }
+
+    public int getIs_deleted() {
+        return is_deleted;
+    }
+
+    public void setIs_deleted(int is_deleted) {
+        this.is_deleted = is_deleted;
     }
 
     public MultipartFile getImageFile() {

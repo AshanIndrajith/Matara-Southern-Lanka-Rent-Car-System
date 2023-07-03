@@ -2,29 +2,33 @@ getAllVehicle()
 
 
 function saveVehicle() {
-  
-    let req = $('#reqnum').val();
-    let fueltype = $('#fueltype').val();
-    let seat = $('#seat').val();
-    let ac = $('#ac').val();
+
+    let title = $('#title').val();
+    let reg = $('#regnum').val();
+    let idate = $('#idate').val();
+    let rdate = $('#rdate').val();
+    let postingDate=new Date();
     let image = $('#image').prop('files')[0];
     let dayprice = $('#dayprice').val();
     let additionalkm = $('#additionalkm').val();
     let additionalhour = $('#additionalhour').val();
 
-
+    
     
     // Create a new FormData object
     let formData = new FormData();
-    formData.append("reg_number", req);
-    formData.append("fuel_type", fueltype);
-    formData.append("seat", seat);
-    formData.append("ac", ac);
+    formData.append("title", title);
+    formData.append("reg_number", reg);
+    formData.append("insurence_date", idate);
+    formData.append("revenue_license_date", rdate);
+    formData.append("system_registered_date", postingDate);
     formData.append("image", image);
     formData.append("dprice", dayprice);
-    formData.append("add_km_price", additionalkm);
+    formData.append("akmprice", additionalkm);
     formData.append("add_hour_price", additionalhour);
 
+    
+    getreq(reg)
     
   
     $.ajax({
@@ -36,12 +40,12 @@ function saveVehicle() {
       success: function (data) {
 
        
-        
-       alert("save");
+       
+       
 
         
-        getAllDamage() 
-        window.location.href = "view_vehicle_table.html";
+        
+        window.location.href = "specification.html";
 
         
        
@@ -68,7 +72,7 @@ function saveVehicle() {
       ac: ac,
       image: image,
       dprice: dprice,
-      akmPrice: akmPrice,
+      akmprice: akmPrice,
       add_hour_price: addHourPrice
     };
   
@@ -273,3 +277,24 @@ $(document).ready(function() {
       }
   });
 });
+
+
+
+
+
+function getreq(id) {
+
+
+
+
+        var url = "specification.html" +
+          "?id=" + encodeURIComponent(id) ;
+        
+        // Redirect the user to the new page
+        window.location.href = url;
+
+        
+      }
+    
+
+

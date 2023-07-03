@@ -261,6 +261,25 @@
                                         </div>
                                         <form class="user" enctype="multipart/form-data">
 
+
+                                            <script>
+
+                                                $(document).ready(function() {
+                            
+                                                
+                                                // Read the query parameters from the URL
+                                                var params = new URLSearchParams(window.location.search);
+                                                var id = params.get("id");
+                                               
+                            
+                                                // Set the values of the elements on the page
+                                                $('#regnum').val(id);
+                                               
+                            
+                                            });
+                            
+                                            </script>
+
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" id="title"
                                                     placeholder="Title of the vehicle">

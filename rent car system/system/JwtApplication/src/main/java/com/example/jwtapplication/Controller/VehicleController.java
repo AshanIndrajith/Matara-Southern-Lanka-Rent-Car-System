@@ -89,26 +89,26 @@ public class VehicleController {
 
 
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateVehicle(@PathVariable("id") Long id, @RequestBody Vehicle updateVehicle) {
-        Vehicle  existingVehicle = vehicleService.getVehicleById(id);
-        if (existingVehicle != null) {
-
-            existingVehicle.setReg_number(updateVehicle.getReg_number());
-            existingVehicle.setFuel_type(updateVehicle.getFuel_type());
-            existingVehicle.setSeat(updateVehicle.getSeat());
-            existingVehicle.setAc(updateVehicle.getAc());
-            existingVehicle.setDprice(updateVehicle.getDprice());
-            existingVehicle.setAkmprice(updateVehicle.getAkmprice());
-            existingVehicle.setAdd_hour_price(updateVehicle.getAdd_hour_price());
-
-
-            Vehicle vehicleDamageObj = vehicleService.updateVehicle(existingVehicle);
-            return ResponseEntity.ok(vehicleDamageObj);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<?> updateVehicle(@PathVariable("id") Long id, @RequestBody Vehicle updateVehicle) {
+//        Vehicle  existingVehicle = vehicleService.getVehicleById(id);
+//        if (existingVehicle != null) {
+//
+//            existingVehicle.setReg_number(updateVehicle.getReg_number());
+//            existingVehicle.setFuel_type(updateVehicle.getFuel_type());
+//            existingVehicle.setSeat(updateVehicle.getSeat());
+//            existingVehicle.setAc(updateVehicle.getAc());
+//            existingVehicle.setDprice(updateVehicle.getDprice());
+//            existingVehicle.setAkmprice(updateVehicle.getAkmprice());
+//            existingVehicle.setAdd_hour_price(updateVehicle.getAdd_hour_price());
+//
+//
+//            Vehicle vehicleDamageObj = vehicleService.updateVehicle(existingVehicle);
+//            return ResponseEntity.ok(vehicleDamageObj);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
 
 
