@@ -16,11 +16,6 @@ function saveBooking() {
   alert(cname)
  
 
-  
-
- 
-
-
   let formData = new FormData();
   formData.append("cusName", cname);
   formData.append("cusNIC", cnic);

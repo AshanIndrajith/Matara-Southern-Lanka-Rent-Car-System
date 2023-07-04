@@ -257,7 +257,7 @@
                                 <div class="col-lg-7">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Insert Vehicle Details!</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">Insert Vehicle Specification!</h1>
                                         </div>
                                         <form class="user" enctype="multipart/form-data">
 
@@ -280,59 +280,84 @@
                             
                                             </script>
 
-                                            <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="title"
-                                                    placeholder="Title of the vehicle">
-                                            </div>
+                                           
 
-                                            <!-- <div class="form-group row">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="InsuranceDate" class="input-label" style="padding-left:50px;">Insurance Date</label>
-                                                    <input type="date" class="form-control form-control-user" id="InsuranceDate" placeholder="Insurance Date">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="licenceDate" class="input-label" style="padding-left:50px;">License Date</label>
-                                                    <input type="date" class="form-control form-control-user" id="licenceDate" placeholder="License Date">
-                                                </div>
-                                            </div> -->
+                                          
                                         
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" id="regnum"
                                                     placeholder="Registered number ">
                                             </div>
 
-                                            <div class="form-group">
-                                                <input type="date" class="form-control form-control-user" id="idate"
-                                                    placeholder="Insurance date">
+                                            <div class="form-group row">
+                                               
+                                                <div class="col-sm-6"  >
+
+                                                    <label for="fuelType" class="col-form-label pl-2 font-weight-bold">Fuel Type:</label>
+                                                   <select id="fuel" name="fuelType" class="form-control">
+                                                    <option value="petrol">petrol</option>
+                                                    <option value="diesel">Diesel</option>
+                                                  
+                                                  </select>
+                                                   
+                                                </div>
+                                                <div class="col-sm-6 " >
+                                                    <label for="fuelType" class="col-form-label pl-2 font-weight-bold">Transmission:</label>
+                                                    <select id="transmission" name="fuelType" class="form-control">
+                                                        <option value="gasoline">Manual</option>
+                                                        <option value="diesel">Automatic</option>
+                                                       
+                                                      </select>
+                                                </div>
                                             </div>
 
 
-                                            <div class="form-group">
-                                                <input type="date" class="form-control form-control-user" id="rdate"
-                                                    placeholder="Revenue License Date">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="file" class="form-control" id="image"
-                                                    placeholder="Image">
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="text" class="form-control form-control-user" id="capacity"
+                                                        placeholder="Capacity">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-user" id="speed"
+                                                        placeholder="Top speed">
+                                                </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-user" id="dayprice"
-                                                        placeholder="Day Price">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="text" class="form-control form-control-user" id="afuel"
+                                                        placeholder="Average Fuel">
                                                 </div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-user" id="additionalkm"
-                                                        placeholder="Additional Km Price">
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control form-control-user" id="additionalhour"
-                                                        placeholder="Additional Hour Price">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-user" id="door"
+                                                        placeholder="Number of Door">
                                                 </div>
                                             </div>
 
-                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="saveVehicle()">Submit</button> 
+
+                                            <div class="form-group row">
+
+                                              
+                                                <div class="col-sm-6 pt-4">
+                                                    <input type="text" class="form-control form-control-user" id="seat"
+                                                        placeholder="Number of Seat">
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label for="fuelType" class="col-form-label pl-2 font-weight-bold">cooling</label>
+                                                    <select id="ac" name="fuelType" class="form-control">
+                                                        <option value="gasoline">AC</option>
+                                                        <option value="diesel">None</option>
+                                                       
+                                                      </select>
+                                                </div>
+                                                
+                                            </div>
+
+                                               
+
+
+                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="saveSpecification()">Submit</button> 
                                             <button type="reset" class="reset btn btn-danger btn-user btn-block">Reset</button>
                                           
                                         </form>

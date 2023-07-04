@@ -32,6 +32,9 @@ public class Specification {
     @Column(name = "capacity")
     private String capacity;
 
+    @Column(name = "ac")
+    private String ac;
+
     @Column(name = "average_fuel")
     private String average_fuel;
 
@@ -42,7 +45,7 @@ public class Specification {
 
     }
 
-    public Specification(Long id, String reg_number, String seat, String flue_type, String transmission, int door, String capacity, String average_fuel, String top_speed) {
+    public Specification(Long id, String reg_number, String seat, String flue_type, String transmission, int door, String capacity, String ac, String average_fuel, String top_speed) {
         this.id = id;
         this.reg_number = reg_number;
         this.seat = seat;
@@ -50,12 +53,21 @@ public class Specification {
         this.transmission = transmission;
         this.door = door;
         this.capacity = capacity;
+        this.ac = ac;
         this.average_fuel = average_fuel;
         this.top_speed = top_speed;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getAc() {
+        return ac;
+    }
+
+    public void setAc(String ac) {
+        this.ac = ac;
     }
 
     public void setId(Long id) {

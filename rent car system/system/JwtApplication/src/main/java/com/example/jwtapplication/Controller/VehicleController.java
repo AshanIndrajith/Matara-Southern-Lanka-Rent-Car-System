@@ -37,7 +37,6 @@ public class VehicleController {
 
 
     @PostMapping("/vehicleSave")
-    @CrossOrigin("*")
     public ResponseEntity<String> saveVehicle(Vehicle vehicle, @RequestParam("image") MultipartFile multipartFile) {
         try {
             if (!multipartFile.isEmpty()) {
@@ -89,26 +88,26 @@ public class VehicleController {
 
 
 
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<?> updateVehicle(@PathVariable("id") Long id, @RequestBody Vehicle updateVehicle) {
-//        Vehicle  existingVehicle = vehicleService.getVehicleById(id);
-//        if (existingVehicle != null) {
-//
-//            existingVehicle.setReg_number(updateVehicle.getReg_number());
-//            existingVehicle.setFuel_type(updateVehicle.getFuel_type());
-//            existingVehicle.setSeat(updateVehicle.getSeat());
-//            existingVehicle.setAc(updateVehicle.getAc());
-//            existingVehicle.setDprice(updateVehicle.getDprice());
-//            existingVehicle.setAkmprice(updateVehicle.getAkmprice());
-//            existingVehicle.setAdd_hour_price(updateVehicle.getAdd_hour_price());
-//
-//
-//            Vehicle vehicleDamageObj = vehicleService.updateVehicle(existingVehicle);
-//            return ResponseEntity.ok(vehicleDamageObj);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateVehicle(@PathVariable("id") Long id, @RequestBody Vehicle updateVehicle) {
+        Vehicle  existingVehicle = vehicleService.getVehicleById(id);
+        if (existingVehicle != null) {
+            existingVehicle.setTitle(updateVehicle.getTitle());
+            existingVehicle.setReg_number(updateVehicle.getReg_number());
+            existingVehicle.setInsurence_date(updateVehicle.getInsurence_date());
+            existingVehicle.setRevenue_license_date(updateVehicle.getRevenue_license_date());
+
+            existingVehicle.setDprice(updateVehicle.getDprice());
+            existingVehicle.setAkmprice(updateVehicle.getAkmprice());
+            existingVehicle.setAdd_hour_price(updateVehicle.getAdd_hour_price());
+
+
+            Vehicle vehicleDamageObj = vehicleService.updateVehicle(existingVehicle);
+            return ResponseEntity.ok(vehicleDamageObj);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 

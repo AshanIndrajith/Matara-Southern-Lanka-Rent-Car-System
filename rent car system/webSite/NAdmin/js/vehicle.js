@@ -39,43 +39,94 @@ function saveVehicle() {
       data: formData,
       success: function (data) {
 
-       
-       
-       
+        alert("saved")
 
-        
-        
         window.location.href = "specification.html";
 
         
-       
       },
       error: function (xhr, exception) {
         alert("Error occurred while saving vehicle");
       }
     });
   }
-  function updateVehicle() {
-    var id = $('#id').val();
-    var regNumber = $('#reqnum').val();
-    var fuelType = $('#fueltype').val();
-    var seat = $('#seat').val();
-    var ac = $('#ac').val();
-    var dprice = $('#dayprice').val();
-    var akmPrice = $('#additionalkm').val();
-    var addHourPrice = $('#additionalhour').val();
+
+
+
+
   
+function updateDamage(){
+
+alert("hi")
+    let id = $('#id').val();
+    let title = $('#title').val();
+    let reg = $('#regnum').val();
+    let idate = $('#idate').val();
+    let rdate = $('#rdate').val();
+    let dayprice = $('#dayprice').val();
+    let additionalkm = $('#additionalkm').val();
+    let additionalhour = $('#additionalhour').val();
+
+
+
+ 
+ 
+  $.ajax({
+     method: "PUT",
+     contentType: "application/json",
+     url:"http://localhost:8080/vehicle/update/"+id,
+     async:true,
+     data:JSON.stringify({
+         "id":id,
+         "title":title,
+         "reg_number":reg,
+         "insurence_date":idate,
+         "revenue_license_date":rdate,
+         "dprice":dayprice,
+         "akmprice":additionalkm,
+         "add_hour_price":additionalhour,
+     }),
+     success:function(data){
+ 
+      
+ 
+   
+    
+ 
+         window.location.href = "vehicleView.html";
+     },
+     error:function(xhr,exception){
+         alert("Error")
+     }
+  })
+ 
+ }
+ 
+
+
+
+  function updateVehicle() {
+    let id = $('#id').val();
+    let title = $('#title').val();
+    let reg = $('#regnum').val();
+    let idate = $('#idate').val();
+    let rdate = $('#rdate').val();
+    let dayprice = $('#dayprice').val();
+    let additionalkm = $('#additionalkm').val();
+    let additionalhour = $('#additionalhour').val();
+    
     var updateData = {
-      reg_number: regNumber,
-      fuel_type: fuelType,
-      seat: seat,
-      ac: ac,
-      image: image,
-      dprice: dprice,
-      akmprice: akmPrice,
-      add_hour_price: addHourPrice
+      id: id,
+      title: title,
+      reg_number: reg,
+      insurence_date: idate,
+      revenue_license_date: rdate,
+      dprice: dayprice,
+      akmprice: additionalkm,
+      add_hour_price: additionalhour
     };
   
+    // AJAX request
     $.ajax({
       method: "PUT",
       contentType: "application/json",
@@ -83,9 +134,7 @@ function saveVehicle() {
       async: true,
       data: JSON.stringify(updateData),
       success: function(data) {
-       
-
-        alert("updated")
+        alert("updated");
   
         // Redirect to the vehicle list page
         window.location.href = "vehicleView.html";
@@ -100,10 +149,7 @@ function saveVehicle() {
       }
     });
   }
-
   
-
-
 
 
 
@@ -169,34 +215,31 @@ function getVehicleDetails(id) {
     async: true,
     success: function(data) {
       if (data != null) {
-        var id = data.id;
-        var rnum = data.reg_number;
-        var fuel_type = data.fuel_type;
-        var seat = data.seat; 
-        var ac = data.ac; 
-        var image = data.imageName; 
-        var dprice = data.dprice
-        var akmPrice = data.akmprice; 
-        var add_hour_price = data.add_hour_price; 
+        let id = data.id;
+        let title = data.title;
+        let regNumber = data.reg_number;
+        let insurence_date = data.insurence_date;
+        let revenue_license_date = data.revenue_license_date;
+        let image = data.imageName;
+        let dPrice = data.dprice;
+        let akmPrice = data.akmprice;
+        let addHourPrice = data.add_hour_price;
 
 
-       
-        
-
-
+ 
         
 
         // Construct the URL for the new page with query parameters
-        var url = "vehicleUpdate.html" +
+        var url = "vehiclenewupdate.html" +
           "?id=" + encodeURIComponent(id) +
-          "&reg_number=" + encodeURIComponent(rnum) +
-          "&fuel_type=" + encodeURIComponent(fuel_type) +
-          "&seat=" + encodeURIComponent(seat) +
-          "&ac=" + encodeURIComponent(ac) +
+          "&title=" + encodeURIComponent(title) +
+          "&reg_number=" + encodeURIComponent(regNumber) +
+          "&insurence_date=" + encodeURIComponent(insurence_date) +
+          "&revenue_license_date=" + encodeURIComponent(revenue_license_date) +
           "&image=" + encodeURIComponent(image)+
-          "&dprice=" + encodeURIComponent(dprice) +
+          "&dprice=" + encodeURIComponent(dPrice) +
           "&akmPrice=" + encodeURIComponent(akmPrice)+
-          "&add_hour_price=" + encodeURIComponent(add_hour_price);
+          "&add_hour_price=" + encodeURIComponent(addHourPrice);
           
 
        
@@ -230,10 +273,10 @@ function getAllVehicle() {
           for (let i = 0; i < data.length; i++) {
               let vehicle = data[i];
               let id = vehicle.id;
+              let title = vehicle.title;
               let regNumber = vehicle.reg_number;
-              let fuelType = vehicle.fuel_type;
-              let seat = vehicle.seat;
-              let ac = vehicle.ac;
+              let insurence_date = vehicle.insurence_date;
+              let revenue_license_date = vehicle.revenue_license_date;
               let image = vehicle.imageName;
               let dPrice = vehicle.dprice;
               let akmPrice = vehicle.akmprice;
@@ -241,10 +284,10 @@ function getAllVehicle() {
 
               let newRow = '<tr>' +
                   '<td>' + id + '</td>' +
+                  '<td>' + title + '</td>' +
                   '<td>' + regNumber + '</td>' +
-                  '<td>' + fuelType + '</td>' +
-                  '<td>' + seat + '</td>' +
-                  '<td>' + ac + '</td>' +
+                  '<td>' + insurence_date + '</td>' +
+                  '<td>' + revenue_license_date + '</td>' +
                   '<td><img src="../../system/JwtApplication/vehicle/'+ id +'/'+ image +'" width="100px"></td>' +
                   '<td>  <label> Rs :</label>'+ dPrice + '<label> .00</label></td>'+
                   '<td>  <label> Rs :</label>'+ akmPrice + '<label> .00</label></td>'+
@@ -298,3 +341,55 @@ function getreq(id) {
     
 
 
+function saveSpecification() {
+
+    
+    
+   var reg =$("#regnum").val();
+   var fuel= $("#fuel").val();
+   var transmission=$("#transmission").val();
+   var capacity= $("#capacity").val();
+   var speed= $("#speed").val();
+   var afuel= $("#afuel").val();
+   var door= $("#door").val();
+   var seat= $("#seat").val();
+   var ac= $("#ac").val();
+
+
+
+
+  // Send AJAX request
+  $.ajax({
+      method: "POST",
+      contentType: "application/json",
+      url: "http://localhost:8080/specification/save",
+      async: true,
+      data: JSON.stringify({
+        "reg_number": reg,
+        "seat":seat,
+        "flue_type": fuel,
+        "transmission": transmission,
+        "door": door,
+        "ac": ac,
+        "capacity": capacity,
+        "average_fuel": afuel,
+        "top_speed": speed
+      }),
+      success: function (data) {
+
+          alert("saved")
+     
+         
+      },
+      error: function (xhr, status, error) {
+          if (error.hasOwnProperty('message')) {
+              alert("Error Message: " + error.message);
+          } else {
+              alert("Unknown Error Occurred");
+          }
+      }
+  });
+  }
+
+
+  

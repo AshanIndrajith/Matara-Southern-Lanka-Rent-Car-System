@@ -251,8 +251,6 @@
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
                             <div class="row">
-
-                                
                                 <div class="col-lg-5 d-none d-lg-block" style="padding-top:50px;">
                                     <script>  
                                         var params = new URLSearchParams(window.location.search);
@@ -267,11 +265,9 @@
                                 <div class="col-lg-7">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">Update Vehicle Details!</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">Insert Vehicle Details!</h1>
                                         </div>
                                         <form class="user" enctype="multipart/form-data">
-
-                                           
 
 
                                             <script>
@@ -283,10 +279,10 @@
                                                 // Read the query parameters from the URL
                                                 var params = new URLSearchParams(window.location.search);
                                                 var id = params.get("id");
+                                                var title = params.get("title");
                                                 var reg_number = params.get("reg_number");
-                                                var fuel_type = params.get("fuel_type");
-                                                var seat = params.get("seat");
-                                                var ac = params.get("ac");
+                                                var insurence_date = params.get("insurence_date");
+                                                var revenue_license_date = params.get("revenue_license_date");
                                                 var image = params.get("image");
                                                 var dprice = params.get("dprice");
                                                 var akmPrice = params.get("akmPrice");
@@ -295,10 +291,10 @@
                                             
                                                 // Set the values of the elements on the page
                                                 $('#id').val(id);
-                                                $('#reqnum').val(reg_number);
-                                                $('#fueltype').val(fuel_type);
-                                                $('#seat').val(seat);
-                                                $('#ac').val(ac);
+                                                $('#title').val(title);
+                                                $('#regnum').val(reg_number);
+                                                $('#idate').val(insurence_date);
+                                                $('#rdate').val(revenue_license_date);
                                                 $('#image').val(image);
                                               
                                                 $('#dayprice').val(dprice);
@@ -310,48 +306,35 @@
                             
                                             </script>
 
-                                            
-                                                <div class="form-group">
-                                                      <input type="text" class="form-control form-control-user" id="id"
-                                                      placeholder="id">
-                                                </div>
                                             <div class="form-group">
-                                                  <input type="text" class="form-control form-control-user" id="reqnum"
-                                                  placeholder="Registration Number">
+                                                  <input type="text" class="form-control form-control-user" id="id"
+                                                    placeholder="Id">
                                             </div>
 
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="title"
+                                                    placeholder="Title of the vehicle">
+                                            </div>
 
-                                            <!-- <div class="form-group row">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="InsuranceDate" class="input-label" style="padding-left:50px;">Insurance Date</label>
-                                                    <input type="date" class="form-control form-control-user" id="InsuranceDate" placeholder="Insurance Date">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="licenceDate" class="input-label" style="padding-left:50px;">License Date</label>
-                                                    <input type="date" class="form-control form-control-user" id="licenceDate" placeholder="License Date">
-                                                </div>
-                                            </div> -->
+                                            
                                         
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="fueltype"
-                                                    placeholder="Fuel Type">
+                                                <input type="text" class="form-control form-control-user" id="regnum"
+                                                    placeholder="Registered number ">
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="seat"
-                                                    placeholder="Seat">
+                                                <input type="date" class="form-control form-control-user" id="idate"
+                                                    placeholder="Insurance date">
                                             </div>
 
 
                                             <div class="form-group">
-                                                <input type="text" class="form-control form-control-user" id="ac"
-                                                    placeholder="AC">
+                                                <input type="date" class="form-control form-control-user" id="rdate"
+                                                    placeholder="Revenue License Date">
                                             </div>
 
-                                            <!-- <div class="form-group">
-                                                <input type="file" class="form-control form-control-user" id="image"
-                                                    placeholder="Image">
-                                            </div> -->
+                                          
 
                                             <div class="form-group row">
                                                 <div class="col-sm-4">
@@ -368,7 +351,7 @@
                                                 </div>
                                             </div>
 
-                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="updateVehicle()">Submit</button> 
+                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="updateDamage()">Submit</button> 
                                             <button type="reset" class="reset btn btn-danger btn-user btn-block">Reset</button>
                                           
                                         </form>
