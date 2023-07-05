@@ -13,8 +13,7 @@ function saveVehicle() {
     let additionalkm = $('#additionalkm').val();
     let additionalhour = $('#additionalhour').val();
 
-    
-    
+  
     // Create a new FormData object
     let formData = new FormData();
     formData.append("title", title);
@@ -27,10 +26,8 @@ function saveVehicle() {
     formData.append("akmprice", additionalkm);
     formData.append("add_hour_price", additionalhour);
 
-    
-    
-    
-  
+
+
     $.ajax({
       method: "POST",
       url: "http://localhost:8080/vehicle/vehicleSave",
@@ -39,10 +36,14 @@ function saveVehicle() {
       data: formData,
       success: function (data) {
 
-        alert("saved")
+        swal({
+          title: "Good job!",
+          text: "Vehicle is Added Successfully!",
+          icon: "success",
+          button: "ok!",
+        });
 
         getreq(reg)
-
         window.location.href = "specification.html";
 
         
@@ -57,9 +58,9 @@ function saveVehicle() {
 
 
   
-function updateDamage(){
+function updateVehicle(){
 
-alert("hi")
+
     let id = $('#id').val();
     let title = $('#title').val();
     let reg = $('#regnum').val();
@@ -70,9 +71,6 @@ alert("hi")
     let additionalhour = $('#additionalhour').val();
 
 
-
- 
- 
   $.ajax({
      method: "PUT",
      contentType: "application/json",
@@ -90,7 +88,13 @@ alert("hi")
      }),
      success:function(data){
  
-      
+      swal({
+        title: "Good job!",
+        text: "Vehicle is updated Successfully!",
+        icon: "success",
+        button: "ok!",
+      });
+
  
          window.location.href = "vehicleView.html";
      },
@@ -104,50 +108,52 @@ alert("hi")
 
 
 
-  function updateVehicle() {
-    let id = $('#id').val();
-    let title = $('#title').val();
-    let reg = $('#regnum').val();
-    let idate = $('#idate').val();
-    let rdate = $('#rdate').val();
-    let dayprice = $('#dayprice').val();
-    let additionalkm = $('#additionalkm').val();
-    let additionalhour = $('#additionalhour').val();
+  // function updateVehicle() {
+
+
+  //   let id = $('#id').val();
+  //   let title = $('#title').val();
+  //   let reg = $('#regnum').val();
+  //   let idate = $('#idate').val();
+  //   let rdate = $('#rdate').val();
+  //   let dayprice = $('#dayprice').val();
+  //   let additionalkm = $('#additionalkm').val();
+  //   let additionalhour = $('#additionalhour').val();
     
-    var updateData = {
-      id: id,
-      title: title,
-      reg_number: reg,
-      insurence_date: idate,
-      revenue_license_date: rdate,
-      dprice: dayprice,
-      akmprice: additionalkm,
-      add_hour_price: additionalhour
-    };
+  //   var updateData = {
+  //     id: id,
+  //     title: title,
+  //     reg_number: reg,
+  //     insurence_date: idate,
+  //     revenue_license_date: rdate,
+  //     dprice: dayprice,
+  //     akmprice: additionalkm,
+  //     add_hour_price: additionalhour
+  //   };
   
-    // AJAX request
-    $.ajax({
-      method: "PUT",
-      contentType: "application/json",
-      url: "http://localhost:8080/vehicle/update/" + id,
-      async: true,
-      data: JSON.stringify(updateData),
-      success: function(data) {
-        alert("updated");
+  //   // AJAX request
+  //   $.ajax({
+  //     method: "PUT",
+  //     contentType: "application/json",
+  //     url: "http://localhost:8080/vehicle/update/" + id,
+  //     async: true,
+  //     data: JSON.stringify(updateData),
+  //     success: function(data) {
+  //       alert("updated");
   
-        // Redirect to the vehicle list page
-        window.location.href = "vehicleView.html";
-      },
-      error: function(xhr, status, error) {
-        swal({
-          title: "Error!",
-          text: "An error occurred while updating the vehicle.",
-          icon: "error",
-          button: "OK"
-        });
-      }
-    });
-  }
+  //       // Redirect to the vehicle list page
+  //       window.location.href = "vehicleView.html";
+  //     },
+  //     error: function(xhr, status, error) {
+  //       swal({
+  //         title: "Error!",
+  //         text: "An error occurred while updating the vehicle.",
+  //         icon: "error",
+  //         button: "OK"
+  //       });
+  //     }
+  //   });
+  // }
   
 
 
@@ -159,9 +165,6 @@ alert("hi")
 
 
 function deleteVehicle(empID){
-
-
-
 
   
  swal({
@@ -225,8 +228,6 @@ function getVehicleDetails(id) {
         let addHourPrice = data.add_hour_price;
 
 
- 
-        
 
         // Construct the URL for the new page with query parameters
         var url = "vehiclenewupdate.html" +
@@ -321,8 +322,14 @@ $(document).ready(function() {
 });
 
 
+
+
+
+
+
+
 function getreq(reg) {
-  alert(reg);
+ 
 
   $.ajax({
     method: "GET",
@@ -332,7 +339,7 @@ function getreq(reg) {
       if (data.length > 0) {
         let id = data[0].id;
         let ins = data[0].insurence_date;
-        alert(ins);
+        
         // Construct the URL for the new page with query parameters
         var url = "specification.html" +
           "?id=" + encodeURIComponent(id);
@@ -351,11 +358,19 @@ function getreq(reg) {
 
 
 
+
+
+
+
+
+
+
+
+
 function saveSpecification() {
 
     
-    
-   var reg =$("#regnum").val();
+ var reg =$("#regnum").val();
    var fuel= $("#fuel").val();
    var transmission=$("#transmission").val();
    var capacity= $("#capacity").val();
@@ -387,7 +402,14 @@ function saveSpecification() {
       }),
       success: function (data) {
 
-          alert("saved")
+        swal({
+          title: "Good job!",
+          text: "Specification is Added Successfully!",
+          icon: "success",
+          button: "ok!",
+        });
+
+        window.location.href = "VehicleView.html";
      
          
       },
