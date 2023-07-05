@@ -1,11 +1,8 @@
 package com.example.jwtapplication.Controller;
 
 
-import com.example.jwtapplication.Entity.Damage;
 import com.example.jwtapplication.Entity.Vehicle;
-import com.example.jwtapplication.Service.DamageServiceImpl;
 import com.example.jwtapplication.Service.VehicleService;
-import com.example.jwtapplication.Service.VehicleServiceImpl;
 import com.example.jwtapplication.Util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -117,6 +114,40 @@ public class VehicleController {
         int All = vehicleService.getTotalVehicle();
         return ResponseEntity.ok(All);
     }
+
+
+
+
+
+    @GetMapping("/available")
+    public ResponseEntity<List<Vehicle>> avgVehicle() {
+        Iterable<Vehicle> avgList =vehicleService.findAvailableVehicles();
+        return ResponseEntity.ok((List<Vehicle>) avgList);
+    }
+
+
+
+    @GetMapping("/getVehicles/{reg}")
+    @ResponseBody
+    public ResponseEntity<List<Vehicle>> getVehiclesByRegistrationNumber(@PathVariable String reg) {
+        List<Vehicle> vehicles = vehicleService.findIdByRegistrationNumber(reg);
+
+        if (vehicles.isEmpty()) {
+            // Error message: No vehicles found
+            System.out.println("No vehicles found with registration number: " + reg);
+            return ResponseEntity.notFound().build();
+        }
+
+        // Success message: Vehicles found
+        System.out.println("Vehicles found with registration number: " + reg);
+        return ResponseEntity.ok(vehicles);
+    }
+
+
+
+
+
+
 
 
 

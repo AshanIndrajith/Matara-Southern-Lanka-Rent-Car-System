@@ -3,6 +3,9 @@ package com.example.jwtapplication.Service;
 import com.example.jwtapplication.Entity.Damage;
 import com.example.jwtapplication.Entity.Vehicle;
 
+import java.util.Date;
+import java.util.List;
+
 public interface VehicleServiceImpl {
 
 
@@ -17,6 +20,13 @@ public interface VehicleServiceImpl {
     void deleteVehicleById(Long id);
 
     public int getTotalVehicle();
+
+    public List<Vehicle> findAvailableVehicles() ;
+
+    public List<Vehicle>  findIdByRegistrationNumber(String reg);
+
+
+
 
 
 }

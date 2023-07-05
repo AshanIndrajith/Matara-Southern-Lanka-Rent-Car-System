@@ -28,7 +28,7 @@ function saveVehicle() {
     formData.append("add_hour_price", additionalhour);
 
     
-    getreq(reg)
+    
     
   
     $.ajax({
@@ -40,6 +40,8 @@ function saveVehicle() {
       success: function (data) {
 
         alert("saved")
+
+        getreq(reg)
 
         window.location.href = "specification.html";
 
@@ -89,9 +91,6 @@ alert("hi")
      success:function(data){
  
       
- 
-   
-    
  
          window.location.href = "vehicleView.html";
      },
@@ -322,23 +321,34 @@ $(document).ready(function() {
 });
 
 
+function getreq(reg) {
+  alert(reg);
 
-
-
-function getreq(id) {
-
-
-
-
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/vehicle/getVehicles/" + reg,
+    async: true,
+    success: function(data) {
+      if (data.length > 0) {
+        let id = data[0].id;
+        let ins = data[0].insurence_date;
+        alert(ins);
+        // Construct the URL for the new page with query parameters
         var url = "specification.html" +
-          "?id=" + encodeURIComponent(id) ;
-        
+          "?id=" + encodeURIComponent(id);
+
         // Redirect the user to the new page
         window.location.href = url;
-
-        
+      } else {
+        console.log("No vehicles found");
       }
-    
+    },
+    error: function(xhr, status, error) {
+      console.log("Error:", error);
+    }
+  });
+}
+
 
 
 function saveSpecification() {
@@ -390,6 +400,60 @@ function saveSpecification() {
       }
   });
   }
+
+
+
+
+  
+function getVehicleId(id) {
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/vehicle/get/" + id,
+    async: true,
+    success: function(data) {
+      if (data != null) {
+        let id = data.id;
+        let title = data.title;
+        let regNumber = data.reg_number;
+        let insurence_date = data.insurence_date;
+        let revenue_license_date = data.revenue_license_date;
+        let image = data.imageName;
+        let dPrice = data.dprice;
+        let akmPrice = data.akmprice;
+        let addHourPrice = data.add_hour_price;
+
+
+ 
+        
+
+        // Construct the URL for the new page with query parameters
+        var url = "vehiclenewupdate.html" +
+          "?id=" + encodeURIComponent(id) +
+          "&title=" + encodeURIComponent(title) +
+          "&reg_number=" + encodeURIComponent(regNumber) +
+          "&insurence_date=" + encodeURIComponent(insurence_date) +
+          "&revenue_license_date=" + encodeURIComponent(revenue_license_date) +
+          "&image=" + encodeURIComponent(image)+
+          "&dprice=" + encodeURIComponent(dPrice) +
+          "&akmPrice=" + encodeURIComponent(akmPrice)+
+          "&add_hour_price=" + encodeURIComponent(addHourPrice);
+          
+
+       
+
+        // Redirect the user to the new page
+        window.location.href = url;
+
+        
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log("Error:", error);
+    }
+  });
+}
+
+
 
 
   

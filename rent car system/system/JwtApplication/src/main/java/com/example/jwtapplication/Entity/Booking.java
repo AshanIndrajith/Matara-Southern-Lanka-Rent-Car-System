@@ -12,15 +12,15 @@ public class Booking {
     private Long id;
 
 
-    @Column(name = "cus_name")
+    @Column(name = "customer_name")
     private String cus_name;
-    @Column(name = "cus_nic")
+    @Column(name = "customer_nic")
     private String cus_nic;
 
-    @Column(name = "cus_email")
+    @Column(name = "customer_email")
     private String cus_email;
 
-    @Column(name = "cus_phone")
+    @Column(name = "customer_phone")
     private String cus_phone;
 
     @Column(name = "vehicle_id")
@@ -44,24 +44,35 @@ public class Booking {
     @Column(name = "is_deleted")
     private String is_deleted;
 
+    @Column(name = "is_service_out")
+    private String service_out;
+
 
     public Booking() {
     }
 
-    public Booking(Long id, String cus_nic, String cus_email, String cus_phone, String vehicle_id, String to_date, String posting_date, String status, String is_deleted,String from_date,String cus_name) {
+    public Booking(Long id, String cus_name, String cus_nic, String cus_email, String cus_phone, String vehicle_id, String from_date, String to_date, String posting_date, String status, String is_deleted, String service_out) {
         this.id = id;
+        this.cus_name = cus_name;
         this.cus_nic = cus_nic;
         this.cus_email = cus_email;
         this.cus_phone = cus_phone;
         this.vehicle_id = vehicle_id;
+        this.from_date = from_date;
         this.to_date = to_date;
         this.posting_date = posting_date;
         this.status = status;
         this.is_deleted = is_deleted;
-        this.from_date=from_date;
-        this.cus_name=cus_name;
+        this.service_out = service_out;
     }
 
+    public String getService_out() {
+        return service_out;
+    }
+
+    public void setService_out(String service_out) {
+        this.service_out = service_out;
+    }
 
     public Long getId() {
         return id;

@@ -1,5 +1,7 @@
 getAllBooking() 
 getAllReqBooking()
+getAllVehicle()
+getAllByService()
 function saveBooking() {
   
  
@@ -169,6 +171,56 @@ function rejectedStatusBooking(id) {
 
 
 
+
+
+
+function getAllBooking() {
+    $.ajax({
+      method: "GET",
+      url: "http://localhost:8080/booking/view",
+      success: function(data) {
+        $('#RentTable tbody').empty();
+  
+        for (let booking of data) {
+          let id = booking.id;
+          let cusName = booking.cus_name;
+          let cusNIC = booking.cus_nic;
+          let cusEmail = booking.cus_email;
+          let cusPhone = booking.cus_phone;
+          let vehicleID = booking.vehicle_id;
+          let fromDate = booking.from_date;
+          let toDate = booking.to_date;
+          let  status=booking.status;
+
+
+          if( status== '1'){
+
+            let newRow = `<tr>
+            <td>${id}</td>
+            <td>${cusName}</td>
+            <td>${cusNIC}</td>
+            <td>${cusEmail}</td>
+            <td>${cusPhone}</td>
+            <td>${vehicleID}</td>
+            <td>${fromDate}</td>
+            <td>${toDate}</td>
+            <td>
+              <button type="button" class="update btn btn-success" onclick="getBookingDetails(${id})">Update</button><br><br>
+              <button type="button" onclick="deleteBooking(${id})" class="delete btn btn-danger">Delete</button>
+            </td>
+          </tr>`;
+          $('#RentTable tbody').append(newRow);
+
+          }
+
+    
+        }
+      },
+      error: function(xhr, status, error) {
+        console.log("Error:", error);
+      }
+    });
+  }
 
 
 
@@ -432,13 +484,8 @@ function saveeBooking() {
    var vehicleID= $("#vid").val();
    var fromDate= $("#fromDate").val();
    var toDate= $("#toDate").val();
+   var status= 1;
 
-
-
-
-   
-
- 
 
   // Send AJAX request
   $.ajax({
@@ -453,16 +500,12 @@ function saveeBooking() {
         "cus_phone": phone,
         "vehicle_id": vehicleID,
         "from_date": fromDate,
+        "status":status,
         "to_date": toDate
       }),
       success: function (data) {
 
-          swal({
-              title: "Good job!",
-              text: "saved!",
-              icon: "success",
-              button: "OK!",
-            })
+          alert('save')
      
           resetForm();
       },
@@ -477,6 +520,138 @@ function saveeBooking() {
 }
 
 
+
+
+
+function getAllVehicle() {
+  $.ajax({
+      method: "GET",
+      url: "http://localhost:8080/vehicle/available",
+      success: function(data) {
+          // Clear existing table rows
+          $('#AvgTable tbody').empty();
+
+          // Loop through the array and create table rows dynamically
+          for (let i = 0; i < data.length; i++) {
+              let vehicle = data[i];
+              let id = vehicle.id;
+              let title = vehicle.title;
+              let regNumber = vehicle.reg_number;
+              let insurence_date = vehicle.insurence_date;
+              let revenue_license_date = vehicle.revenue_license_date;
+              let image = vehicle.imageName;
+              let dPrice = vehicle.dprice;
+              let akmPrice = vehicle.akmprice;
+              let addHourPrice = vehicle.add_hour_price;
+
+
+             
+
+              let newRow = '<tr>' +
+                  '<td>' + id + '</td>' +
+                  '<td>' + title + '</td>' +
+                  '<td>' + regNumber + '</td>' +
+                  '<td>' + insurence_date + '</td>' +
+                  '<td>' + revenue_license_date + '</td>' +
+                  '<td><img src="../../system/JwtApplication/vehicle/'+ id +'/'+ image +'" width="100px"></td>' +
+                  '<td>  <label> Rs :</label>'+ dPrice + '<label> .00</label></td>'+
+                  '<td>  <label> Rs :</label>'+ akmPrice + '<label> .00</label></td>'+
+                  '<td>  <label> Rs :</label>'+ addHourPrice + '<label> .00</label></td>'+
+                  
+                  '<td><button type="button" class="update btn btn-success" onclick="getVehicleId(' + id + ')" >Booking</button></td>'
+                  // Add other table cells as needed
+                  '</tr>';
+              $('#AvgTable tbody').append(newRow);
+          }
+      },
+      error: function(xhr, status, error) {
+          // Handle the error response
+          console.log("Error:", error);
+      }
+  });
+}
+
+
+
+
+
+function getAllByService() {
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/booking/byService",
+    success: function(data) {
+      $('#return tbody').empty();
+
+      for (let booking of data) {
+        let id = booking.id;
+        let cusName = booking.cus_name;
+        let cusNIC = booking.cus_nic;
+        let cusEmail = booking.cus_email;
+        let cusPhone = booking.cus_phone;
+
+        let fromDate = booking.from_date;
+        let toDate = booking.to_date;
+       
+
+
+       
+
+          let newRow = `<tr>
+          <td>${id}</td>
+          <td>${cusName}</td>
+          <td>${cusNIC}</td>
+          <td>${cusEmail}</td>
+          <td>${cusPhone}</td>
+          <td>${fromDate}</td>
+          <td>${toDate}</td>
+          <td>
+            <button type="button" class="update btn btn-danger" onclick="updateReturnBooking(${id})">Reseved</button><br><br>
+           
+          </td>
+        </tr>`;
+        $('#return tbody').append(newRow);
+
+        
+
+  
+      }
+    },
+    error: function(xhr, status, error) {
+      console.log("Error:", error);
+    }
+  });
+}
+
+function updateReturnBooking(id) {
+  $.ajax({
+    method: "PUT",
+    url: "http://localhost:8080/booking/updateReturn/" + id,
+    contentType: "application/json",
+    data: JSON.stringify({
+      // Update any relevant properties here
+    }),
+    success: function(response) {
+      // Handle the successful response
+      //console.log("Booking status updated:", response);
+
+      swal({
+        title: "Good job!",
+        text: "suceesfully accepted!",
+        icon: "success",
+        button: "ok!",
+      });
+     
+      getAllBooking();
+      window.location.href="BookingView.html"
+     
+    },
+    error: function(xhr, status, error) {
+      // Handle the error response
+      console.log("Error updating booking status:", error);
+      // You can display an error message or perform alternative actions
+    }
+  });
+}
 
 
 

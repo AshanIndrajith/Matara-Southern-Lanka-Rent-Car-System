@@ -1,12 +1,15 @@
 package com.example.jwtapplication.Service;
 
 
-import com.example.jwtapplication.Entity.Damage;
+import com.example.jwtapplication.Entity.Booking;
 import com.example.jwtapplication.Entity.Vehicle;
+import com.example.jwtapplication.Repository.BookingRepo;
 import com.example.jwtapplication.Repository.VehicleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +21,13 @@ public class VehicleService implements VehicleServiceImpl{
     @Autowired
     private VehicleRepo vehicleRepo;
 
-    public VehicleService(VehicleRepo vehicleRepo) {
+    @Autowired
+    private BookingRepo bookingRepo;
+
+    public VehicleService(VehicleRepo vehicleRepo, BookingRepo bookingRepo) {
         super();
         this.vehicleRepo = vehicleRepo;
+        this.bookingRepo = bookingRepo;
     }
 
     @Override
@@ -53,4 +60,18 @@ public class VehicleService implements VehicleServiceImpl{
     public int getTotalVehicle() {
         return vehicleRepo.getTotalVehicle();
     }
+
+
+    @Override
+    public List<Vehicle> findAvailableVehicles() {
+        return vehicleRepo.findAvailableVehiclesByDate();
+    }
+
+    @Override
+    public List<Vehicle> findIdByRegistrationNumber(String reg) {
+
+        return vehicleRepo.findIdByRegistrationNumber(reg);
+    }
+
+
 }

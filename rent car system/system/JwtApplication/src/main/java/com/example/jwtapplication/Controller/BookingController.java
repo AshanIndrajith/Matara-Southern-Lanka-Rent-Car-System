@@ -103,11 +103,36 @@ public class BookingController {
     }
 
 
+    @GetMapping("/byService")
+    public ResponseEntity<List<Booking>> ServiceOutVehicle() {
+        List<Booking> service = bookingService.ServiceOutVehicle();
+        if (!service.isEmpty()) {
+            return ResponseEntity.ok(service);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @PutMapping("/updateReturn/{id}")
+    public ResponseEntity<?> updateReturnBooking(@PathVariable("id") Long id, @RequestBody Booking updateReturn) {
+        Booking eBooking = bookingService.getBookingById(id);
+        if (eBooking != null) {
+            eBooking.setService_out("0");
+            Booking updatedReturnBookingObj = bookingService.updateReturnBooking(eBooking);
+            return ResponseEntity.ok(updatedReturnBookingObj);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateStatusBooking(@PathVariable("id") Long id, @RequestBody Booking updateReqBooking) {
         Booking existingReqBooking = bookingService.getBookingById(id);
         if (existingReqBooking != null) {
             existingReqBooking.setStatus("1");
+            existingReqBooking.setService_out("1");
             Booking updatedReqBookingObj = bookingService.updateBooking(existingReqBooking);
             return ResponseEntity.ok(updatedReqBookingObj);
         } else {
@@ -141,6 +166,10 @@ public class BookingController {
         int All = bookingService.getAllBookings();
         return ResponseEntity.ok(All);
     }
+
+
+
+
 
 
 }

@@ -264,46 +264,92 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div class="container">
-
-                <div class="card shadow " style="margin-right:20px;">
-                    <div class="card-header py-3">
-                        <h4 class="m-0 font-weight-bold text-dark" style="text-align: center;font-family: cursive;">Vehicle Information Details</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered w-auto" id="AvgTable" width="100%" cellspacing="0" >
-                                <thead class="bg-gradient-dark text-white">
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Title</th>
-                                        <th>Registration Number</th>
-                                        <th>Insurence Date</th>
-                                        <th>Revenuelicense Date</th>
-                                        <th>Image</th>
-                                        <th>Day Price</th>
-                                        <th>Additional Km Price</th>
-                                        <th>Additional Hour Price</th>
-                                        
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   
-                                
-                                   
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
+          
                 
         
-            </div>
+            
 
 
-                
+                <div class="container">
+
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-5 d-none d-lg-block" style="padding-top:50px;">
+                                    <img src="img/customer.jpg" width="80%">
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Insert Vehicle Booking Details!</h1>
+                                        </div>
+                                        <form class="user" id="bookingForm">
+
+                                            <script>
+
+                                                $(document).ready(function() {
+                            
+                                                
+                                                // Read the query parameters from the URL
+                                                var params = new URLSearchParams(window.location.search);
+                                                var id = params.get("id");
+                                               
+                            
+                                                // Set the values of the elements on the page
+                                                $('#vid').val(id);
+                                               
+                            
+                                            });
+                            
+                                            </script>
+                                             <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="vid" placeholder="Vehicle ID">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="cname" placeholder="Customer Name" required/>
+                                            </div>
+                                        
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" id="cnic" placeholder="Customer NIC">
+                                            </div>
+                                        
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="email" class="form-control form-control-user" id="email" placeholder="Email">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-user" id="phone" placeholder="Mobile Phone">
+                                                </div>
+                                            </div>
+                                        
+                                            
+                                        
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label for="fromDate" class="input-label" style="padding-left:50px;">From Date</label>
+                                                    <input type="date" class="form-control form-control-user" id="fromDate" placeholder="From Date">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="toDate" class="input-label" style="padding-left:50px;">To Date</label>
+                                                    <input type="date" class="form-control form-control-user" id="toDate" placeholder="To Date">
+                                                </div>
+                                            </div>
+                                        
+                                            <button type="button" class="submit btn btn-primary btn-user btn-block" onclick="saveeBooking()">Submit</button>
+                                            <button type="reset" class="reset btn btn-danger btn-user btn-block">Reset</button>
+                                        </form>
+                                        
+                                     
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
             
             
             

@@ -13,6 +13,9 @@ public interface BookingRepo extends CrudRepository<Booking, Long> {
     @Query(value = "SELECT * FROM booking WHERE status = '0' LIMIT 10", nativeQuery = true)
     List<Booking> findAllByStatus();
 
+    @Query(value = "SELECT * FROM booking WHERE is_service_out = '1' ;", nativeQuery = true)
+    List<Booking> ServiceOutVehicle();
+
 
     @Query(value = "SELECT COUNT(*) FROM booking WHERE status = '0'", nativeQuery = true)
     int getTotalBookings();

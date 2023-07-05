@@ -61,6 +61,11 @@ public class BookingService implements BookingServiceImpl {
         return bookingRepo.save(booking);
     }
 
+    public List<Booking> ServiceOutVehicle() {
+        return bookingRepo.ServiceOutVehicle();
+    }
+
+
     public List<Booking> findAllByStatus() {
         return bookingRepo.findAllByStatus();
     }
@@ -75,6 +80,11 @@ public class BookingService implements BookingServiceImpl {
     @Override
     public int getAllBookings() {
         return bookingRepo.getAllBookings();
+    }
+
+    @Override
+    public Booking updateReturnBooking(Booking booking) {
+        return bookingRepo.save(booking);
     }
 
 }

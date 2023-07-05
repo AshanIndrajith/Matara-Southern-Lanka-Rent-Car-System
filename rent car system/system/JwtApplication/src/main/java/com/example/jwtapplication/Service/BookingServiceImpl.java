@@ -35,4 +35,8 @@ public interface BookingServiceImpl {
 
     public int getAllBookings();
 
+    public List<Booking> ServiceOutVehicle();
+
+    public Booking updateReturnBooking(Booking booking);
+
 }
