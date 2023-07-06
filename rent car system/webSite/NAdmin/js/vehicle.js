@@ -329,6 +329,8 @@ $(document).ready(function() {
 
 
 function getreq(reg) {
+
+  console.log(reg);
  
 
   $.ajax({

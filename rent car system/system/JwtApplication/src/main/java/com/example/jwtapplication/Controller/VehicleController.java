@@ -119,9 +119,9 @@ public class VehicleController {
 
 
 
-    @GetMapping("/available")
-    public ResponseEntity<List<Vehicle>> avgVehicle() {
-        Iterable<Vehicle> avgList =vehicleService.findAvailableVehicles();
+    @GetMapping("/available/{date}")
+    public ResponseEntity<List<Vehicle>> avgVehicle(@PathVariable String date) {
+        Iterable<Vehicle> avgList =vehicleService.findAvailableVehicles(date);
         return ResponseEntity.ok((List<Vehicle>) avgList);
     }
 
@@ -143,6 +143,16 @@ public class VehicleController {
         return ResponseEntity.ok(vehicles);
     }
 
+
+
+    @GetMapping("/available")
+    public ResponseEntity<List<Vehicle>> getAvailableVehicles(
+            @RequestParam("fromDate") String fromDate,
+            @RequestParam("toDate") String toDate
+    ) {
+        List<Vehicle> availableVehicles = vehicleService.findAvailableVehicles(fromDate, toDate);
+        return ResponseEntity.ok(availableVehicles);
+    }
 
 
 

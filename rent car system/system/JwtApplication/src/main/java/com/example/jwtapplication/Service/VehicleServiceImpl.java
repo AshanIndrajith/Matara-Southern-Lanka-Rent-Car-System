@@ -21,9 +21,11 @@ public interface VehicleServiceImpl {
 
     public int getTotalVehicle();
 
-    public List<Vehicle> findAvailableVehicles() ;
+    public List<Vehicle> findAvailableVehicles(String date) ;
 
     public List<Vehicle>  findIdByRegistrationNumber(String reg);
+
+    public List<Vehicle> findAvailableVehicles(String fromDate, String toDate);
 
 
 

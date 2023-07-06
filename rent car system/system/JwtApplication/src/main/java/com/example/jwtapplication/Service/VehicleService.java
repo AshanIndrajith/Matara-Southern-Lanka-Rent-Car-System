@@ -63,8 +63,8 @@ public class VehicleService implements VehicleServiceImpl{
 
 
     @Override
-    public List<Vehicle> findAvailableVehicles() {
-        return vehicleRepo.findAvailableVehiclesByDate();
+    public List<Vehicle> findAvailableVehicles(String date) {
+        return vehicleRepo.findAvailableVehiclesByDate(date);
     }
 
     @Override
@@ -72,6 +72,15 @@ public class VehicleService implements VehicleServiceImpl{
 
         return vehicleRepo.findIdByRegistrationNumber(reg);
     }
+
+
+    @Override
+    public List<Vehicle> findAvailableVehicles(String fromDate, String toDate) {
+        return vehicleRepo.findAvailableVehiclesByDate(fromDate, toDate);
+    }
+
+
+
 
 
 }

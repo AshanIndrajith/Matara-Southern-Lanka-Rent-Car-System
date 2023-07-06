@@ -20,12 +20,15 @@ public interface VehicleRepo extends CrudRepository<Vehicle, Integer> {
     int getTotalVehicle();
 
 
-    @Query(value = "SELECT * FROM vehicle WHERE id NOT IN (SELECT vehicle_id FROM booking WHERE '2023-07-15' BETWEEN from_date AND to_date);", nativeQuery = true)
-    List<Vehicle> findAvailableVehiclesByDate();
+    @Query(value = "SELECT * FROM vehicle WHERE id NOT IN (SELECT vehicle_id FROM booking WHERE :date BETWEEN from_date AND to_date);", nativeQuery = true)
+    List<Vehicle> findAvailableVehiclesByDate(@Param("date") String date);
 
 
-//    @Query(value = "SELECT * FROM vehicle WHERE registered_number = 'ws 1334'", nativeQuery = true)
-//    List<Vehicle> findIdByRegistrationNumber(String reg);
+    @Query(value = "SELECT * FROM vehicle WHERE id NOT IN (SELECT vehicle_id FROM booking WHERE :fromDate BETWEEN from_date AND to_date OR :toDate BETWEEN from_date AND to_date);", nativeQuery = true)
+    List<Vehicle> findAvailableVehiclesByDate(String fromDate, String toDate);
+
+
+
 
 
     @Query(value = "SELECT * FROM vehicle WHERE registered_number = :reg", nativeQuery = true)

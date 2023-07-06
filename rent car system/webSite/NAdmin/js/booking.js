@@ -1,6 +1,6 @@
 getAllBooking() 
 getAllReqBooking()
-getAllVehicle()
+
 getAllByService()
 function saveBooking() {
   
@@ -49,7 +49,7 @@ function saveBooking() {
 
 
 
-
+// Delete vehicle booking
 
 function deleteBooking(empID){
 
@@ -71,7 +71,7 @@ function deleteBooking(empID){
         async:true,
     
         success:function(data){
-            alert("deleted");
+           
             getAllBooking() 
         },
         error:function(xhr,exception){
@@ -473,6 +473,10 @@ $(document).ready(function() {
 
 
 
+
+
+
+
   
 function saveeBooking() {
  
@@ -505,9 +509,17 @@ function saveeBooking() {
       }),
       success: function (data) {
 
-          alert('save')
+        swal({
+          title: "Good job!",
+          text: "Booking is added successfully!",
+          icon: "success",
+          button: "ok!",
+        });
+
+
+        window.location.href = "BookingView.html";
      
-          resetForm();
+         
       },
       error: function (xhr, status, error) {
           if (error.hasOwnProperty('message')) {
@@ -523,53 +535,163 @@ function saveeBooking() {
 
 
 
+
+
+
+
+// function getAllVehicle() {
+
+ 
+
+//   var date = $("#toDate").val();
+
+//   $.ajax({
+//     method: "GET",
+//     url: "http://localhost:8080/vehicle/available/" + date,
+//     success: function(data) {
+//       // Clear existing table rows
+//       $('#AvgTable tbody').empty();
+
+//       // Loop through the array and create table rows dynamically
+//       for (let i = 0; i < data.length; i++) {
+//         let vehicle = data[i];
+//         let id = vehicle.id;
+//         let title = vehicle.title;
+//         let regNumber = vehicle.reg_number;
+//         let insurance_date = vehicle.insurence_date;
+//         let revenue_license_date = vehicle.revenue_license_date;
+//         let image = vehicle.imageName;
+//         let dPrice = vehicle.dprice;
+//         let akmPrice = vehicle.akmprice;
+//         let addHourPrice = vehicle.add_hour_price;
+
+//         let newRow = '<tr>' +
+//           '<td>' + id + '</td>' +
+//           '<td>' + title + '</td>' +
+//           '<td>' + regNumber + '</td>' +
+//           '<td>' + insurance_date + '</td>' +
+//           '<td>' + revenue_license_date + '</td>' +
+//           '<td><img src="../../system/JwtApplication/vehicle/' + id + '/' + image + '" width="100px"></td>' +
+//           '<td>  <label> Rs :</label>' + dPrice + '<label> .00</label></td>' +
+//           '<td>  <label> Rs :</label>' + akmPrice + '<label> .00</label></td>' +
+//           '<td>  <label> Rs :</label>' + addHourPrice + '<label> .00</label></td>' +
+//           '<td><button type="button" class="update btn btn-success" onclick="getVehicleId(' + id + ')" >Booking</button></td>' +
+//           '</tr>';
+//         $('#AvgTable tbody').append(newRow);
+//       }
+
+  
+
+//     },
+//     error: function(xhr, status, error) {
+//       // Handle the error response
+//       console.log("Error:", error);
+//     }
+//   });
+// }
+
+
+
+
+
 function getAllVehicle() {
+
+ 
+ 
+  var fromDate = $("#fromDate").val();
+  var toDate = $("#toDate").val();
+
+
+  alert(fromDate);
+  alert(toDate);
+
+
+
   $.ajax({
-      method: "GET",
-      url: "http://localhost:8080/vehicle/available",
-      success: function(data) {
-          // Clear existing table rows
-          $('#AvgTable tbody').empty();
+    method: "GET",
+    url: "http://localhost:8080/vehicle/available?fromDate=" + fromDate + "&toDate=" + toDate,
+    success: function(data) {
+      // Clear existing table rows
+      $('#AvgTable tbody').empty();
 
-          // Loop through the array and create table rows dynamically
-          for (let i = 0; i < data.length; i++) {
-              let vehicle = data[i];
-              let id = vehicle.id;
-              let title = vehicle.title;
-              let regNumber = vehicle.reg_number;
-              let insurence_date = vehicle.insurence_date;
-              let revenue_license_date = vehicle.revenue_license_date;
-              let image = vehicle.imageName;
-              let dPrice = vehicle.dprice;
-              let akmPrice = vehicle.akmprice;
-              let addHourPrice = vehicle.add_hour_price;
+      // Loop through the array and create table rows dynamically
+      for (let i = 0; i < data.length; i++) {
+        let vehicle = data[i];
+        let id = vehicle.id;
+        let title = vehicle.title;
+        let regNumber = vehicle.reg_number;
+        let insurance_date = vehicle.insurence_date;
+        let revenue_license_date = vehicle.revenue_license_date;
+        let image = vehicle.imageName;
+        let dPrice = vehicle.dprice;
+        let akmPrice = vehicle.akmprice;
+        let addHourPrice = vehicle.add_hour_price;
 
-
-             
-
-              let newRow = '<tr>' +
-                  '<td>' + id + '</td>' +
-                  '<td>' + title + '</td>' +
-                  '<td>' + regNumber + '</td>' +
-                  '<td>' + insurence_date + '</td>' +
-                  '<td>' + revenue_license_date + '</td>' +
-                  '<td><img src="../../system/JwtApplication/vehicle/'+ id +'/'+ image +'" width="100px"></td>' +
-                  '<td>  <label> Rs :</label>'+ dPrice + '<label> .00</label></td>'+
-                  '<td>  <label> Rs :</label>'+ akmPrice + '<label> .00</label></td>'+
-                  '<td>  <label> Rs :</label>'+ addHourPrice + '<label> .00</label></td>'+
-                  
-                  '<td><button type="button" class="update btn btn-success" onclick="getVehicleId(' + id + ')" >Booking</button></td>'
-                  // Add other table cells as needed
-                  '</tr>';
-              $('#AvgTable tbody').append(newRow);
-          }
-      },
-      error: function(xhr, status, error) {
-          // Handle the error response
-          console.log("Error:", error);
+        let newRow = '<tr>' +
+          '<td>' + id + '</td>' +
+          '<td>' + title + '</td>' +
+          '<td>' + regNumber + '</td>' +
+          '<td>' + insurance_date + '</td>' +
+          '<td>' + revenue_license_date + '</td>' +
+          '<td><img src="../../system/JwtApplication/vehicle/' + id + '/' + image + '" width="100px"></td>' +
+          '<td>  <label> Rs :</label>' + dPrice + '<label> .00</label></td>' +
+          '<td>  <label> Rs :</label>' + akmPrice + '<label> .00</label></td>' +
+          '<td>  <label> Rs :</label>' + addHourPrice + '<label> .00</label></td>' +
+          '<td><button type="button" class="update btn btn-success" onclick="getVehicleId(' + id + ')" >Booking</button></td>' +
+          '</tr>';
+        $('#AvgTable tbody').append(newRow);
       }
+
+  
+
+    },
+    error: function(xhr, status, error) {
+      // Handle the error response
+      console.log("Error:", error);
+    }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -591,9 +713,6 @@ function getAllByService() {
 
         let fromDate = booking.from_date;
         let toDate = booking.to_date;
-       
-
-
        
 
           let newRow = `<tr>
@@ -621,6 +740,16 @@ function getAllByService() {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
 
 function updateReturnBooking(id) {
   $.ajax({
@@ -656,3 +785,21 @@ function updateReturnBooking(id) {
 
 
 
+
+
+
+
+
+  
+function getVehicleId(id) {
+
+ 
+  var vid = id;
+
+
+  var url = "BookingInsertparttwo.html" +
+    "?id=" + encodeURIComponent(vid) ;
+   
+
+  window.location.href = url;
+}
