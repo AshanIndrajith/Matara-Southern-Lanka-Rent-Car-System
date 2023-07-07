@@ -32,6 +32,7 @@ public class SecurityConfig  {
                 .requestMatchers("/vehicle/**").permitAll()
                 .requestMatchers("/api/reports/**").permitAll()
                 .requestMatchers("/specification/**").permitAll()
+                .requestMatchers("/api/user/**").permitAll()
 
                 .anyRequest().authenticated()
                 .and()

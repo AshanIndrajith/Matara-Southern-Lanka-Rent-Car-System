@@ -44,7 +44,7 @@ function saveVehicle() {
         });
 
         getreq(reg)
-        window.location.href = "specification.html";
+        //window.location.href = "specification.html";
 
         
       },
@@ -87,6 +87,7 @@ function updateVehicle(){
          "add_hour_price":additionalhour,
      }),
      success:function(data){
+       
  
       swal({
         title: "Good job!",

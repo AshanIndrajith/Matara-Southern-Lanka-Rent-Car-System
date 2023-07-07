@@ -180,4 +180,34 @@ function resetForm() {
 
 
 
+// Get user details according to the email
+function getUserDetails() {
+  var email = "ashan@gmail.com";
 
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/api/user/getUser/" + email,
+    async: true,
+    success: function (data) {
+      if (data.length > 0) {
+        let id = data[0].id;
+        let name = data[0].firstname;
+
+
+        alert(id,name)
+        
+        // Construct the URL for the new page with query parameters
+        var url = "specification.html" +
+          "?id=" + encodeURIComponent(id);
+
+        // Redirect the user to the new page
+        window.location.href = url;
+      } else {
+        console.log("No vehicles found");
+      }
+    },
+    error: function (xhr, status, error) {
+      console.log("Error:", error);
+    }
+  });
+}

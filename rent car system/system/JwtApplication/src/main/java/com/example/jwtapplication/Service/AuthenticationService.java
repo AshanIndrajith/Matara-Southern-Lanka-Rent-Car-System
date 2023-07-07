@@ -3,14 +3,18 @@ package com.example.jwtapplication.Service;
 import com.example.jwtapplication.Configuration.AuthenticationRequest;
 import com.example.jwtapplication.Configuration.AuthenticationResponse;
 import com.example.jwtapplication.Configuration.RegisterRequest;
+import com.example.jwtapplication.Entity.Vehicle;
 import com.example.jwtapplication.Model.Role;
 import com.example.jwtapplication.Model.User;
 import com.example.jwtapplication.Repository.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +24,8 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
+
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user= User.builder()
@@ -54,5 +60,10 @@ public class AuthenticationService {
                 .Token(jwtToken)
                 .build();
 
+    }
+
+
+    public List<User> findByUserEmail(String email) {
+        return userRepo.findByUserEmail(email);
     }
 }
