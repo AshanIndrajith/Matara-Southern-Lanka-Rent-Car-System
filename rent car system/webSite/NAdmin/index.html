@@ -24,6 +24,7 @@
     <script src="js/booking.js"></script>
     <script src="js/customer.js"></script>
     <script src="js/vehicle.js"></script>
+    <script src="js/Authentication.js"></script>
 
 </head>
 
@@ -218,7 +219,23 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin1</span>
+                                <script>
+                                    $(document).ready(function() {
+                                            // Read the query parameters from the URL
+                                            var params = new URLSearchParams(window.location.search);
+                                            var id = params.get("id");
+                                          
+                                         
+
+                                            // Set the values of the elements on the page
+                                             $('#fname').val(name);
+                                            
+                                           
+                                        });
+
+                                    
+                                </script>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="fname">Admin1</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>

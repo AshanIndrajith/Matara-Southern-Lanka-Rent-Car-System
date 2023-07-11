@@ -57,9 +57,32 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create An Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">update An Account!</h1>
                             </div>
                             <form class="user">
+
+
+                                <script>
+                                    $(document).ready(function() {
+                                            // Read the query parameters from the URL
+                                            var params = new URLSearchParams(window.location.search);
+                                            var id = params.get("id");
+                                            var name = params.get("name");
+                                             var lname = params.get("lname");
+                                             var email = params.get("email");
+                                             var password = params.get("password");
+                                         
+
+                                            // Set the values of the elements on the page
+                                             $('#fname').val(name);
+                                             $('#lname').val(lname);
+                                             $('#email').val(email);
+                                             $('#password').val(password);
+                                           
+                                        });
+
+                                    
+                                </script>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="fname"
@@ -78,7 +101,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="pass"
+                                        <input type="password" class="form-control form-control-user" id="password"
                                             placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
@@ -86,7 +109,7 @@
                                             placeholder="confirm password">
                                     </div>
                                 </div>
-                                <button type="button" class="Login btn btn-warning btn-user btn-block text-dark" onclick="getUserDetails()">Register</button>
+                                <button type="button" class="Login btn btn-warning btn-user btn-block text-dark" onclick="">Update</button>
                               
                               
                             </form>

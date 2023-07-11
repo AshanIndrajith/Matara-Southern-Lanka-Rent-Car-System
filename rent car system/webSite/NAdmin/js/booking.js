@@ -602,8 +602,7 @@ function getAllVehicle() {
   var toDate = $("#toDate").val();
 
 
-  alert(fromDate);
-  alert(toDate);
+
 
 
 

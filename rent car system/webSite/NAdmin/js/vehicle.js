@@ -1,6 +1,8 @@
 getAllVehicle()
 
 
+
+//save vehicle
 function saveVehicle() {
 
     let title = $('#title').val();
@@ -12,6 +14,40 @@ function saveVehicle() {
     let dayprice = $('#dayprice').val();
     let additionalkm = $('#additionalkm').val();
     let additionalhour = $('#additionalhour').val();
+
+
+
+    if (title.trim() === '') {
+      swal("Title is required!");
+      return;
+    }
+    if (reg.trim() === '') {
+      swal("Registration number is required");
+      return;
+    }
+    if (idate.trim() === '') {
+      swal("Insurance date is required!");
+      return;
+    }
+    if (rdate.trim() === '') {
+      swal("Revenue license date is required!");
+      return;
+    }
+  
+    // Validation: Check if numeric for numeric fields
+    if (isNaN(parseFloat(dayprice))) {
+      swal("Please enter a numeric value for Day Price");
+      return;
+    }
+    if (isNaN(parseFloat(additionalkm))) {
+      swal("Please enter a numeric value for Additional Km Price");
+      return;
+    }
+    if (isNaN(parseFloat(additionalhour))) {
+      swal("Please enter a numeric value for Additional Hour Price");
+      return;
+    }
+  
 
   
     // Create a new FormData object
@@ -25,6 +61,7 @@ function saveVehicle() {
     formData.append("dprice", dayprice);
     formData.append("akmprice", additionalkm);
     formData.append("add_hour_price", additionalhour);
+
 
 
 
