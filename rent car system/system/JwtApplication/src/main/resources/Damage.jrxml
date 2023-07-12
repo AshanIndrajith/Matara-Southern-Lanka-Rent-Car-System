@@ -32,7 +32,7 @@
                     <textElement textAlignment="Right">
                         <font size="14" isBold="false"/>
                     </textElement>
-                    <text><![CDATA[Employee Reports]]></text>
+                    <text><![CDATA[Damage Reports]]></text>
                 </staticText>
             </frame>
         </band>
