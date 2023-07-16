@@ -2,10 +2,10 @@ getAllDamage()
 
 function test(){
   
-  
 }
 
-function saveEmployee() {
+//Not completed yet
+function saveDamage() {
     let vid = $('#vid').val();
     let description = $('#description').val();
     let date = $('#date').val();
@@ -13,6 +13,17 @@ function saveEmployee() {
     let amount = $('#damount').val();
 
 
+    if (vid === '' || description === '' || date === '' || image === '' || amount === '') {
+
+      swal({
+        title: "Please fill in all fields",
+        button: {
+          className: "custom-button-class",
+        },
+      });
+     
+      return false;
+  }
 
     if (vid === '') {
 
@@ -27,9 +38,9 @@ function saveEmployee() {
   }
   
   // Check for special characters in Vehicle Id field
-  if (!/^[a-zA-Z0-9\s\-]+$/.test(vid)) {
+  if (!/^[A-Z]{2,3}-\d{4}$/.test(vid)) {
     swal({
-      title: "Enter Valid Register number :",
+      title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
       button: {
         className: "custom-button-class",
       },
@@ -71,9 +82,9 @@ function saveEmployee() {
       return false;
   }
   
-  if (damount === '') {
+  if (damount === '' || isNaN(parseFloat(amount))) {
     swal({
-      title: "Please enter an Amount",
+      title: "Invalid amount. Please enter a valid number.",
       button: {
         className: "custom-button-class",
       },
@@ -82,14 +93,9 @@ function saveEmployee() {
       return false;
   }
   
-  // // Validate Amount as a double
-  // if (isNaN(parseFloat(damount))) {
-  //     alert('Amount should be a valid number.');
-  //     return false;
-  // }
+  
 
-
-
+    
     // Create a new FormData object
     let formData = new FormData();
     formData.append("vehicle_id", vid);
@@ -130,7 +136,7 @@ function saveEmployee() {
         alert("Error occurred while saving damage");
       }
     });
-  }
+}
 
 function updateDamage(){
 
@@ -141,7 +147,52 @@ function updateDamage(){
  let date=$('#date').val();
  let amount=$('#amount').val();
 
+ if (id.trim() === "" || vID.trim() === "" || description.trim() === "" || date.trim() === "" || amount.trim() === "") {
+  swal({
+      title: "Please fill in all fields",
+      button: {
+          className: "custom-button-class",
+      },
+  });
+  return;
+}
 
+if (!/^[A-Z]{2,3}-\d{4}$/.test(vID)) {
+  swal({
+      title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
+      button: {
+          className: "custom-button-class",
+      },
+  });
+  return;
+}
+
+// // Create a new Date object for the given date
+// let selecteddate = new Date(date.val);
+
+// // Get the current date
+// const currentDate = new Date();
+
+// // Compare the two dates using getTime() method and check if the given date is in the future
+// if (selecteddate > currentDate) {
+//   swal({
+//     title: "Invalid Date. Please select the correct date",
+//     button: {
+//         className: "custom-button-class",
+//     },
+//   });
+//   return;
+// } 
+
+if (isNaN(parseFloat(amount))) {
+  swal({
+      title: "Invalid damage amount. Please enter a valid number.",
+      button: {
+          className: "custom-button-class",
+      },
+  });
+  return;
+}
 
 
 
@@ -329,5 +380,8 @@ function getDamageDetails(id) {
       }
     });
   }
+  
+
+
   
 
