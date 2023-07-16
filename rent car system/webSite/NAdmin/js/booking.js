@@ -16,7 +16,7 @@ function saveBooking() {
 
 
   alert(cname)
- 
+
 
   let formData = new FormData();
   formData.append("cusName", cname);
@@ -128,7 +128,6 @@ function updateStatusBooking(id) {
 function rejectedStatusBooking(id) {
 
 
-  
   swal({
     title: "Are you sure?",
     text: " Rejected selected data?",
@@ -358,9 +357,7 @@ function getAllBooking() {
     });
   }
 
-
-
-
+//update the booking details 
 
   function updateBooking() {
     let id = $('#empID').val();
@@ -372,28 +369,69 @@ function getAllBooking() {
 
   
     // Validation checks
-    if (name.trim() === "") 
-
-      {
+    if (name.trim() === "")
+    {
         swal({
-          title: "Invalid name. Please enter a valid name",
+          title: "Please fill in all fields",
           button: {
             className: "custom-button-class",
           },
         });
-       
+      
+      return;
+    }
+
+    if (!/^[a-zA-Z]+$/.test(name))
+    {
+      swal({
+        title: "Invalid Name. Alphabetic characters only.",
+        button: {
+          className: "custom-button-class",
+        },
+      });
     
       return;
+
     }
     
     if (email.trim() === "") {
-      alert("Email address is required.");
-      return;
+      swal({
+        title: "Please fill in all fields",
+        button: {
+          className: "custom-button-class",
+        },
+      });
+    
+    return;
     }
-    if (!/^\d{10}$/.test(phone)) {
+
+    if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
+      swal({
+        title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
+        button: {
+          className: "custom-button-class",
+        },
+      });
+    
+    return;
+    }
+
+    if (phone.trim() === "") {
 
       swal({
-        title: "Invalid phone number. Must be 10 digits.",
+        title: "Please fill in all fields",
+        button: {
+          className: "custom-button-class",
+        },
+      });
+    
+      return;
+    }
+    
+    if (!/^0\d{9}$/.test(phone)) {
+
+      swal({
+        title: "Invalid phone number. Must be 10 digits",
         button: {
           className: "custom-button-class",
         },
@@ -402,7 +440,13 @@ function getAllBooking() {
       return;
     }
     if (vid.trim() === "") {
-      alert("Address is required.");
+      swal({
+        title: "Please fill in all fields",
+        button: {
+          className: "custom-button-class",
+        },
+      });
+    
       return;
     }
   
@@ -490,6 +534,86 @@ function saveeBooking() {
    var toDate= $("#toDate").val();
    var status= 1;
 
+   // Validate customerName (alphabetic characters only)
+  if (!/^[a-zA-Z]+$/.test(customerName)) {
+    swal({
+      title: "Invalid Input",
+      text: "Please enter a valid customer name (only alphabetic characters are allowed).",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  // Validate customerNIC (9 numbers followed by V/v or 12 numbers only)
+  if (!/^(\d{9}[vV])|(\d{12})$/.test(customerNIC)) {
+    swal({
+      title: "Invalid Input",
+      text: "Please enter a valid CNIC (9 numbers followed by 'V' or 'v', or 12 numbers only).",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  //validate email ()
+  if(!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)){
+    swal({
+      title: "Invalid Input",
+      text: "Please enter a valid email with domain gmail, hotmail, or yahoo ending with .com.",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  //validate phone 
+  if(!/^0\d{9}$/.test(phone)){
+    swal({
+      title: "Invalid Input",
+      text: "Please enter a valid phone number. Must be 10 digits.",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  // Validate fromDate (future days from today)
+  var today = new Date();
+  today.setHours(0, 0, 0, 0); // Set hours to 0 to compare only the date part
+  if (fromDate <= today) {
+    swal({
+      title: "Invalid Input",
+      text: "Please select a date in the future for the 'From Date' field.",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  // Validate toDate (days after fromDate)
+  if (toDate <= fromDate) {
+    swal({
+      title: "Invalid Input",
+      text: "Please select a date after the 'From Date' for the 'To Date' field.",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+
+  
+  // let formData1 = new FormData();
+  // formData1.append("cus_name", customerName);
+  // formData1.append("cus_nic", customerNIC);
+  // formData1.append("cus_email", email);
+  // formData1.append("cus_phone", phone);
+  // formData1.append("vehicle_id", vehicleID);
+  // formData1.append("from_date", fromDate);
+  // formData1.append("to_date", toDate);
+  // formData1.append("status",status);
+  
 
   // Send AJAX request
   $.ajax({
@@ -602,7 +726,8 @@ function getAllVehicle() {
   var toDate = $("#toDate").val();
 
 
-
+  alert(fromDate);
+  alert(toDate);
 
 
 
