@@ -1,8 +1,6 @@
 getAllVehicle()
 
 
-
-//save vehicle
 function saveVehicle() {
 
     let title = $('#title').val();
@@ -14,41 +12,80 @@ function saveVehicle() {
     let dayprice = $('#dayprice').val();
     let additionalkm = $('#additionalkm').val();
     let additionalhour = $('#additionalhour').val();
+    
+
+    //validate the user entered data
+    if (title.trim() === "" || reg.trim() === "" || idate.trim() === "" || rdate.trim() === "" || !image || dayprice.trim() === "" || additionalkm.trim() === "" || additionalhour.trim() === "") {
+      swal({
+          title: "Please fill in all fields",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+    }
+    if (!/^[a-zA-Z\s]+$/.test(title)) {
+      swal({
+          title: "Invalid title. Alphabetic letters only.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+    }
+    if (!/^[A-Z]{2,3}-\d{4}$/.test(reg)) {
+      swal({
+          title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+    }
+
+    //revenue and Insurance should validate here
 
 
-
-    if (title.trim() === '') {
-      swal("Title is required!");
-      return;
+    
+    if (image) {
+      let fileExtension = image.name.split('.').pop().toLowerCase();
+      if (fileExtension === "gif" || fileExtension === "tiff") {
+          swal({
+              title: "Invalid image file. GIF and TIFF files are not allowed.",
+              button: {
+                  className: "custom-button-class",
+              },
+          });
+          return;
+      }
     }
-    if (reg.trim() === '') {
-      swal("Registration number is required");
-      return;
-    }
-    if (idate.trim() === '') {
-      swal("Insurance date is required!");
-      return;
-    }
-    if (rdate.trim() === '') {
-      swal("Revenue license date is required!");
-      return;
-    }
-  
-    // Validation: Check if numeric for numeric fields
     if (isNaN(parseFloat(dayprice))) {
-      swal("Please enter a numeric value for Day Price");
+      swal({
+          title: "Invalid day price. Please enter a valid number.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
       return;
     }
     if (isNaN(parseFloat(additionalkm))) {
-      swal("Please enter a numeric value for Additional Km Price");
+      swal({
+          title: "Invalid additional km price. Please enter a valid number.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
       return;
     }
     if (isNaN(parseFloat(additionalhour))) {
-      swal("Please enter a numeric value for Additional Hour Price");
+      swal({
+          title: "Invalid additional hour price. Please enter a valid number.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
       return;
     }
-  
-
   
     // Create a new FormData object
     let formData = new FormData();
@@ -61,7 +98,6 @@ function saveVehicle() {
     formData.append("dprice", dayprice);
     formData.append("akmprice", additionalkm);
     formData.append("add_hour_price", additionalhour);
-
 
 
 
@@ -81,7 +117,7 @@ function saveVehicle() {
         });
 
         getreq(reg)
-        //window.location.href = "specification.html";
+        window.location.href = "specification.html";
 
         
       },
@@ -91,10 +127,6 @@ function saveVehicle() {
     });
   }
 
-
-
-
-  
 function updateVehicle(){
 
 
@@ -106,6 +138,74 @@ function updateVehicle(){
     let dayprice = $('#dayprice').val();
     let additionalkm = $('#additionalkm').val();
     let additionalhour = $('#additionalhour').val();
+
+
+  if (title.trim() === "" || reg.trim() === "" || idate.trim() === "" || rdate.trim() === "" || !image || dayprice.trim() === "" || additionalkm.trim() === "" || additionalhour.trim() === "") {
+      swal({
+          title: "Please fill in all fields",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (!/^[a-zA-Z\s]+$/.test(title)) {
+      swal({
+          title: "Invalid title. Alphabetic letters only.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (!/^[A-Z]{2,3}-\d{4}$/.test(reg)) {
+      swal({
+          title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (image) {
+      let fileExtension = image.name.split('.').pop().toLowerCase();
+      if (fileExtension === "gif" || fileExtension === "tiff") {
+          swal({
+              title: "Invalid image file. GIF and TIFF files are not allowed.",
+              button: {
+                  className: "custom-button-class",
+              },
+          });
+          return;
+      }
+  }
+  if (isNaN(parseFloat(dayprice))) {
+      swal({
+          title: "Invalid day price. Please enter a valid number.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (isNaN(parseFloat(additionalkm))) {
+      swal({
+          title: "Invalid additional km price. Please enter a valid number.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (isNaN(parseFloat(additionalhour))) {
+      swal({
+          title: "Invalid additional hour price. Please enter a valid number.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  } 
 
 
   $.ajax({
@@ -124,7 +224,6 @@ function updateVehicle(){
          "add_hour_price":additionalhour,
      }),
      success:function(data){
-       
  
       swal({
         title: "Good job!",
@@ -192,19 +291,10 @@ function updateVehicle(){
   //     }
   //   });
   // }
-  
-
-
-
-
-
-
-
-
+ 
 
 function deleteVehicle(empID){
 
-  
  swal({
   title: "Are you sure?",
   text: "Permanently delete selected data ?",
@@ -229,11 +319,11 @@ function deleteVehicle(empID){
           alert("Error")
       }
    })
-    swal(" Vehicle detailes  is deleted!", {
+    swal(" Vehicle details  is deleted!", {
       icon: "success",
     });
   } else {
-    swal("Your detailes  is safe!");
+    swal("Your details  is safe!");
   }
 });
 
@@ -284,8 +374,7 @@ function getVehicleDetails(id) {
 
         // Redirect the user to the new page
         window.location.href = url;
-
-        
+  
       }
     },
     error: function(xhr, status, error) {
@@ -360,12 +449,6 @@ $(document).ready(function() {
 });
 
 
-
-
-
-
-
-
 function getreq(reg) {
 
   console.log(reg);
@@ -398,19 +481,10 @@ function getreq(reg) {
 
 
 
-
-
-
-
-
-
-
-
-
 function saveSpecification() {
 
     
- var reg =$("#regnum").val();
+   var reg =$("#regnum").val();
    var fuel= $("#fuel").val();
    var transmission=$("#transmission").val();
    var capacity= $("#capacity").val();
@@ -420,9 +494,67 @@ function saveSpecification() {
    var seat= $("#seat").val();
    var ac= $("#ac").val();
 
+   if (fuel.trim() === "" || transmission.trim() ==="" || capacity.trim() === "" || speed.trim()==="" || afuel.trim()==="" || door.trim()==="" || seat.trim()==="" || ac.trim()==="") {
+    swal({
+      title:"Please fill in the all fields",
+      className: "custom-button-class",
+      icon: "error",
+      button : "OK",
+    });
+    return;
+   }
 
+   if (!/^\d+$/.test(capacity)) {
+    swal({
+      title: "Invalid capacity value. Numeric characters only.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
 
+  if (!/^\d+(\.\d+)?$/.test(speed)) {
+    swal({
+      title: "Invalid top speed value. Numeric or double values only.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
 
+  if (!/^\d+(\.\d+)?$/.test(afuel)) {
+    swal({
+      title: "Invalid average fuel value. Numeric or double values only.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  if (!/^\d+$/.test(door)) {
+    swal({
+      title: "Invalid door value. Numeric characters only.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  if (!/^\d+$/.test(seat)) {
+    swal({
+      title: "Invalid seat value. Numeric characters only.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+  
   // Send AJAX request
   $.ajax({
       method: "POST",
@@ -462,11 +594,7 @@ function saveSpecification() {
       }
   });
   }
-
-
-
-
-  
+ 
 function getVehicleId(id) {
   $.ajax({
     method: "GET",
@@ -484,10 +612,6 @@ function getVehicleId(id) {
         let akmPrice = data.akmprice;
         let addHourPrice = data.add_hour_price;
 
-
- 
-        
-
         // Construct the URL for the new page with query parameters
         var url = "vehiclenewupdate.html" +
           "?id=" + encodeURIComponent(id) +
@@ -499,14 +623,10 @@ function getVehicleId(id) {
           "&dprice=" + encodeURIComponent(dPrice) +
           "&akmPrice=" + encodeURIComponent(akmPrice)+
           "&add_hour_price=" + encodeURIComponent(addHourPrice);
-          
-
-       
-
+        
         // Redirect the user to the new page
         window.location.href = url;
-
-        
+ 
       }
     },
     error: function(xhr, status, error) {
@@ -514,8 +634,3 @@ function getVehicleId(id) {
     }
   });
 }
-
-
-
-
-  
