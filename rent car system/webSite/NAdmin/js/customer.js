@@ -9,57 +9,75 @@ function saveCustomer() {
   let image = $('#image').prop('files')[0];
 
   // Validation checks
-  if (cname.trim() === "") {
+  if (cname.trim() === "" || nic.trim() === "" || email.trim() === "" || phone.trim() === "" || address.trim() === "" || !image) {
+      swal({
+          title: "Please fill in all fields",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (!/^[A-Za-z\s]+$/.test(cname)) {
+      swal({
+          title: "Invalid Name. Alphabetic characters only.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (!/^(\d{9}[vV]|\d{12})$/.test(nic)) {
+      swal({
+          title: "Invalid NIC. Must be 9 numbers followed by one 'v' or 'V' letter, or 10 numbers.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
+      swal({
+          title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
+  if (!/^0\d{9}$/.test(phone)) {
+      swal({
+          title: "Invalid phone number. Must be 10 digits.",
+          button: {
+              className: "custom-button-class",
+          },
+      });
+      return;
+  }
 
+  if (!/^[\w\s.,-]*$/.test(address)) {
     swal({
-      title: "Name  is required",
-      button: {
-        className: "custom-button-class",
-      },
+        title: "Invalid address. Only letters, numbers, spaces, and basic punctuation are allowed.",
+        button: {
+            className: "custom-button-class",
+        },
     });
-   
     return;
   }
-  if (!/^[0-9]+[a-zA-Z]$/.test(nic)) {
-    swal({
-      title: "Invalid NIC. Must be numeric followed by a single characte.",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-    
-    return;
+  
+  if (image) {
+      let fileExtension = image.name.split('.').pop().toLowerCase();
+      if (fileExtension === "gif" || fileExtension === "fiff") {
+          swal({
+              title: "Invalid image file. GIF and FIFF files are not allowed.",
+              button: {
+                  className: "custom-button-class",
+              },
+          });
+          return;
+      }
   }
-  if (email.trim() === "") {
-    swal({
-      title: "Email address is required",
-      button: {
-        className: "custom-button-class",
-      },
-    });
 
-    return;
-  }
-  if (!/^\d{10}$/.test(phone)) {
-    swal({
-      title: "Invalid phone number. Must be 10 digits",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-
-    return;
-  }
-  if (address.trim() === "") {
-    swal({
-      title: "Address is required",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-   
-    return;
-  }
 
   // Create a new FormData object
   let formData = new FormData();
@@ -91,7 +109,7 @@ function saveCustomer() {
      
     },
     error: function (xhr, exception) {
-      alert("Error occurred while saving damage");
+      alert("Error occurred while saving customer");
     }
   });
 }
@@ -147,56 +165,107 @@ function updateCustomer() {
   let address = $('#address').val();
 
   // Validation checks
+  // Validation checks
   if (name.trim() === "") {
+    swal({
+      title: "Please fill in Customer Name field",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
 
+  if (!/^[A-Za-z\s]+$/.test(name)) {
     swal({
-      title: "Invalid name. Please enter a valid name",
-      button: {
-        className: "custom-button-class",
-      },
+      title: "Invalid Name. Alphabetic characters only.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
     });
-     
-      return;
+    return;
   }
-  if (!/^[0-9]+[a-zA-Z]$/.test(nic)) {
+
+  if (nic.trim() === "") {
     swal({
-      title: "Invalid NIC. Must be numeric followed by a single character",
-      button: {
-        className: "custom-button-class",
-      },
+      title: "Please fill in Customer NIC field",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
     });
-     
-      return;
+    return;
   }
+
+
+  if (!/^(\d{9}[vV]|\d{12})$/.test(nic)) {
+    swal({
+      title: "Invalid NIC. Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
   if (email.trim() === "") {
     swal({
-      title: "Email address is required",
-      button: {
-        className: "custom-button-class",
-      },
+      title: "Please fill in Customer email field",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
     });
-   
-      return;
+    return;
   }
-  if (!/^\d{10}$/.test(phone)) {
+
+  if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
     swal({
-      title: "Invalid phone number. Must be 10 digits",
-      button: {
-        className: "custom-button-class",
-      },
+      title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
     });
-   
-      return;
+    return;
   }
+
+  if (phone.trim() === "") {
+    swal({
+      title: "Please fill in phone number field",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
+
+  if (!/^0\d{9}$/.test(phone)) {
+    swal({
+      title: "Invalid phone number. Must be 10 digits.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
+  }
+
   if (address.trim() === "") {
     swal({
-      title: "Address is required",
-      button: {
-        className: "custom-button-class",
-      },
+      title: "Please fill in address field",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
     });
-     
-      return;
+    return;
+  }
+
+  if (!/^[\w\s.,-]*$/.test(address)) {
+    swal({
+      title: "Invalid address. Only letters, numbers, spaces, and basic punctuation are allowed.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    });
+    return;
   }
 
   // AJAX request
@@ -231,8 +300,6 @@ function updateCustomer() {
 
 
 function deleteCustomer(empID){
-    
-
   
  swal({
   title: "Are you sure?",
@@ -258,11 +325,11 @@ function deleteCustomer(empID){
           alert("Error")
       }
    })
-    swal(" Damage detailes  is deleted!", {
+    swal(" customer  details  are deleted!", {
       icon: "success",
     });
   } else {
-    swal("Your detailes  is safe!");
+    swal("Your details  is safe!");
   }
 });
 
