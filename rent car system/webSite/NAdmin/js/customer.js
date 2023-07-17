@@ -29,7 +29,7 @@ function saveCustomer() {
   }
   if (!/^(\d{9}[vV]|\d{12})$/.test(nic)) {
       swal({
-          title: "Invalid NIC. Must be 9 numbers followed by one 'v' or 'V' letter, or 10 numbers.",
+          title: "Invalid NIC. Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
           button: {
               className: "custom-button-class",
           },
