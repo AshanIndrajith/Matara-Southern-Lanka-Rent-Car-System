@@ -361,94 +361,197 @@ function getAllBooking() {
 
   function updateBooking() {
     let id = $('#empID').val();
-    let name = $('#cname').val();
-    let nic = $('#nic').val();
-    let email = $('#email').val();
-    let phone = $('#phone').val();
+    let name = $('#cname').val().trim();
+    let nic = $('#cnic').val().trim();
+    let email = $('#email').val().trim();
+    let phone = $('#phone').val().trim();
     let vid = $('#vid').val();
 
+    if (name === "") {
+      swal({
+        title: "Required filed missing",
+        text: "Please fill in Customer name field.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#cname').focus(); // Focus on the invalid field
+      });
+      return;
+    }
   
-    // Validation checks
-    if (name.trim() === "")
-    {
-        swal({
-          title: "Please fill in all fields",
-          button: {
-            className: "custom-button-class",
-          },
-        });
-      
+    if (!/^[A-Za-z\s]+$/.test(name)) {
+      swal({
+        title: "Invalid Name.",
+        text: " Alphabetic characters only.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#cname').focus(); // Focus on the invalid field
+      });
       return;
     }
-
-    if (!/^[a-zA-Z]+$/.test(name))
-    {
+  
+    if (nic === "") {
       swal({
-        title: "Invalid Name. Alphabetic characters only.",
-        button: {
-          className: "custom-button-class",
-        },
+        title: "Required filed missing",
+        text: "Please fill in Customer NIC field.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#cnic').focus(); // Focus on the invalid field
       });
-    
       return;
-
     }
-    
-    if (email.trim() === "") {
+  
+    if (!/^(\d{9}[vV]|\d{12})$/.test(nic)) {
       swal({
-        title: "Please fill in all fields",
-        button: {
-          className: "custom-button-class",
-        },
+        title: "Invalid NIC.",
+        text: "Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#cnic').focus(); // Focus on the invalid field
       });
-    
-    return;
+      return;
     }
-
+  
+    if (email === "") {
+      swal({
+        title: "Required filed missing.",
+        text: "Please fill in Customer email field.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#email').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+  
     if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
       swal({
-        title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
-        button: {
-          className: "custom-button-class",
-        },
+        title: "Invalid email address.",
+        text: " Must be a valid email with domain gmail, hotmail, or yahoo ending with .com.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#email').focus(); // Focus on the invalid field
       });
-    
-    return;
-    }
-
-    if (phone.trim() === "") {
-
-      swal({
-        title: "Please fill in all fields",
-        button: {
-          className: "custom-button-class",
-        },
-      });
-    
       return;
     }
-    
+  
+    if (phone === "") {
+      swal({
+        title: "Required filed missing.",
+        text: "Please fill in phone number field.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#phone').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+  
     if (!/^0\d{9}$/.test(phone)) {
+      swal({
+        title: "Invalid phone number.",
+        text: " Must be 10 digits.",
+        className: "custom-button-class",
+        icon: "error",
+        button: "OK",
+      }).then(() => {
+        $('#phone').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+  
+    // // Validation checks
+    // if (name.trim() === "")
+    // {
+    //     swal({
+    //       title: "Please fill in all fields",
+    //       button: {
+    //         className: "custom-button-class",
+    //       },
+    //     });
+      
+    //   return;
+    // }
 
-      swal({
-        title: "Invalid phone number. Must be 10 digits",
-        button: {
-          className: "custom-button-class",
-        },
-      });
+    // if (!/^[a-zA-Z]+$/.test(name))
+    // {
+    //   swal({
+    //     title: "Invalid Name. Alphabetic characters only.",
+    //     button: {
+    //       className: "custom-button-class",
+    //     },
+    //   });
     
-      return;
-    }
-    if (vid.trim() === "") {
-      swal({
-        title: "Please fill in all fields",
-        button: {
-          className: "custom-button-class",
-        },
-      });
+    //   return;
+
+    // }
     
-      return;
-    }
+    // if (email.trim() === "") {
+    //   swal({
+    //     title: "Please fill in all fields",
+    //     button: {
+    //       className: "custom-button-class",
+    //     },
+    //   });
+    
+    // return;
+    // }
+
+    // if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
+    //   swal({
+    //     title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
+    //     button: {
+    //       className: "custom-button-class",
+    //     },
+    //   });
+    
+    // return;
+    // }
+
+    // if (phone.trim() === "") {
+
+    //   swal({
+    //     title: "Please fill in all fields",
+    //     button: {
+    //       className: "custom-button-class",
+    //     },
+    //   });
+    
+    //   return;
+    // }
+    
+    // if (!/^0\d{9}$/.test(phone)) {
+
+    //   swal({
+    //     title: "Invalid phone number. Must be 10 digits",
+    //     button: {
+    //       className: "custom-button-class",
+    //     },
+    //   });
+    
+    //   return;
+    // }
+    // if (vid.trim() === "") {
+    //   swal({
+    //     title: "Please fill in all fields",
+    //     button: {
+    //       className: "custom-button-class",
+    //     },
+    //   });
+    
+    //   return;
+    // }
   
     // AJAX request
     $.ajax({
@@ -534,13 +637,94 @@ function saveeBooking() {
    var toDate= $("#toDate").val();
    var status= 1;
 
+
+  // Validate customerName (alphabetic characters only)
+  if (!customerName.trim()) {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer name field.",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#cname').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  // Validate customerNIC (9 numbers followed by V/v or 12 numbers only)
+  if (!customerNIC.trim()) {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer NIC field.",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#cnic').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  // validate email
+  if (!email.trim()) {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer email field.",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#email').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  // validate phone
+  if (!phone.trim()) {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in phone number field.",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#phone').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (!fromDate.trim()){
+    swal({
+      title: "Required filed missing",
+      text: "Please select date for from date field.",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#fromDate').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (!toDate.trim()){
+    swal({
+      title: "Required filed missing",
+      text: "Please select date for to date field.",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#toDate').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+
+
    // Validate customerName (alphabetic characters only)
   if (!/^[a-zA-Z]+$/.test(customerName)) {
     swal({
-      title: "Invalid Input",
-      text: "Please enter a valid customer name (only alphabetic characters are allowed).",
+      title: "Invalid customer name",
+      text: "Alphabetic characters only.",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#cname').focus(); // Focus on the invalid field
     });
     return;
   }
@@ -548,10 +732,12 @@ function saveeBooking() {
   // Validate customerNIC (9 numbers followed by V/v or 12 numbers only)
   if (!/^(\d{9}[vV])|(\d{12})$/.test(customerNIC)) {
     swal({
-      title: "Invalid Input",
-      text: "Please enter a valid CNIC (9 numbers followed by 'V' or 'v', or 12 numbers only).",
+      title: "Invalid NIC",
+      text: "Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#cnic').focus(); // Focus on the invalid field
     });
     return;
   }
@@ -559,21 +745,25 @@ function saveeBooking() {
   //validate email ()
   if(!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)){
     swal({
-      title: "Invalid Input",
-      text: "Please enter a valid email with domain gmail, hotmail, or yahoo ending with .com.",
+      title: "Invalid email address",
+      text: "Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#email').focus(); // Focus on the invalid field
     });
-    return;
+     return;
   }
 
   //validate phone 
   if(!/^0\d{9}$/.test(phone)){
     swal({
-      title: "Invalid Input",
-      text: "Please enter a valid phone number. Must be 10 digits.",
+      title: "Invalid phone number",
+      text: "Must be 10 digits.",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#phone').focus(); // Focus on the invalid field
     });
     return;
   }
@@ -587,6 +777,8 @@ function saveeBooking() {
       text: "Please select a date in the future for the 'From Date' field.",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#fromDate').focus(); // Focus on the invalid field
     });
     return;
   }
@@ -598,6 +790,8 @@ function saveeBooking() {
       text: "Please select a date after the 'From Date' for the 'To Date' field.",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#toDate').focus(); // Focus on the invalid field
     });
     return;
   }

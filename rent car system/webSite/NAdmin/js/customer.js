@@ -165,7 +165,7 @@ function saveCustomer() {
     $('#image').focus();
     return;
   }
-  
+
   if (image) {
     let fileExtension = image.name.split('.').pop().toLowerCase();
     if (fileExtension === "gif" || fileExtension === "fiff") {
@@ -267,7 +267,7 @@ function updateCustomer() {
   if (name === "") {
     swal({
       title: "Required filed missing",
-      text: "Please fill in Customer name field",
+      text: "Please fill in Customer name field.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
@@ -293,7 +293,7 @@ function updateCustomer() {
   if (nic === "") {
     swal({
       title: "Required filed missing",
-      text: "Please fill in Customer NIC field",
+      text: "Please fill in Customer NIC field.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
@@ -318,8 +318,8 @@ function updateCustomer() {
 
   if (email === "") {
     swal({
-      title: "Required filed missing",
-      text: "Please fill in Customer email field",
+      title: "Required filed missing.",
+      text: "Please fill in Customer email field.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
@@ -332,7 +332,7 @@ function updateCustomer() {
   if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
     swal({
       title: "Invalid email address.",
-      text: " Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
+      text: " Must be a valid email with domain gmail, hotmail, or yahoo ending with .com.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
@@ -344,8 +344,8 @@ function updateCustomer() {
 
   if (phone === "") {
     swal({
-      title: "Required filed missing",
-      text: "Please fill in phone number field",
+      title: "Required filed missing.",
+      text: "Please fill in phone number field.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
