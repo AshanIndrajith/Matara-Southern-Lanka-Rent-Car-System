@@ -1,83 +1,186 @@
 getAllCustomer() 
 
 function saveCustomer() {
-  let cname = $('#cname').val();
-  let nic = $('#nic').val();
-  let email = $('#email').val();
-  let phone = $('#phone').val();
-  let address = $('#address').val();
+  let cname = $('#cname').val().trim();
+  let nic = $('#nic').val().trim();
+  let email = $('#email').val().trim();
+  let phone = $('#phone').val().trim();
+  let address = $('#address').val().trim();
   let image = $('#image').prop('files')[0];
 
   // Validation checks
-  if (cname.trim() === "" || nic.trim() === "" || email.trim() === "" || phone.trim() === "" || address.trim() === "" || !image) {
-      swal({
-          title: "Please fill in all fields",
-          button: {
-              className: "custom-button-class",
-          },
-      });
-      return;
+  // if (cname === "" || nic === "" || email === "" || phone === "" || address === "" || !image) {
+  //   swal({
+  //     title: "Please fill in all fields",
+  //     button: {
+  //       className: "custom-button-class",
+  //     },
+  //   });
+  //   // Focus on the first empty field
+  //   $('.form-control-user:empty').first().focus();
+  //   return;
+  // }
+
+  if (cname === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer name field",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    // Focus on the first empty field
+    $('#cname').focus();
+    return;
   }
+
   if (!/^[A-Za-z\s]+$/.test(cname)) {
-      swal({
-          title: "Invalid Name. Alphabetic characters only.",
-          button: {
-              className: "custom-button-class",
-          },
-      });
-      return;
+    swal({
+      title: "Invalid Name",
+      text: "Name field accepts alphabetic characters only.",
+      button: {
+        className: "custom-button-class",
+    },
+    }).then(() => {
+      $('#cname').focus(); // Focus on the invalid field
+    });
+    return;
   }
+
+  if (nic === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer NIC field",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    // Focus on the first empty field
+    $('#nic').focus();
+    return;
+  }
+
+  
   if (!/^(\d{9}[vV]|\d{12})$/.test(nic)) {
-      swal({
-          title: "Invalid NIC. Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
-          button: {
-              className: "custom-button-class",
-          },
-      });
-      return;
+    swal({
+      title: "Invalid NIC.",
+      text: " Must be 9 numbers followed by one 'v' or 'V' letter, or 10 numbers.",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#nic').focus(); // Focus on the invalid field
+    });
+    return;
   }
+
+  if (email === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer email field",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    // Focus on the first empty field
+    $('#email').focus();
+    return;
+  }
+
   if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
-      swal({
-          title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
-          button: {
-              className: "custom-button-class",
-          },
-      });
-      return;
+    swal({
+      title: "Invalid email address.",
+      text : " Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#email').focus(); // Focus on the invalid field
+    });
+    return;
   }
+
+  if (phone === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in phone number field",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    // Focus on the first empty field
+    $('#phone').focus();
+    return;
+  }
+
   if (!/^0\d{9}$/.test(phone)) {
-      swal({
-          title: "Invalid phone number. Must be 10 digits.",
-          button: {
-              className: "custom-button-class",
-          },
-      });
-      return;
+    swal({
+      title: "Invalid phone number.",
+      text: " Must be 10 digits.",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#phone').focus(); // Focus on the invalid field
+    });
+    return;
   }
+
+  if (address === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in address field",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    // Focus on the first empty field
+    $('#address').focus();
+    return;
+  }
+
 
   if (!/^[\w\s.,-]*$/.test(address)) {
     swal({
-        title: "Invalid address. Only letters, numbers, spaces, and basic punctuation are allowed.",
-        button: {
-            className: "custom-button-class",
-        },
+      title: "Invalid address.",
+      text: " Only letters, numbers, spaces, and basic punctuation are allowed.",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#address').focus(); // Focus on the invalid field
     });
+    return;
+  }
+
+  if (image === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please add image for nic copy field",
+      button: {
+        className: "custom-button-class",
+      },
+    });
+    // Focus on the first empty field
+    $('#image').focus();
     return;
   }
   
   if (image) {
-      let fileExtension = image.name.split('.').pop().toLowerCase();
-      if (fileExtension === "gif" || fileExtension === "fiff") {
-          swal({
-              title: "Invalid image file. GIF and FIFF files are not allowed.",
-              button: {
-                  className: "custom-button-class",
-              },
-          });
-          return;
-      }
+    let fileExtension = image.name.split('.').pop().toLowerCase();
+    if (fileExtension === "gif" || fileExtension === "fiff") {
+      swal({
+        title: "Invalid image file.",
+        text: " GIF and FIFF files are not allowed.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#image').focus(); // Focus on the invalid field
+      });
+      return;
+    }
   }
-
 
   // Create a new FormData object
   let formData = new FormData();
@@ -88,7 +191,6 @@ function saveCustomer() {
   formData.append("address", address);
   formData.append("image", image);
 
-
   $.ajax({
     method: "POST",
     url: "http://localhost:8080/customer/Save",
@@ -96,7 +198,6 @@ function saveCustomer() {
     contentType: false,
     data: formData,
     success: function (data) {
-
       swal({
         title: "Good job!",
         text: "Successfully Added!",
@@ -105,15 +206,13 @@ function saveCustomer() {
       }).then(() => {
         // Redirect to DamageView.html
         window.location.href = "customerView.html";
-      });     
-     
+      });
     },
     error: function (xhr, exception) {
       alert("Error occurred while saving customer");
     }
   });
 }
-
 
 
 //   let cname = $('#cname').val();
@@ -158,145 +257,174 @@ function saveCustomer() {
 
 function updateCustomer() {
   let id = $('#id').val();
-  let name = $('#cname').val();
-  let nic = $('#nic').val();
-  let email = $('#email').val();
-  let phone = $('#phone').val();
-  let address = $('#address').val();
+  let name = $('#cname').val().trim();
+  let nic = $('#nic').val().trim();
+  let email = $('#email').val().trim();
+  let phone = $('#phone').val().trim();
+  let address = $('#address').val().trim();
 
   // Validation checks
-  // Validation checks
-  if (name.trim() === "") {
+  if (name === "") {
     swal({
-      title: "Please fill in Customer Name field",
+      title: "Required filed missing",
+      text: "Please fill in Customer name field",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#cname').focus(); // Focus on the invalid field
     });
     return;
   }
 
   if (!/^[A-Za-z\s]+$/.test(name)) {
     swal({
-      title: "Invalid Name. Alphabetic characters only.",
+      title: "Invalid Name.",
+      text: " Alphabetic characters only.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#cname').focus(); // Focus on the invalid field
     });
     return;
   }
 
-  if (nic.trim() === "") {
+  if (nic === "") {
     swal({
-      title: "Please fill in Customer NIC field",
+      title: "Required filed missing",
+      text: "Please fill in Customer NIC field",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#nic').focus(); // Focus on the invalid field
     });
     return;
   }
-
 
   if (!/^(\d{9}[vV]|\d{12})$/.test(nic)) {
     swal({
-      title: "Invalid NIC. Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
+      title: "Invalid NIC.",
+      text: "Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#nic').focus(); // Focus on the invalid field
     });
     return;
   }
 
-  if (email.trim() === "") {
+  if (email === "") {
     swal({
-      title: "Please fill in Customer email field",
+      title: "Required filed missing",
+      text: "Please fill in Customer email field",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#email').focus(); // Focus on the invalid field
     });
     return;
   }
 
   if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
     swal({
-      title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
+      title: "Invalid email address.",
+      text: " Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#email').focus(); // Focus on the invalid field
     });
     return;
   }
 
-  if (phone.trim() === "") {
+  if (phone === "") {
     swal({
-      title: "Please fill in phone number field",
+      title: "Required filed missing",
+      text: "Please fill in phone number field",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#phone').focus(); // Focus on the invalid field
     });
     return;
   }
-
 
   if (!/^0\d{9}$/.test(phone)) {
     swal({
-      title: "Invalid phone number. Must be 10 digits.",
+      title: "Invalid phone number.",
+      text: " Must be 10 digits.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#phone').focus(); // Focus on the invalid field
     });
     return;
   }
 
-  if (address.trim() === "") {
+  if (address === "") {
     swal({
-      title: "Please fill in address field",
+      title: "Required filed missing",
+      text: "Please fill in address field",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#address').focus(); // Focus on the invalid field
     });
     return;
   }
 
   if (!/^[\w\s.,-]*$/.test(address)) {
     swal({
-      title: "Invalid address. Only letters, numbers, spaces, and basic punctuation are allowed.",
+      title: "Invalid address.",
+      text: " Only letters, numbers, spaces, and basic punctuation are allowed.",
       className: "custom-button-class",
       icon: "error",
       button: "OK",
+    }).then(() => {
+      $('#address').focus(); // Focus on the invalid field
     });
     return;
   }
 
   // AJAX request
   $.ajax({
-      method: "PUT",
-      contentType: "application/json",
-      url: "http://localhost:8080/customer/update/" + id,
-      async: true,
-      data: JSON.stringify({
-          "name": name,
-          "nic": nic,
-          "email": email,
-          "phone": phone,
-          "address": address
-      }),
-      success: function(data) {
-           
+    method: "PUT",
+    contentType: "application/json",
+    url: "http://localhost:8080/customer/update/" + id,
+    async: true,
+    data: JSON.stringify({
+      "name": name,
+      "nic": nic,
+      "email": email,
+      "phone": phone,
+      "address": address
+    }),
+    success: function(data) {
       swal({
         title: "Good job!",
         text: "customer is Updated Successfully!",
         icon: "success",
         button: "ok!",
+      }).then(() => {
+        getAllCustomer();
+        window.location.href = "customerView.html";
       });
-          getAllCustomer();
-          window.location.href = "customerView.html";
-      },
-      error: function(xhr, exception) {
-          alert("Failed to update");
-      }
+    },
+    error: function(xhr, exception) {
+      alert("Failed to update");
+    }
   });
 }
+
+
 
 
 function deleteCustomer(empID){
