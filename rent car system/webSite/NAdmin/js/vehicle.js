@@ -274,21 +274,6 @@ function saveVehicle() {
     let additionalkm = $('#additionalkm').val().trim();
     let additionalhour = $('#additionalhour').val().trim();
   
-    // Validate the user-entered data
-    // if (title === "" || reg === "" || idate === "" || rdate === "" || dayprice === "" || additionalkm === "" || additionalhour === "") {
-    //   swal({
-    //     title: "Please fill in all fields",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   }).then(() => {
-    //     $('.form-control').filter(function () {
-    //       return $(this).val().trim() === ""; // Find empty fields
-    //     }).first().focus(); // Focus on the first empty field
-    //   });
-    //   return;
-    // }
-
     if (title === "") {
       swal({
         title: "Required filed missing",

@@ -8,95 +8,141 @@ function test(){
 function saveDamage() {
     let vid = $('#vid').val();
     let description = $('#description').val();
-    let date = $('#date').val();
+    let date = $('#date').val().trim();
     let image = $('#image').prop('files')[0];
-    let amount = $('#damount').val();
+    let amount = $('#damount').val().trim();
 
 
-    if (vid === '' || description === '' || date === '' || image === '' || amount === '') {
-
-      swal({
-        title: "Please fill in all fields",
-        button: {
-          className: "custom-button-class",
-        },
-      });
-     
-      return false;
-  }
-
+    // if (vid === '' || description === '' || date === '' || !image || amount === '') {
+    //   swal({
+    //     title: "Please fill in all fields",
+    //     button: {
+    //       className: "custom-button-class",
+    //     },
+    //   });
+    //   return false;
+    // }
+  
     if (vid === '') {
-
       swal({
-        title: "Please enter a Vehicle Id.",
+        title: "Required filed missing",
+        text: "Please fill in  Vehicle Id field.",
         button: {
           className: "custom-button-class",
         },
+      }).then(() => {
+        $('#vid').focus(); // Focus on the invalid field
       });
-     
-      return false;
-  }
+      return;
+    }
   
-  // Check for special characters in Vehicle Id field
-  if (!/^[A-Z]{2,3}-\d{4}$/.test(vid)) {
-    swal({
-      title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-      
-      return false;
-  }
+    // Check for special characters in Vehicle Id field
+    if (!/^[A-Z]{2,3}-\d{4}$/.test(vid)) {
+      swal({
+        title: "Invalid registration number.",
+        text: "Format should be two or three capital letters followed by a hyphen and four numbers.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#vid').focus(); // Focus on the invalid field
+      });
+      return ;
+    }
   
-  if (description === '') {
-    swal({
-      title: "Please enter a Description",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-      
-      return false;
-  }
-  
-  if (date === '') {
-    swal({
-      title: "Please select a Damage Date",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-      
-      return false;
-  }
-  
-  if (image === '') {
-    swal({
-      title: "Please select an Image",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-      
-      return false;
-  }
-  
-  if (damount === '' || isNaN(parseFloat(amount))) {
-    swal({
-      title: "Invalid amount. Please enter a valid number.",
-      button: {
-        className: "custom-button-class",
-      },
-    });
-     
-      return false;
-  }
-  
-  
+    if (description === '') {
+      swal({
+        title: "Required filed missing",
+        text: "Please fill in  Description field.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#description').focus(); // Focus on the invalid field
+      });
+      return ;
+    }
 
-    
-    // Create a new FormData object
+    if (!/^[\w\s.,-]*$/.test(description)) {
+      swal({
+        title: "Invalid description.",
+        text: " Only letters, numbers, spaces, and basic punctuation are allowed.",
+        button:{
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#description').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+  
+    if (date === '') {
+      swal({
+        title: "Required filed missing",
+        text: "Please select a Damage Date.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#date').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0); // Set hours to 0 to compare only the date part
+    if (date <= today) {
+      swal({
+        title: "Invalid Input",
+        text: "Please select a past date in the damage date field.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#date').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+  
+    if (!image) {
+      swal({
+        title: "Required filed missing",
+        text: "Please select an Image.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#image').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+  
+    if (amount === '') {
+      swal({
+        title: "Required filed missing",
+        text: "Please enter a valid number.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#damount').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+
+    if (isNaN(parseFloat(amount))) {
+      swal({
+        title: "Invalid damage amount.",
+        text: "Please enter a valid number.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#damount').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+
     let formData = new FormData();
     formData.append("vehicle_id", vid);
     formData.append("description", description);
@@ -124,110 +170,192 @@ function saveDamage() {
           window.location.href = "DamageView.html";
         });
         
-
-
-        
         getAllDamage() 
 
-        
-       
       },
       error: function (xhr, exception) {
         alert("Error occurred while saving damage");
       }
     });
+
 }
 
-function updateDamage(){
 
+function updateDamage() {
+  let id = $('#id').val();
+  let vID = $('#vid').val().trim();
+  let description = $('#description').val().trim();
+  let date = $('#date').val().trim();
+  let amount = $('#amount').val().trim();
 
- let id=$('#id').val();
- let vID=$('#vid').val();
- let description=$('#description').val();
- let date=$('#date').val();
- let amount=$('#amount').val();
-
- if (id.trim() === "" || vID.trim() === "" || description.trim() === "" || date.trim() === "" || amount.trim() === "") {
-  swal({
-      title: "Please fill in all fields",
+  if (vID === '') {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in  Vehicle Id field.",
       button: {
-          className: "custom-button-class",
+        className: "custom-button-class",
       },
-  });
-  return;
-}
+    }).then(() => {
+      $('#vid').focus(); // Focus on the invalid field
+    });
+    return;
+  }
 
-if (!/^[A-Z]{2,3}-\d{4}$/.test(vID)) {
-  swal({
-      title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
+   // Check for special characters in Vehicle Id field
+   if (!/^[A-Z]{2,3}-\d{4}$/.test(vID)) {
+    swal({
+      title: "Invalid registration number.",
+      text: "Format should be two or three capital letters followed by a hyphen and four numbers.",
       button: {
-          className: "custom-button-class",
+        className: "custom-button-class",
       },
-  });
-  return;
-}
+    }).then(() => {
+      $('#vid').focus(); // Focus on the invalid field
+    });
+    return ;
+  }
 
-// // Create a new Date object for the given date
-// let selecteddate = new Date(date.val);
 
-// // Get the current date
-// const currentDate = new Date();
-
-// // Compare the two dates using getTime() method and check if the given date is in the future
-// if (selecteddate > currentDate) {
-//   swal({
-//     title: "Invalid Date. Please select the correct date",
-//     button: {
-//         className: "custom-button-class",
-//     },
-//   });
-//   return;
-// } 
-
-if (isNaN(parseFloat(amount))) {
-  swal({
-      title: "Invalid damage amount. Please enter a valid number.",
+  if (description === '') {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in  Description field.",
       button: {
-          className: "custom-button-class",
+        className: "custom-button-class",
       },
-  });
-  return;
-}
+    }).then(() => {
+      $('#description').focus(); // Focus on the invalid field
+    });
+    return ;
+  }
 
+  if (!/^[\w\s.,-]*$/.test(description)) {
+    swal({
+      title: "Invalid description.",
+      text: " Only letters, numbers, spaces, and basic punctuation are allowed.",
+      button:{
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#description').focus(); // Focus on the invalid field
+    });
+    return;
+  }
 
+  if (date === '') {
+    swal({
+      title: "Required filed missing",
+      text: "Please select a Damage Date.",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#date').focus(); // Focus on the invalid field
+    });
+    return;
+  }
 
- $.ajax({
+  var today = new Date();
+  today.setHours(0, 0, 0, 0); // Set hours to 0 to compare only the date part
+  if (date <= today) {
+    swal({
+      title: "Invalid Input",
+      text: "Please select a past date in the damage date field.",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#date').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (amount === '') {
+    swal({
+      title: "Required filed missing",
+      text: "Please enter a valid number.",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#damount').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (isNaN(parseFloat(amount))) {
+    swal({
+      title: "Invalid damage amount.",
+      text: "Please enter a valid number.",
+      button: {
+        className: "custom-button-class",
+      },
+    }).then(() => {
+      $('#damount').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  // if (id.trim() === "" || vID.trim() === "" || description.trim() === "" || date.trim() === "" || amount.trim() === "") {
+  //   swal({
+  //     title: "Please fill in all fields",
+  //     button: {
+  //       className: "custom-button-class",
+  //     },
+  //   });
+  //   return;
+  // }
+
+  // if (!/^[A-Z]{2,3}-\d{4}$/.test(vID)) {
+  //   swal({
+  //     title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
+  //     button: {
+  //       className: "custom-button-class",
+  //     },
+  //   }).then(() => {
+  //     $('#vid').focus(); // Focus on the invalid field
+  //   });
+  //   return;
+  // }
+
+  // if (isNaN(parseFloat(amount))) {
+  //   swal({
+  //     title: "Invalid damage amount. Please enter a valid number.",
+  //     button: {
+  //       className: "custom-button-class",
+  //     },
+  //   }).then(() => {
+  //     $('#amount').focus(); // Focus on the invalid field
+  //   });
+  //   return;
+  // }
+
+  $.ajax({
     method: "PUT",
     contentType: "application/json",
-    url:"http://localhost:8080/damage/update/"+id,
-    async:true,
-    data:JSON.stringify({
-        "vehicle_id":vID,
-        "description":description,
-        "date":date,
-        "amount":amount,
+    url: "http://localhost:8080/damage/update/" + id,
+    async: true,
+    data: JSON.stringify({
+      "vehicle_id": vID,
+      "description": description,
+      "date": date,
+      "amount": amount,
     }),
-    success:function(data){
-
-     
-
-  
-      
+    success: function (data) {
       swal({
         title: "Good job!",
         text: "Damage is Updated Successfully!",
         icon: "success",
         button: "ok!",
       });
-        getAllDamage() 
 
-        window.location.href = "DamageView.html";
+      getAllDamage();
+      window.location.href = "DamageView.html";
     },
-    error:function(xhr,exception){
-        alert("Error")
+    error: function (xhr, exception) {
+      alert("Error");
     }
- })
-
+  });
 }
 
 function deleteEmployee(empID){
