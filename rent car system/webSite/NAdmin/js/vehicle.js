@@ -253,7 +253,7 @@ function saveVehicle() {
         });
 
         getreq(reg)
-        window.location.href = "specification.html";
+        
 
         
       },
