@@ -15,7 +15,7 @@ function saveBooking() {
   let postingDate=new Date();
 
 
-  alert(cname)
+
 
 
   let formData = new FormData();
@@ -920,8 +920,11 @@ function getAllVehicle() {
   var toDate = $("#toDate").val();
 
 
-  alert(fromDate);
-  alert(toDate);
+sessionStorage.setItem("fromDate", fromDate);
+sessionStorage.setItem("toDate", toDate);
+
+
+
 
 
 
