@@ -59,10 +59,51 @@ public class DamageService  implements  DamageServiceImpl {
 
     }
 
+//    @Override
+//    public String exportReport(String reportFormat) throws FileNotFoundException, JRException {
+//        String folderPath = "C:\\Users\\INSIGHT\\Desktop\\New folder";
+//        List<Damage> damages = (List<Damage>) damageRepository.findAll();
+//
+//        // Load the JRXML file and compile it
+//        File file = ResourceUtils.getFile("classpath:Damage.jrxml");
+//        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+//
+//        // Create a data source from the list of damages
+//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(damages);
+//
+//        // Set report parameters
+//        Map<String, Object> parameters = new HashMap<>();
+//        parameters.put("createdBy", "Java Techie");
+//        // Fill the report with data
+//        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+//
+//        // Generate a unique file name using timestamp
+//        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+//        String fileName = "damage_" + timestamp + ".pdf";
+//        String outputPath = folderPath + "\\" + fileName;
+//
+//        // Export the report to the specified format
+//        if (reportFormat.equalsIgnoreCase("pdf")) {
+//            JasperExportManager.exportReportToPdfFile(jasperPrint, outputPath);
+//            return "Report generated successfully. Path: " + outputPath;
+//        } else {
+//            return "Invalid report format. Please provide 'pdf' as the report format.";
+//        }
+//
+//
+//    }
+
+
     @Override
-    public String exportReport(String reportFormat) throws FileNotFoundException, JRException {
+    public List<Damage> findDamageDetailsByDateRange(String startDate, String endDate) {
+        return damageRepository.findAllByDateRange(startDate, endDate);
+    }
+
+
+
+    @Override
+    public String exportReport(List<Damage> damages) throws FileNotFoundException, JRException {
         String folderPath = "C:\\Users\\INSIGHT\\Desktop\\New folder";
-        List<Damage> damages = (List<Damage>) damageRepository.findAll();
 
         // Load the JRXML file and compile it
         File file = ResourceUtils.getFile("classpath:Damage.jrxml");
@@ -82,16 +123,13 @@ public class DamageService  implements  DamageServiceImpl {
         String fileName = "damage_" + timestamp + ".pdf";
         String outputPath = folderPath + "\\" + fileName;
 
-        // Export the report to the specified format
-        if (reportFormat.equalsIgnoreCase("pdf")) {
-            JasperExportManager.exportReportToPdfFile(jasperPrint, outputPath);
-            return "Report generated successfully. Path: " + outputPath;
-        } else {
-            return "Invalid report format. Please provide 'pdf' as the report format.";
-        }
+        // Export the report to the PDF format
+        JasperExportManager.exportReportToPdfFile(jasperPrint, outputPath);
 
-
+        return "Report generated successfully. Path: " + outputPath;
     }
+
+
 }
 
 

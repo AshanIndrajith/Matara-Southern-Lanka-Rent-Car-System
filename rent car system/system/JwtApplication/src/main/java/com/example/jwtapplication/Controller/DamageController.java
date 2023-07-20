@@ -188,22 +188,51 @@ public class DamageController {
 
 
 
-    @GetMapping("/report/{format}")
-    public ResponseEntity<String> generateReport(@PathVariable String format) throws IOException, JRException {
-        String reportPath = damageService.exportReport(format);
+//    @GetMapping("/report/{format}")
+//    public ResponseEntity<String> generateReport(@PathVariable String format) throws IOException, JRException {
+//        String reportPath = damageService.exportReport(format);
+//
+//        if (reportPath != null) {
+//            // Report generation successful
+//            return ResponseEntity.ok("Report generated successfully. Path: " + reportPath);
+//        } else {
+//            // Report generation failed
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to generate report.");
+//        }
+//    }
 
-        if (reportPath != null) {
-            // Report generation successful
-            return ResponseEntity.ok("Report generated successfully. Path: " + reportPath);
+
+//    @GetMapping("/damageDetailsReport/{startDate}/{endDate}")
+//    public ResponseEntity<List<Damage>> getDamagesByDateRange(@PathVariable String startDate, @PathVariable String endDate) {
+//        List<Damage> damageList = damageService.findDamageDetailsByDateRange(startDate, endDate);
+//        if (damageList.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } else {
+//            return new ResponseEntity<>(damageList, HttpStatus.OK);
+//        }
+//    }
+
+
+
+    @GetMapping("/availableDamages")
+    public ResponseEntity<List<Damage>> getAvailableDamages(
+            @RequestParam("startDate") String startDate,
+            @RequestParam("endDate") String endDate
+    ) throws JRException, FileNotFoundException {
+        List<Damage> availableDamages = damageService.findDamageDetailsByDateRange(startDate, endDate);
+        if (availableDamages.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            // Report generation failed
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to generate report.");
+            String reportPath = damageService.exportReport(availableDamages);
+            return ResponseEntity.ok(availableDamages);
+
         }
+
+
     }
-
-
-
-
-
-
 }
+
+
+
+
+

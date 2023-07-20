@@ -248,12 +248,7 @@
                 <!-- End of Topbar -->
 
 
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800"></h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm bg-gradient-warning shadow-sm float-left text-dark" 
-                    onclick="generateReport()"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                </div>
+               
                 
 
 
@@ -268,10 +263,24 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h4 class="m-0 font-weight-bold text-dark" style="text-align: center; font-family: cursive;">Vehicle Damage Details</h4>
+                            <div class="col-sm-6">
+                                <label for="toDate" class="input-label" style="padding-left:50px;">Strat Date</label>
+                                <input type="date" class="form-control form-control-user" id="fromDate" placeholder="To Date"><br>
+                                <label for="toDate" class="input-label" style="padding-left:50px;">End Date</label>
+                                <input type="date" class="form-control form-control-user" id="toDate" placeholder="To Date"><br>
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                    <h1 class="h3 mb-0 text-gray-800"></h1>
+                                    <a href="#" class="d-none d-sm-inline-block btn btn-sm bg-gradient-warning shadow-sm float-left text-dark" 
+                                    onclick="getAllDamageDetailsReport()"><i
+                                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                                </div>
+                                
+                               
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="RentTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="reportTable" width="100%" cellspacing="0">
                                     <thead class="bg-gradient-dark text-white">
                                         <tr>
                                             <th>Id</th>
