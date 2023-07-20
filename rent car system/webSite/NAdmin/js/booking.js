@@ -471,89 +471,7 @@ function getAllBooking() {
       return;
     }
   
-    // // Validation checks
-    // if (name.trim() === "")
-    // {
-    //     swal({
-    //       title: "Please fill in all fields",
-    //       button: {
-    //         className: "custom-button-class",
-    //       },
-    //     });
-      
-    //   return;
-    // }
 
-    // if (!/^[a-zA-Z]+$/.test(name))
-    // {
-    //   swal({
-    //     title: "Invalid Name. Alphabetic characters only.",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   });
-    
-    //   return;
-
-    // }
-    
-    // if (email.trim() === "") {
-    //   swal({
-    //     title: "Please fill in all fields",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   });
-    
-    // return;
-    // }
-
-    // if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
-    //   swal({
-    //     title: "Invalid email address. Must be a valid email with domain gmail, hotmail, or yahoo ending with .com",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   });
-    
-    // return;
-    // }
-
-    // if (phone.trim() === "") {
-
-    //   swal({
-    //     title: "Please fill in all fields",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   });
-    
-    //   return;
-    // }
-    
-    // if (!/^0\d{9}$/.test(phone)) {
-
-    //   swal({
-    //     title: "Invalid phone number. Must be 10 digits",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   });
-    
-    //   return;
-    // }
-    // if (vid.trim() === "") {
-    //   swal({
-    //     title: "Please fill in all fields",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   });
-    
-    //   return;
-    // }
-  
-    // AJAX request
     $.ajax({
       method: "PUT",
       contentType: "application/json",
@@ -1124,3 +1042,250 @@ function getVehicleId(id) {
 
   window.location.href = url;
 }
+
+
+
+
+
+
+
+
+
+
+  
+function getExtendedBookingDetails() {
+
+  let id = $('#id').val();
+
+
+    
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/booking/get/" + id,
+    async: true,
+    success: function (data) {
+      var ID = data.id;
+      var cusName = data.cus_name;
+      var cusNIC = data.cus_nic;
+      var cusEmail = data.cus_email;
+      var cusPhone = data.cus_phone;
+      var from_date = data.from_date;
+      var to_date = data.to_date;
+
+     
+
+      
+      let newRow = `<tr>
+      <td>${id}</td>
+      <td>${cusName}</td>
+      <td>${cusNIC}</td>
+      <td>${cusEmail}</td>
+      <td>${cusPhone}</td>
+      <td>${from_date}</td>
+      <td>${to_date}</td>
+      <td>
+        <button type="button" class="update btn btn-danger" onclick="getBookingExtendedDetails(${id})">Extend</button><br><br>
+       
+      </td>
+    </tr>`;
+    $('#extended tbody').append(newRow);
+
+    
+    },
+    error: function (xhr, status, error) {
+      swal({
+        icon: "error",
+        text: "Booking Id is invalid!",
+        button: "ok!",
+      });
+    }
+  });
+}
+
+
+
+
+
+
+function getBookingExtendedDetails(ID) {
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/booking/get/" + ID,
+    async: true,
+    success: function (data) {
+      var id = data.id;
+      var cusName = data.cus_name;
+      var cusNIC = data.cus_nic;
+      var cusEmail = data.cus_email;
+      var cusPhone = data.cus_phone;
+      var from_date = data.from_date;
+      var to_date = data.to_date;
+
+      alert(cusName);
+      alert(cusNIC);
+
+      var url = "BookingExtendUpdate.html" +
+        "?id=" + encodeURIComponent(id) +
+        "&cusName=" + encodeURIComponent(cusName) +
+        "&cusNIC=" + encodeURIComponent(cusNIC) +
+        "&cusEmail=" + encodeURIComponent(cusEmail) +
+        "&cusPhone=" + encodeURIComponent(cusPhone) +
+        "&from_date=" + encodeURIComponent(from_date) +
+        "&to_date=" + encodeURIComponent(to_date);
+
+      window.location.href = url;
+    },
+    error: function (xhr, status, error) {
+      console.log("Error:", error);
+    }
+  });
+}
+
+
+
+
+
+function updateBooking() {
+  let id = $('#empID').val();
+  let name = $('#cname').val().trim();
+  let nic = $('#cnic').val().trim();
+  let email = $('#email').val().trim();
+  let phone = $('#phone').val().trim();
+  let vid = $('#vid').val();
+
+  if (name === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer name field.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#cname').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (!/^[A-Za-z\s]+$/.test(name)) {
+    swal({
+      title: "Invalid Name.",
+      text: " Alphabetic characters only.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#cname').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (nic === "") {
+    swal({
+      title: "Required filed missing",
+      text: "Please fill in Customer NIC field.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#cnic').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (!/^(\d{9}[vV]|\d{12})$/.test(nic)) {
+    swal({
+      title: "Invalid NIC.",
+      text: "Must be 9 numbers followed by one 'v' or 'V' letter, or 12 numbers.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#cnic').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (email === "") {
+    swal({
+      title: "Required filed missing.",
+      text: "Please fill in Customer email field.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#email').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (!/^[a-zA-Z0-9._-]+@(gmail|hotmail|yahoo)\.com$/.test(email)) {
+    swal({
+      title: "Invalid email address.",
+      text: " Must be a valid email with domain gmail, hotmail, or yahoo ending with .com.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#email').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (phone === "") {
+    swal({
+      title: "Required filed missing.",
+      text: "Please fill in phone number field.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#phone').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+  if (!/^0\d{9}$/.test(phone)) {
+    swal({
+      title: "Invalid phone number.",
+      text: " Must be 10 digits.",
+      className: "custom-button-class",
+      icon: "error",
+      button: "OK",
+    }).then(() => {
+      $('#phone').focus(); // Focus on the invalid field
+    });
+    return;
+  }
+
+
+  $.ajax({
+    method: "PUT",
+    contentType: "application/json",
+    url: "http://localhost:8080/booking/updateBooking/" + id,
+    async: true,
+    data: JSON.stringify({
+      cus_name: name,
+      cus_nic: nic,
+      cus_email: email,
+      cus_phone: phone,
+      vehicle_id: vid
+    }),
+    success: function(data) {
+      swal({
+        title: "Good job!",
+        text: "Booking updated successfully!",
+        icon: "success",
+        button: "ok!",
+      });
+      
+      getAllCustomer();
+      window.location.href = "BookingView.html";
+    },
+    error: function(xhr, status, error) {
+      alert("Failed to update booking. Error: " + error);
+    }
+  });
+}
+
+
+
