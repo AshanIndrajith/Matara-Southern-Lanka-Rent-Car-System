@@ -513,3 +513,74 @@ function getDamageDetails(id) {
 
   
 
+
+
+
+  
+function getAllDamageDetailsReport() {
+
+ 
+ 
+  var startDate = $("#fromDate").val();
+  var endDate = $("#toDate").val();
+
+
+
+
+
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/damage/availableDamages?startDate=" + startDate + "&endDate=" + endDate,
+    success: function(data) {
+      // Clear existing table rows
+
+      $('#reportTable tbody').empty();
+      swal(" Report generated successfully", {
+        icon: "success",
+      });
+
+      
+     
+      // Loop through the array and create table rows dynamically
+      for (let i = 0; i < data.length; i++) {
+        let damage = data[i];
+        let id = damage.id;
+        let vid = damage.vehicle_id;
+        let description = damage.description;
+        let date = damage.date;
+        let image = damage.imageName;
+        let amount = damage.amount;
+
+
+
+
+
+        let newRow = '<tr>' +
+          '<td>' + id + '</td>' +
+          '<td>' + vid + '</td>' +
+          '<td>' + description + '</td>' +
+          '<td>' + date + '</td>' +
+          '<td><img src="../../system/JwtApplication/images/'+id+'/'+image+'" width="70px"></td>' +
+          '<td>  <label> Rs :</label>'+ amount + '<label> .00</label></td>' +
+          '<td><button type="button" class="update btn btn-success" onclick="getDamageDetails(' + id + ')" >Update</button> <button type="button" onclick="deleteEmployee(' + id + ') " class="delete btn btn-danger">Delete</button></td>'
+          // Add other table cells as needed
+          '</tr>';
+
+         
+        $('#reportTable tbody').append(newRow);
+      }
+
+
+
+
+    },
+    error: function(xhr, status, error) {
+      // Handle the error response
+      console.log("Error:", error);
+    }
+  });
+}
+
+
+
+

@@ -6,6 +6,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public interface DamageServiceImpl {
 
@@ -21,5 +22,9 @@ public interface DamageServiceImpl {
    void deleteStudentById(Long id);
 
 
-    String exportReport(String format) throws IOException, JRException;
+    //String exportReport(String format) throws IOException, JRException;
+
+    public List<Damage> findDamageDetailsByDateRange(String startDate, String endDate);
+
+    public String exportReport(List<Damage> damages) throws FileNotFoundException, JRException;
 }
