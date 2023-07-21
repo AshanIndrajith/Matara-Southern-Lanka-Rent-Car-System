@@ -25,6 +25,7 @@
     <script src="js/jquery-3.6.1.min.js"></script>
 		<script src="js/booking.js"></script>
 
+
 </head>
 
 <body id="page-top">
@@ -325,10 +326,61 @@
                                                     <label for="fromDate" class="input-label" style="padding-left:50px;">From Date</label>
                                                     <input type="date" class="form-control form-control-user" id="fromDate" placeholder="From Date" readonly>
                                                 </div>
+
+
+                                                <style>
+                                                    /* Custom style for disabled dates in the calendar */
+                                                    .disabled-date span {
+                                                      pointer-events: none;
+                                                      background-color: #f2f2f2; /* You can change the background color to suit your design */
+                                                      color: #be0b0b; /* You can change the text color to suit your design */
+                                                      border-radius: 50%;
+                                                    }
+                                                  </style>
+
+
+
                                                 <div class="col-sm-6">
                                                     <label for="toDate" class="input-label" style="padding-left:50px;">To Date</label>
                                                     <input type="date" class="form-control form-control-user" id="toDate" placeholder="To Date" >
+                                                    <div class="date-picker-overlay" id="datePickerOverlay"></div>
                                                 </div>
+
+                                               
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function () {
+                                                      // Define the date you want to disable
+                                                      var disabledDate = '2023-07-25';
+                                                  
+                                                      // Get the date input element
+                                                      var toDateInput = document.getElementById('toDate');
+                                                  
+                                                      // Function to check if a date is disabled
+                                                      function isDisabledDate(date) {
+                                                        var formattedDate = date.toISOString().split('T')[0];
+                                                        return formattedDate === disabledDate;
+                                                      }
+                                                  
+                                                      // Event listener to intercept the rendering of calendar dates
+                                                      toDateInput.addEventListener('focus', function () {
+                                                        // Get all the date cells in the calendar
+                                                        var dateCells = document.querySelectorAll('input[type="date"]::-webkit-calendar-picker-indicator');
+                                                  
+                                                        // Loop through each date cell and add the disabled-date class if necessary
+                                                        dateCells.forEach(function (cell) {
+                                                          var dateParts = cell.value.split('-');
+                                                          var currentDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+                                                  
+                                                          if (isDisabledDate(currentDate)) {
+                                                            cell.parentNode.classList.add('disabled-date');
+                                                          } else {
+                                                            cell.parentNode.classList.remove('disabled-date');
+                                                          }
+                                                        });
+                                                      });
+                                                    });
+                                                  </script>
+                                                
 
   
                                             </div>
