@@ -635,17 +635,17 @@ function saveeBooking() {
 
 
    // Validate customerName (alphabetic characters only)
-  if (!/^[a-zA-Z]+$/.test(customerName)) {
-    swal({
-      title: "Invalid customer name",
-      text: "Alphabetic characters only.",
-      icon: "error",
-      button: "OK",
-    }).then(() => {
-      $('#cname').focus(); // Focus on the invalid field
-    });
-    return;
-  }
+  // if (!/^[a-zA-Z]+$/.test(customerName)) {
+  //   swal({
+  //     title: "Invalid customer name",
+  //     text: "Alphabetic characters only.",
+  //     icon: "error",
+  //     button: "OK",
+  //   }).then(() => {
+  //     $('#cname').focus(); // Focus on the invalid field
+  //   });
+  //   return;
+  // }
 
   // Validate customerNIC (9 numbers followed by V/v or 12 numbers only)
   if (!/^(\d{9}[vV])|(\d{12})$/.test(customerNIC)) {
