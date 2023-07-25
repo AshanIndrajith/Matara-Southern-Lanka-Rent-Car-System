@@ -33,6 +33,7 @@ public class SecurityConfig  {
                 .requestMatchers("/api/reports/**").permitAll()
                 .requestMatchers("/specification/**").permitAll()
                 .requestMatchers("/api/user/**").permitAll()
+                .requestMatchers("/transaction/**").permitAll()
 
                 .anyRequest().authenticated()
                 .and()

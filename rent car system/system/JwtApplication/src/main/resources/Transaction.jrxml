@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="damage" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="e115bc59-fd0f-446b-a585-04725e27d7f0">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
+    <style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+    <style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial" fontSize="12"/>
+
+
+    <field name="id" class="java.lang.Long"/>
+    <field name="booking_id" class="java.lang.Integer"/>
+    <field name="amount" class="java.lang.Double"/>
+    <background>
+        <band height="575" splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="104" splitType="Stretch">
+            <staticText>
+                <reportElement style="SubTitle" x="2880" y="67" width="568" height="37" uuid="862cb50c-5a5e-4906-a495-226e25115fb6"/>
+                <textElement textAlignment="Right">
+                    <font size="26"/>
+                </textElement>
+                <text><![CDATA[Waves SubTitle]]></text>
+            </staticText>
+            <frame>
+                <reportElement mode="Opaque" x="-20" y="-24" width="841" height="104" forecolor="#000000" backcolor="#0D1012" uuid="f6954e9f-5c03-4349-af9a-ba5e91b34c75"/>
+                <staticText>
+                    <reportElement style="SubTitle" mode="Transparent" x="140" y="7" width="531" height="90" forecolor="#F2F759" backcolor="#FCFCFC" uuid="8a50a990-2fa4-4516-9db9-f573783d9f3a">
+                        <property name="com.jaspersoft.studio.unit.width" value="px"/>
+                        <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <box>
+                        <pen lineWidth="1.0" lineColor="#0F0303"/>
+                    </box>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="Serif" size="34" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Income Report]]></text>
+                </staticText>
+                <line>
+                    <reportElement x="0" y="0" width="89" height="103" forecolor="#E3EB4B" uuid="9bc10da1-1955-45ff-a015-740e3e8c2fef"/>
+                </line>
+                <line>
+                    <reportElement x="30" y="0" width="109" height="103" forecolor="#E3EB4B" uuid="d23d36c6-07c2-404d-9461-d681601b7a90"/>
+                </line>
+                <line>
+                    <reportElement x="0" y="30" width="59" height="72" forecolor="#E3EB4B" uuid="2e8c8bd9-be2d-466f-a3ec-cf7012c56e20"/>
+                </line>
+                <image>
+                    <reportElement x="0" y="0" width="116" height="103" uuid="d40ec95c-e864-40c8-8edd-a19c6683cb94"/>
+                    <imageExpression><![CDATA["C:/Users/INSIGHT/Downloads/275-2756524_yellow-triangle-darkness.png"]]></imageExpression>
+                </image>
+            </frame>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="25" splitType="Stretch">
+            <frame>
+                <reportElement mode="Opaque" x="10" y="-10" width="770" height="30" backcolor="#666666" uuid="35d90a9b-bb7e-4ec4-bfa2-68be1967d6b2"/>
+                <staticText>
+                    <reportElement style="Column header" x="10" y="3" width="90" height="15" uuid="e1140446-3e60-434b-856a-915f8dad0571">
+                        <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b9b2d7f-601c-4af3-bd34-8ad7bb3d31e2"/>
+                    </reportElement>
+                    <text><![CDATA[Id]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement style="Column header" x="130" y="6" width="141" height="15" uuid="973a4c40-0697-48db-b164-618eb8eec22a">
+                        <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="226f5ac3-33fa-41ea-a14a-ea74b64c5f16"/>
+                    </reportElement>
+                    <text><![CDATA[vehicle_id]]></text>
+                </staticText>
+
+                <staticText>
+                    <reportElement style="Column header" x="578" y="6" width="141" height="15" uuid="112d13e7-0465-4ebb-85bb-f8a2aaef2fa1">
+                        <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cc867fc0-9daa-4b1f-b096-c06fc773f19b"/>
+                    </reportElement>
+                    <text><![CDATA[amount]]></text>
+                </staticText>
+            </frame>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="21" splitType="Stretch">
+            <frame>
+                <reportElement x="97" y="1" width="705" height="15" uuid="89a3da05-fdde-4ffe-965f-cc476f72e3ab"/>
+                <textField>
+                    <reportElement style="Detail" x="-80" y="0" width="141" height="15" uuid="b19e5024-9db5-4287-b4e1-006b23287b89">
+                        <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b9b2d7f-601c-4af3-bd34-8ad7bb3d31e2"/>
+                    </reportElement>
+                    <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement style="Detail" x="61" y="0" width="141" height="15" uuid="c6591a59-d633-459d-a0ed-d00c147b20dc">
+                        <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="226f5ac3-33fa-41ea-a14a-ea74b64c5f16"/>
+                    </reportElement>
+                    <textFieldExpression><![CDATA[$F{booking_id}]]></textFieldExpression>
+                </textField>
+
+                <textField>
+                    <reportElement style="Detail" x="484" y="0" width="141" height="15" uuid="879e2d41-8b52-46d5-957f-3839296186b4">
+                        <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cc867fc0-9daa-4b1f-b096-c06fc773f19b"/>
+                    </reportElement>
+                    <textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+                </textField>
+            </frame>
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="17" y="16" width="705" height="1" uuid="e5f21b91-7f24-498e-97a1-0e93db9225a4"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+        </band>
+    </detail>
+    <columnFooter>
+        <band splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="20" splitType="Stretch">
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement style="Column header" x="592" y="0" width="131" height="20" forecolor="#000000" uuid="95484ca0-40b4-4752-95d8-1afbc33c820b"/>
+                <textElement textAlignment="Right">
+                    <font size="12" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="16" y="0" width="267" height="20" uuid="0ec52099-dcd7-42f4-8baa-f3874f05208a"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <text><![CDATA[Matara Southern Lanka Rent Car]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
+</jasperReport>
