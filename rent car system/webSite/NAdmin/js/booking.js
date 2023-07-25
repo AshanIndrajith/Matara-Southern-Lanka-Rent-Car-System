@@ -85,8 +85,7 @@ function deleteBooking(empID){
       swal("Your detailes  is safe!");
     }
   });
-  
-
+ 
 }
 
 
@@ -837,6 +836,76 @@ function getAllVehicle() {
   var fromDate = $("#fromDate").val();
   var toDate = $("#toDate").val();
 
+  if (fromDate === ""){
+    swal({
+      title:"Required filed missing",
+      text:'Please select pick up Date',
+      className: "custom-button-class",
+      icon: 'error',
+      button: "OK",
+    }).then(()=>{
+      $('#fromDate').focus();
+    });
+    return;
+  }
+
+  if (toDate === ""){
+    swal({
+      title:"Required filed missing",
+      text:'Please select Return Date',
+      className: "custom-button-class",
+      icon: 'error',
+      button: "OK",
+    }).then(()=>{
+      $('#toDate').focus();
+    });
+    return;
+  }
+
+  var date = new Date();
+
+  // Get year, month, and day part from the date
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
+
+  // Generate yyyy-mm-dd date string
+  var today = year + "-" + month + "-" + day;
+
+  if (fromDate < today) {
+    swal({
+      title: "Invalid Pick up date",
+      text: 'Please select dates starting from today or in the future',
+      className: "custom-button-class",
+      icon: 'error',
+      button: "OK",
+    });
+    return;
+  }
+
+  if (toDate < today) {
+    swal({
+      title: "Invalid Return date",
+      text: 'Please select dates starting from today or in the future',
+      className: "custom-button-class",
+      icon: 'error',
+      button: "OK",
+    });
+    return;
+  }
+
+  if (fromDate > toDate) {
+    swal({
+      title: "Invalid Return date",
+      text: 'Please select dates after the Pickup date',
+      className: "custom-button-class",
+      icon: 'error',
+      button: "OK",
+    });
+    return;
+  }
+
+
 
 sessionStorage.setItem("fromDate", fromDate);
 sessionStorage.setItem("toDate", toDate);
@@ -890,49 +959,6 @@ sessionStorage.setItem("toDate", toDate);
     }
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

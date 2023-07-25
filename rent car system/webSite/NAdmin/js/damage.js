@@ -12,16 +12,6 @@ function saveDamage() {
     let image = $('#image').prop('files')[0];
     let amount = $('#damount').val().trim();
 
-
-    // if (vid === '' || description === '' || date === '' || !image || amount === '') {
-    //   swal({
-    //     title: "Please fill in all fields",
-    //     button: {
-    //       className: "custom-button-class",
-    //     },
-    //   });
-    //   return false;
-    // }
   
     if (vid === '') {
       swal({
@@ -89,9 +79,18 @@ function saveDamage() {
       return;
     }
 
-    var today = new Date();
-    today.setHours(0, 0, 0, 0); // Set hours to 0 to compare only the date part
-    if (date <= today) {
+    var currentdate = new Date();
+
+    // Get year, month, and day part from the date
+    var year = currentdate.toLocaleString("default", { year: "numeric" });
+    var month = currentdate.toLocaleString("default", { month: "2-digit" });
+    var day = currentdate.toLocaleString("default", { day: "2-digit" });
+  
+    // Generate yyyy-mm-dd date string
+    var today = year + "-" + month + "-" + day;
+
+    
+    if (date >= today) {
       swal({
         title: "Invalid Input",
         text: "Please select a past date in the damage date field.",
@@ -255,20 +254,30 @@ function updateDamage() {
     return;
   }
 
-  var today = new Date();
-  today.setHours(0, 0, 0, 0); // Set hours to 0 to compare only the date part
-  if (date <= today) {
-    swal({
-      title: "Invalid Input",
-      text: "Please select a past date in the damage date field.",
-      button: {
-        className: "custom-button-class",
-      },
-    }).then(() => {
-      $('#date').focus(); // Focus on the invalid field
-    });
-    return;
-  }
+  var currentdate = new Date();
+
+    // Get year, month, and day part from the date
+    var year = currentdate.toLocaleString("default", { year: "numeric" });
+    var month = currentdate.toLocaleString("default", { month: "2-digit" });
+    var day = currentdate.toLocaleString("default", { day: "2-digit" });
+  
+    // Generate yyyy-mm-dd date string
+    var today = year + "-" + month + "-" + day;
+
+    
+    if (date >= today) {
+      swal({
+        title: "Invalid Input",
+        text: "Please select a past date in the damage date field.",
+        button: {
+          className: "custom-button-class",
+        },
+      }).then(() => {
+        $('#date').focus(); // Focus on the invalid field
+      });
+      return;
+    }
+  
 
   if (amount === '') {
     swal({
@@ -306,29 +315,7 @@ function updateDamage() {
   //   return;
   // }
 
-  // if (!/^[A-Z]{2,3}-\d{4}$/.test(vID)) {
-  //   swal({
-  //     title: "Invalid registration number. Format should be two or three capital letters followed by a hyphen and four numbers.",
-  //     button: {
-  //       className: "custom-button-class",
-  //     },
-  //   }).then(() => {
-  //     $('#vid').focus(); // Focus on the invalid field
-  //   });
-  //   return;
-  // }
-
-  // if (isNaN(parseFloat(amount))) {
-  //   swal({
-  //     title: "Invalid damage amount. Please enter a valid number.",
-  //     button: {
-  //       className: "custom-button-class",
-  //     },
-  //   }).then(() => {
-  //     $('#amount').focus(); // Focus on the invalid field
-  //   });
-  //   return;
-  // }
+  
 
   $.ajax({
     method: "PUT",
@@ -360,9 +347,7 @@ function updateDamage() {
 
 function deleteEmployee(empID){
 
-    
-
- //let empID=$('#exampleFormControlInput1').val();
+  //let empID=$('#exampleFormControlInput1').val();
 
  swal({
   title: "Are you sure?",
@@ -394,7 +379,6 @@ function deleteEmployee(empID){
   }
 });
 
-
 }
 
 
@@ -415,8 +399,6 @@ function getDamageDetails(id) {
         var amount = data.amount; // Adjust property name based on your Damage object
 
         
-      
-
         // Construct the URL for the new page with query parameters
         var url = "damageUpdate.html" +
           "?id=" + encodeURIComponent(id) +
@@ -426,12 +408,9 @@ function getDamageDetails(id) {
           "&imageName=" + encodeURIComponent(image) +
           "&amount=" + encodeURIComponent(amount);
 
-       
-
         // Redirect the user to the new page
         window.location.href = url;
-
-        
+ 
       }
     },
     error: function(xhr, status, error) {
@@ -510,23 +489,12 @@ function getDamageDetails(id) {
   }
   
 
-
-  
-
-
-
-
   
 function getAllDamageDetailsReport() {
 
  
- 
   var startDate = $("#fromDate").val();
   var endDate = $("#toDate").val();
-
-
-
-
 
   $.ajax({
     method: "GET",
