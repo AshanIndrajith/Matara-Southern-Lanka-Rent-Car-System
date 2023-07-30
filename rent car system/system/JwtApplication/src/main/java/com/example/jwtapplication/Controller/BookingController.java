@@ -132,7 +132,7 @@ public class BookingController {
         Booking existingReqBooking = bookingService.getBookingById(id);
         if (existingReqBooking != null) {
             existingReqBooking.setStatus("1");
-            existingReqBooking.setService_out("1");
+            //existingReqBooking.setService_out("1");
             Booking updatedReqBookingObj = bookingService.updateBooking(existingReqBooking);
             return ResponseEntity.ok(updatedReqBookingObj);
         } else {
